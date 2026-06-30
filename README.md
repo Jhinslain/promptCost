@@ -1,89 +1,88 @@
 # PromptCost
 
-> Combien consomme *vraiment* un prompt IA ? Un site ludique qui te donne un « budget » de prompts (l'usage annuel d'une personne… ou du monde) et te le fait dépenser en gestes du quotidien (douche, four, vol en avion). On comprend en 5 secondes : un prompt est minuscule — c'est l'échelle qui compte.
+**Combien consomme *vraiment* un prompt IA ?**
 
-Construit à partir de [`SPEC.md`](./SPEC.md). Ton **curieux et honnête, jamais militant** : les chiffres sourcés font le travail.
-
-## Stack
-
-- **Next.js 15** (App Router) · React 19 · TypeScript strict
-- **Tailwind CSS** + CSS variables (theming clair/sombre + accent par métrique)
-- **Framer Motion** (compteurs, transitions de couleur, confettis)
-- **next-intl** (FR / EN, routing `/fr` `/en`, détection géo via middleware)
-- **Zustand** (état du jeu)
-- **next/og** (carte de score OG dynamique)
-- **Vitest** (logique de conversion testée à 100 %)
-
-## Démarrer
-
-```bash
-npm install
-npm run dev      # http://localhost:3000 → redirige vers /fr ou /en
-npm run build    # build de production
-npm test         # tests de conversion
-```
-
-## Architecture
-
-```
-app/[locale]/         # one-page (jeu) + comparatif, sources, methodologie, a-propos, mentions-legales
-app/api/og/           # carte de score OG dynamique
-app/sitemap.ts        # sitemap multilingue (hreflang)
-app/robots.ts
-components/game/       # Game, TotalBar, ScaleSelector, MetricTabs, ActionList, ResultCard
-components/ui/         # ThemeProvider/Toggle, LangSwitcher, Counter, Confetti
-components/layout/     # Header, Footer, PageShell
-components/comparatif/ # VersusBlock
-lib/data.ts           # ⭐ SOURCE DE VÉRITÉ : per-prompt, gestes, échelles, sources
-lib/convert.ts        # logique pure (testée)
-lib/format.ts         # formatage localisé + notation compacte (96 Md)
-lib/store.ts          # Zustand
-messages/{fr,en}.json # toutes les strings
-i18n/                 # routing + request config next-intl
-middleware.ts         # détection langue
-```
-
-**Règle d'or :** aucune valeur chiffrée en dur dans les composants. Tout vient de `lib/data.ts`, chaque valeur avec son `sourceId`.
-
-## Modèle de calcul
-
-```
-PER = { elec: 0.3 Wh, water: 0.3 mL, co2: 0.2 g }   // coût d'un prompt
-PERSON_YEAR = 12 000                                 // hypothèse usage intensif
-budget(population)            = PERSON_YEAR × population
-promptsForAction(value, m, p) = value / PER[m] × population
-```
-
-Les ratios entre gestes restent constants quelle que soit l'échelle → toujours jouable, mais les totaux deviennent vertigineux (monde = 96 000 milliards de prompts).
-
-## Roadmap v2 (non implémentée — voir SPEC.md §12)
-
-**Comparatif poussé & dynamique**
-- **Recherche live** : l'utilisateur tape une requête → recherche Google classique vs réponse IA lancées en parallèle, coût estimé de chaque approche en direct.
-- **Image** : chercher une image existante vs **générer réellement** une image par IA dans la page (API de génération), avec mesure du coût.
-- **Comparateur libre** : saisir n'importe quelle action ou un nombre de prompts → toutes les équivalences avec graphiques.
-- **Profils d'usage réels** (codeur, étudiant, rédacteur…).
-
-**Visualisations & données vivantes**
-- Graphiques animés (barres/bulles), timeline « ta journée numérique ».
-- Intensité carbone du réseau en temps réel par pays (API type Electricity Maps).
-- Pré-réglage géo de l'échelle « pays » selon la population locale détectée.
-
-**Diffusion**
-- Plus de langues, plus de gestes, catégories (transport, maison, alimentation, numérique).
-- Widget embarquable (`<iframe>`) pour blogs/médias → backlinks SEO.
-- Partage enrichi (carte animée / petite vidéo).
-- Deep-link d'état dans l'URL (`?scale=world&metric=water`).
-- Analytics sans cookie (Plausible / Vercel) : events `metric_change`, `scale_change`, `goal_reached`, `share_click`.
-
-## Questions ouvertes (SPEC.md §14)
-
-1. Nom de domaine définitif (placeholder actuel : `promptcost.app`).
-2. Échelle « pays » fixe (France) ou adaptative selon la géo.
-3. `PERSON_YEAR = 12 000` à confirmer comme hypothèse « usage intensif ».
-4. Analytics : Plausible vs Vercel Analytics.
-5. Widget embarquable en v1 ou v2.
+PromptCost est une expérience interactive qui remet le coût environnemental de l'intelligence artificielle en perspective — sans catastrophisme, sans déni. Les chiffres sont sourcés ; c'est toi qui les manipules.
 
 ---
 
-Un projet [Majoli](https://majoli.io). Données indicatives — ordres de grandeur sourcés.
+## Le constat
+
+On entend souvent que l'IA « consomme énormément » d'électricité, d'eau ou de CO₂. C'est parfois vrai, parfois exagéré. Un prompt texte isolé est minuscule : environ **0,3 Wh**, **0,3 mL d'eau** et **0,2 g de CO₂**. Mais à l'échelle de millions d'utilisateurs, les totaux deviennent vertigineux.
+
+**Les deux sont vrais. C'est l'échelle qui compte.**
+
+---
+
+## Comment ça marche
+
+On te donne un **budget de prompts IA** — l'équivalent d'un an d'usage pour une personne, une ville, la France ou le monde entier. À toi de le « dépenser » en ajoutant des gestes du quotidien :
+
+- ⚡ **Électricité** — four, Netflix, gaming, lessive…
+- 💧 **Eau** — douche, café, burger, lessive…
+- 🌍 **CO₂** — voiture, train, vol, steak, jean…
+
+Chaque geste consomme une part de ton budget. Une douche de 5 minutes « coûte » environ **250 000 prompts** en eau. Un vol Paris → New York, des **millions** en CO₂. Une ampoule LED une heure ? **33 prompts**.
+
+Quand tu atteins ton objectif, tu obtiens un bilan partageable : *« En X gestes, j'ai dépensé Y années d'IA. »*
+
+---
+
+## Choisir son échelle
+
+Le même geste pèse toujours pareil en prompts — mais l'objectif change selon l'échelle :
+
+| Échelle | Budget (1 an d'IA) |
+|---|---|
+| 🧍 Toi | 12 000 prompts |
+| 👥 100 personnes | 1,2 million |
+| 🏙️ Une ville (500 000 hab.) | 6 milliards |
+| 🇫🇷 La France | 780 milliards |
+| 🌍 Le monde | 96 000 milliards |
+
+Passer de « toi » à « le monde » ne change pas les ratios entre gestes : ça montre surtout à quelle vitesse l'échelle fait basculer les ordres de grandeur.
+
+---
+
+## Ce que tu peux explorer
+
+- **Le jeu** — dépense ton budget, compare les gestes, partage ton score
+- **Comparatif** — recherche Google vs requête IA, image téléchargée vs image générée, streaming vs prompt
+- **Sources** — Epoch AI, Google Cloud, OpenAI, Our World in Data, Water Footprint Network…
+- **Méthodologie** — hypothèses, fourchettes et calculs expliqués simplement
+
+---
+
+## Quelques ordres de grandeur
+
+| Geste | Équivalent en prompts |
+|---|---|
+| Ampoule LED 1 h | ~33 |
+| Charger un smartphone | ~57 |
+| 1 h de Netflix (TV) | ~450 |
+| Douche 5 min (eau) | ~250 000 |
+| 1 burger (eau virtuelle) | ~8 000 000 |
+| Vol Paris → New York (CO₂) | ~2 500 000 000 |
+
+*Aliments et objets : empreinte « virtuelle » (production comprise), pas seulement l'eau du robinet.*
+
+---
+
+## Notre approche
+
+- **Curieux et honnête** — jamais militant. Les chiffres et les sources parlent d'eux-mêmes.
+- **Ordres de grandeur** — fourchettes plutôt que fausse précision. Les sources divergent ; on le dit.
+- **Tu manipules** — pas de discours imposé. Tu ajoutes les gestes, tu vois le résultat.
+- **Transparent** — chaque chiffre est traçable jusqu'à sa source.
+
+---
+
+## Langues
+
+Disponible en **français** et **anglais**.
+
+---
+
+Un projet [Majoli](https://majoli.io).
+
+*Données indicatives — ordres de grandeur sourcés.*
