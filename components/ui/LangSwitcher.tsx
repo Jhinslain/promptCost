@@ -2,8 +2,8 @@
 
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
-import { Globe } from 'lucide-react';
 import { useTransition } from 'react';
+import { Flag } from './Flag';
 
 export function LangSwitcher() {
   const locale = useLocale();
@@ -12,17 +12,18 @@ export function LangSwitcher() {
   const [isPending, startTransition] = useTransition();
 
   const next = locale === 'fr' ? 'en' : 'fr';
+  // Drapeau de la langue courante (🇫🇷 sur /fr, 🇬🇧 sur /en) ; clic = bascule.
+  const region = locale === 'fr' ? 'fr' : 'gb';
 
   return (
     <button
       type="button"
       disabled={isPending}
       onClick={() => startTransition(() => router.replace(pathname, { locale: next }))}
-      aria-label="Language"
-      className="flex h-9 items-center gap-1 rounded-full px-2 text-sm font-semibold text-muted transition-colors hover:text-text disabled:opacity-50"
+      aria-label={`Language: switch to ${next.toUpperCase()}`}
+      className="grid h-9 w-9 place-items-center rounded-full transition-opacity hover:opacity-80 disabled:opacity-50"
     >
-      <Globe size={16} />
-      {next.toUpperCase()}
+      <Flag region={region} className="h-4 w-auto rounded-[2px]" />
     </button>
   );
 }

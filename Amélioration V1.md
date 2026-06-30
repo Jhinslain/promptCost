@@ -64,7 +64,7 @@
 
 ---
 
-## 7. Échelles & populations (sélecteur d'échelle) : ⬜ à faire
+## 7. Échelles & populations (sélecteur d'échelle) : ✅ fait
 
 Localiser les échelles par langue + populations ≈ 2026. Résout au passage l'écart README ↔ `data.ts` (ville 1 M vs 500 k, France 68 M vs 65/69 M).
 
@@ -90,4 +90,4 @@ Localiser les échelles par langue + populations ≈ 2026. Résout au passage l'
 | 4. Données & crédibilité | ✅ fait (badge fourchette non retenu) |
 | 5. Accessibilité & i18n | 🚧 (reste : reduced-motion strict, AA, clavier, pseudo-loc) |
 | 6. Technique & perf | 🚧 (reste : Lighthouse, analytics) |
-| 7. Échelles localisées | ⬜ à faire |
+| 7. Échelles localisées | ✅ fait |

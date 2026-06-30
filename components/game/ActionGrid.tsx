@@ -97,13 +97,13 @@ export function ActionGrid({ metric }: ActionGridProps) {
                 </span>
               </button>
 
-              {/* Infos */}
-              <div className="flex flex-1 flex-col gap-0.5 px-3 pt-2.5">
-                <div className="truncate text-sm font-bold leading-tight text-text">
+              {/* Infos (titre + coût centrés) */}
+              <div className="flex flex-1 flex-col items-center gap-0.5 px-3 pt-2.5 text-center">
+                <div className="w-full truncate text-sm font-bold leading-tight text-text">
                   {label}
                 </div>
                 <div
-                  className="num mt-1 inline-flex cursor-help items-baseline gap-1 self-start text-[15px] font-extrabold leading-none text-accent"
+                  className="num mt-1 inline-flex cursor-help items-baseline gap-1 text-[15px] font-extrabold leading-none text-accent"
                   title={source ? `${t('common.source')} : ${source.label}` : undefined}
                 >
                   {formatCompact(a.cost, locale)}

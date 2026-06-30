@@ -109,10 +109,15 @@
   },
   "scale": {
     "label": "At what scale?",
+    "region": "Reference country",
     "you": "You",
     "hundred": "100 people",
-    "city": "London",
-    "country": "United Kingdom",
+    "cityFr": "Paris",
+    "cityGb": "London",
+    "cityUs": "New York",
+    "countryFr": "France",
+    "countryGb": "United Kingdom",
+    "countryUs": "United States",
     "world": "The world"
   },
   "metric": {

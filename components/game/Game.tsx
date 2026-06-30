@@ -3,7 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Shuffle, RotateCcw } from 'lucide-react';
-import { ACTIONS, SCALES, METRIC_BY_ID, scalePopulation } from '@/lib/data';
+import {
+  ACTIONS,
+  SCALES,
+  METRIC_BY_ID,
+  scalePopulation,
+  regionKey,
+  scaleLabelKey,
+} from '@/lib/data';
 import { budget, totalPrompts, yearsOfAI } from '@/lib/convert';
 import { useGame } from '@/lib/store';
 import { useTheme } from '../ui/ThemeProvider';
@@ -30,9 +37,17 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const add = useGame((s) => s.add);
   const reset = useGame((s) => s.reset);
 
+  // Pays de référence : cookie posé par le middleware (géo), sinon la langue.
+  const [region, setRegion] = useState('auto');
+  useEffect(() => {
+    const m = document.cookie.match(/(?:^|;\s*)pc-region=(fr|gb|us)/);
+    if (m) setRegion(m[1]);
+  }, []);
+
   const scale = SCALES.find((s) => s.id === scaleId) ?? SCALES[0];
-  const population = scalePopulation(scale, locale);
-  const scaleLabel = t(`scale.${scale.id}`);
+  const rkey = regionKey(locale, region);
+  const population = scalePopulation(scale, rkey);
+  const scaleLabel = t(`scale.${scaleLabelKey(scale.id, rkey)}`);
 
   // Accent CSS variable suit la métrique + le thème (signature visuelle).
   useEffect(() => {
@@ -131,7 +146,7 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
             <TotalBar metric={metric} spent={spent} goal={goal} scaleLabel={scaleLabel} />
 
             <div className="mx-auto mt-5 flex max-w-app flex-col gap-5 px-4 pb-4">
-              <ScaleSelector />
+              <ScaleSelector rkey={rkey} />
               <MetricTabs />
               <ActionGrid metric={metric} />
 

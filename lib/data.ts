@@ -59,32 +59,57 @@ export interface ScaleConfig {
 }
 
 /**
- * Échelles jouables. « ville » et « pays » sont localisées (Paris/Londres,
- * France/Royaume-Uni) avec leur population ≈ 2026 (INSEE · ONS · ONU).
+ * Échelles jouables. « ville » et « pays » sont localisées par **région** :
+ * 🇫🇷 Paris/France · 🇬🇧 Londres/Royaume-Uni · 🇺🇸 New York/USA.
+ * En anglais, l'utilisateur bascule entre 'gb' et 'us' ; en français, 'fr'.
+ * Populations ≈ 2026 (INSEE · ONS · US Census · ONU).
  */
 export const SCALES: ScaleConfig[] = [
   { id: 'you', emoji: '🧍', population: 1 },
   { id: 'hundred', emoji: '👥', population: 100 },
-  { id: 'city', emoji: '🏙️', population: { fr: 2_100_000, en: 8_900_000 } },
-  { id: 'country', emoji: { fr: '🇫🇷', en: '🇬🇧' }, population: { fr: 69_100_000, en: 69_900_000 } },
+  { id: 'city', emoji: '🏙️', population: { fr: 2_100_000, gb: 8_900_000, us: 8_300_000 } },
+  {
+    id: 'country',
+    emoji: { fr: '🇫🇷', gb: '🇬🇧', us: '🇺🇸' },
+    population: { fr: 69_100_000, gb: 69_900_000, us: 341_000_000 },
+  },
   { id: 'world', emoji: '🌍', population: 8_300_000_000 },
 ];
 
-function pickByLocale<T>(value: T | Record<string, T>, locale: string): T {
+export type RegionKey = 'fr' | 'gb' | 'us';
+
+/**
+ * Pays de référence effectif : le choix explicite ('fr'/'gb'/'us') s'il existe,
+ * sinon 'auto' → 🇬🇧 en anglais, 🇫🇷 sinon.
+ */
+export const regionKey = (locale: string, region: string): RegionKey => {
+  if (region === 'fr' || region === 'gb' || region === 'us') return region;
+  return locale === 'en' ? 'gb' : 'fr';
+};
+
+function pickByKey<T>(value: T | Record<string, T>, key: string): T {
   if (typeof value === 'object' && value !== null) {
     const rec = value as Record<string, T>;
-    return rec[locale] ?? Object.values(rec)[0];
+    return rec[key] ?? Object.values(rec)[0];
   }
   return value as T;
 }
 
-/** Population d'une échelle pour une langue donnée. */
-export const scalePopulation = (scale: ScaleConfig, locale: string): number =>
-  pickByLocale(scale.population, locale);
+/** Population d'une échelle pour une région donnée. */
+export const scalePopulation = (scale: ScaleConfig, key: string): number =>
+  pickByKey(scale.population, key);
 
-/** Emoji d'une échelle pour une langue donnée. */
-export const scaleEmoji = (scale: ScaleConfig, locale: string): string =>
-  pickByLocale(scale.emoji, locale);
+/** Emoji d'une échelle pour une région donnée. */
+export const scaleEmoji = (scale: ScaleConfig, key: string): string =>
+  pickByKey(scale.emoji, key);
+
+/** Clé i18n du libellé (city/country varient par région : cityFr, cityGb…). */
+export function scaleLabelKey(id: string, key: RegionKey): string {
+  if (id === 'city' || id === 'country') {
+    return `${id}${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+  }
+  return id;
+}
 
 export interface ActionData {
   id: string;
