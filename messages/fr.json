@@ -1,0 +1,213 @@
+{
+  "site": {
+    "name": "PromptCost",
+    "tagline": "1 prompt IA = ?"
+  },
+  "meta": {
+    "home": {
+      "title": "PromptCost — Combien consomme vraiment 1 prompt IA ?",
+      "description": "Visualise le coût réel d'un prompt IA (électricité, eau, CO₂) en le comparant aux gestes du quotidien. Chiffres sourcés, sans parti pris."
+    },
+    "comparatif": {
+      "title": "Comparatif — Recherche classique vs IA | PromptCost",
+      "description": "Recherche Google vs requête IA, image téléchargée vs image générée : ordres de grandeur côte à côte, honnêtement."
+    },
+    "sources": {
+      "title": "Sources & données | PromptCost",
+      "description": "Toutes les sources des chiffres utilisés : énergie, eau et CO₂ par prompt et par geste du quotidien."
+    },
+    "methodologie": {
+      "title": "Méthodologie — comment on calcule | PromptCost",
+      "description": "Hypothèses, fourchettes et calculs derrière le coût d'un prompt IA en électricité, eau et CO₂."
+    },
+    "apropos": {
+      "title": "À propos | PromptCost",
+      "description": "Pourquoi ce projet : remettre le coût d'un prompt IA en perspective, sans diaboliser ni minimiser."
+    },
+    "legal": {
+      "title": "Mentions légales | PromptCost",
+      "description": "Mentions légales et politique analytics sans cookie de PromptCost."
+    }
+  },
+  "header": {
+    "methodology": "Méthodologie",
+    "openMenu": "Ouvrir le menu"
+  },
+  "intro": {
+    "lead": "On diabolise le coût d'un prompt IA. Et si tu le dépensais toi-même ?",
+    "sub": "Voici un an d'IA. Ajoute des gestes du quotidien et vois à quelle vitesse tu l'épuises."
+  },
+  "total": {
+    "goalLabel": "1 an d'IA · {scale}",
+    "ofGoal": "sur {goal} prompts",
+    "spent": "{spent} prompts dépensés",
+    "yearsLabel": "{years} ans d'IA",
+    "reached": "Objectif atteint !",
+    "promptsUnit": "prompts"
+  },
+  "scale": {
+    "label": "À quelle échelle ?",
+    "you": "Toi",
+    "hundred": "100 personnes",
+    "city": "Une ville",
+    "france": "La France",
+    "world": "Le monde"
+  },
+  "metric": {
+    "label": "Quelle ressource ?",
+    "elec": "Électricité",
+    "water": "Eau",
+    "co2": "CO₂",
+    "elecUnit": "Wh",
+    "waterUnit": "mL",
+    "co2Unit": "g CO₂"
+  },
+  "actions": {
+    "title": "Dépense ton budget",
+    "costLabel": "= {cost} prompts",
+    "virtualNote": "Aliments & objets = empreinte « virtuelle » (production comprise), pas l'eau du robinet.",
+    "led": "Ampoule LED 1 h",
+    "phone_charge": "Charger un smartphone",
+    "kettle": "Bouilloire (1 tasse)",
+    "toast": "2 toasts",
+    "microwave": "Micro-ondes 5 min",
+    "netflix": "1 h de Netflix (TV)",
+    "vacuum": "Aspirateur 10 min",
+    "hairdryer": "Sèche-cheveux 10 min",
+    "gaming": "1 h de gaming PC",
+    "laundry": "1 lessive",
+    "dishwasher": "1 lave-vaisselle",
+    "oven": "Four 1 h",
+    "glass": "1 verre d'eau",
+    "toothbrush": "Brossage de dents",
+    "toilet": "1 chasse d'eau",
+    "almond": "1 amande",
+    "tomato": "1 tomate",
+    "laundry_water": "1 lessive",
+    "apple": "1 pomme",
+    "shower": "Douche 5 min",
+    "coffee_water": "1 café (culture)",
+    "bath": "Un bain",
+    "pasta": "1 assiette de pâtes",
+    "burger_water": "1 burger (total)",
+    "train": "1 km en train",
+    "video_mobile": "1 h vidéo mobile",
+    "email": "1 email + pièce jointe",
+    "coffee_co2": "1 café",
+    "bus": "1 km en bus",
+    "car": "1 km en voiture",
+    "tshirt": "1 t-shirt (fabrication)",
+    "burger_co2": "1 burger de bœuf",
+    "steak": "1 steak de bœuf",
+    "jeans": "1 jean (fabrication)",
+    "smartphone": "Fabriquer 1 smartphone",
+    "flight": "Vol Paris → New York"
+  },
+  "controls": {
+    "surprise": "Surprends-moi",
+    "reset": "Recommencer",
+    "add": "Ajouter {action}",
+    "remove": "Retirer {action}"
+  },
+  "result": {
+    "title": "Bilan",
+    "headline": "En {count, plural, one {# geste} other {# gestes}}, tu as dépensé {years} ans d'IA !",
+    "headlineScale": "… à l'échelle de {scale}.",
+    "efficiency": "Année d'IA pliée en {count, plural, one {# geste} other {# gestes}}.",
+    "share": "Partager mon score",
+    "shareText": "J'ai dépensé {years} ans d'IA en {count, plural, one {# geste} other {# gestes}} du quotidien sur PromptCost 👀",
+    "copied": "Lien copié !",
+    "continue": "Continuer à jouer",
+    "didYouKnow": "Le saviez-vous ?"
+  },
+  "facts": {
+    "f1": "Un prompt texte ≈ 0,3 Wh : autant qu'une ampoule LED allumée ~2 minutes.",
+    "f2": "L'eau de refroidissement d'un prompt ≈ 0,3 mL : 5 gouttes.",
+    "f3": "Le CO₂ d'un prompt ≈ 0,2 g : un email avec pièce jointe en pèse ~250 fois plus.",
+    "f4": "Une douche de 5 min « vaut » environ 250 000 prompts en eau.",
+    "f5": "Un vol Paris → New York « vaut » des millions de prompts en CO₂."
+  },
+  "comparatif": {
+    "title": "Comparatif",
+    "subtitle": "Le « classique » face à l'IA, côte à côte. Données statiques et sourcées.",
+    "left": "Classique",
+    "right": "Intelligence artificielle",
+    "case1": {
+      "title": "Recherche Google vs requête IA texte",
+      "leftLabel": "Recherche Google",
+      "rightLabel": "Requête IA texte",
+      "verdict": "Ordres de grandeur comparables : selon les sources, l'écart va de « quasi identique » à « quelques fois plus ». La fourchette compte plus que le verdict."
+    },
+    "case2": {
+      "title": "Image téléchargée vs image générée par IA",
+      "leftLabel": "Télécharger une image",
+      "rightLabel": "Générer une image (IA)",
+      "verdict": "Générer une image coûte ~20 à 40× une requête texte. Télécharger une image existante est quasi nul."
+    },
+    "case3": {
+      "title": "1 min de vidéo en streaming vs 1 prompt texte",
+      "leftLabel": "1 min de streaming",
+      "rightLabel": "1 prompt texte",
+      "verdict": "Une minute de vidéo HD pèse plusieurs prompts texte. L'IA texte est minuscule à l'unité — c'est le volume qui fait le total."
+    }
+  },
+  "sources": {
+    "title": "Sources & données",
+    "intro": "Chaque chiffre du site vient d'une de ces sources. Recherche croisée 2025-2026.",
+    "perTitle": "Coût d'un prompt (référence)",
+    "actionsTitle": "Sources des gestes du quotidien",
+    "noUrl": "(référence livre / rapport)"
+  },
+  "methodologie": {
+    "title": "Méthodologie",
+    "intro": "Comment on transforme un geste en « nombre de prompts ». Tout est honnête et fourchetté.",
+    "q1": "Combien consomme un prompt IA ?",
+    "a1": "Pour un prompt texte moyen (type GPT-4o) : ~0,3 Wh d'électricité, ~0,3 mL d'eau de refroidissement direct, ~0,2 g de CO₂. Les requêtes « raisonnement » ou la génération d'images coûtent bien plus.",
+    "q2": "Comment je calcule le « coût en prompts » d'un geste ?",
+    "a2": "On divise la consommation du geste par celle d'un prompt : prompts = valeur du geste ÷ coût d'un prompt. Une douche de 75 L d'eau ≈ 75 000 mL ÷ 0,3 mL = 250 000 prompts.",
+    "q3": "Pourquoi 12 000 prompts par an et par personne ?",
+    "a3": "C'est une hypothèse d'usage intensif (≈ 33 prompts/jour). Le budget d'une échelle = 12 000 × nombre de personnes. Tes gestes, eux, restent comptés pour une seule personne : seul l'objectif grandit avec l'échelle. On voit ainsi qu'une personne peut « valoir » l'IA annuelle de tout un groupe.",
+    "q4": "Eau et CO₂ « virtuels », c'est quoi ?",
+    "a4": "Pour les aliments et objets, on compte l'empreinte de production (eau et CO₂ « virtuels »), pas seulement l'eau du robinet. Un burger « coûte » surtout par l'élevage, pas par le verre d'eau du repas.",
+    "q5": "Pourquoi des fourchettes plutôt qu'un chiffre exact ?",
+    "a5": "Les sources varient (mix électrique, méthode de mesure, périmètre). On retient une médiane crédible et on affiche la fourchette. Objectif : des ordres de grandeur honnêtes, pas une fausse précision."
+  },
+  "apropos": {
+    "title": "À propos",
+    "p1": "PromptCost remet le coût d'un prompt IA en perspective. Ni catastrophisme, ni déni : juste des ordres de grandeur sourcés que tu manipules toi-même.",
+    "p2": "Un prompt est minuscule à l'unité. À l'échelle de la planète, les totaux deviennent vertigineux. Les deux sont vrais — c'est l'échelle qui compte.",
+    "p3": "Un projet Majoli.",
+    "by": "Un projet"
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "p1": "Site éditorial à but pédagogique. Les chiffres sont indicatifs : ordres de grandeur sourcés, pas des mesures certifiées.",
+    "p2": "Analytics sans cookie, respectueux de la vie privée. Aucune donnée personnelle revendue.",
+    "editor": "Éditeur",
+    "data": "Données"
+  },
+  "footer": {
+    "comparatif": "Comparatif",
+    "sources": "Sources",
+    "methodologie": "Méthodologie",
+    "apropos": "À propos",
+    "legal": "Mentions légales",
+    "disclaimer": "Données indicatives — ordres de grandeur sourcés.",
+    "by": "Un projet Majoli"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "lang": {
+    "toggle": "Langue",
+    "fr": "Français",
+    "en": "English"
+  },
+  "common": {
+    "back": "Retour au jeu",
+    "exact": "Nombre exact",
+    "source": "Source"
+  }
+}

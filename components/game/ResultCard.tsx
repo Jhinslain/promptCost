@@ -1,0 +1,134 @@
+'use client';
+
+import { useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Share2, X, Check } from 'lucide-react';
+import { formatYears } from '@/lib/format';
+
+interface ResultCardProps {
+  open: boolean;
+  years: number;
+  count: number;
+  scaleLabel: string;
+  factKey: string;
+  onClose: () => void;
+}
+
+export function ResultCard({
+  open,
+  years,
+  count,
+  scaleLabel,
+  factKey,
+  onClose,
+}: ResultCardProps) {
+  const t = useTranslations();
+  const locale = useLocale();
+  const [copied, setCopied] = useState(false);
+
+  const yearsStr = formatYears(years, locale);
+
+  async function share() {
+    const text = t('result.shareText', { years: yearsStr, count });
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({ title: t('site.name'), text, url });
+        return;
+      } catch {
+        /* annulé → fallback */
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+        >
+          <motion.div
+            className="relative w-full max-w-md overflow-hidden rounded-t-3xl border border-line bg-surface p-6 pb-8 sm:rounded-3xl"
+            initial={{ y: '100%', opacity: 0.5 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="accent-glow pointer-events-none absolute inset-x-0 top-0 h-40" />
+
+            <button
+              onClick={onClose}
+              aria-label={t('common.back')}
+              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-line bg-bg text-muted transition-colors hover:text-text"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="relative">
+              <div className="text-xs font-bold uppercase tracking-wider text-accent">
+                {t('result.title')}
+              </div>
+
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1, type: 'spring', stiffness: 300, damping: 18 }}
+                className="num mt-3 text-6xl font-extrabold text-accent"
+              >
+                {yearsStr}×
+              </motion.div>
+
+              <p className="mt-3 text-lg font-bold leading-snug text-text">
+                {t('result.headline', { count, years: yearsStr })}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-muted">
+                {t('result.headlineScale', { scale: scaleLabel })}
+              </p>
+              <p className="mt-1 text-sm font-semibold text-accent">
+                {t('result.efficiency', { count })}
+              </p>
+
+              <div className="mt-5 rounded-2xl border border-line bg-bg p-4">
+                <div className="text-xs font-bold uppercase tracking-wider text-muted">
+                  {t('result.didYouKnow')}
+                </div>
+                <p className="mt-1 text-sm leading-relaxed text-text">{t(factKey)}</p>
+              </div>
+
+              <div className="mt-5 flex flex-col gap-2">
+                <button
+                  onClick={share}
+                  className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-white transition-transform active:scale-95"
+                >
+                  {copied ? <Check size={18} /> : <Share2 size={18} />}
+                  {copied ? t('result.copied') : t('result.share')}
+                </button>
+                <button
+                  onClick={onClose}
+                  className="flex h-12 items-center justify-center rounded-2xl border border-line bg-surface text-base font-bold text-text transition-colors hover:border-accent"
+                >
+                  {t('result.continue')}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
