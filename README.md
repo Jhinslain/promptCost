@@ -32,13 +32,15 @@ Quand tu atteins ton objectif, tu obtiens un bilan partageable : *« En X gestes
 
 Le même geste pèse toujours pareil en prompts, mais l'objectif change selon l'échelle :
 
-| Échelle | Budget (1 an d'IA) |
-|---|---|
-| 🧍 Toi | 12 000 prompts |
-| 👥 100 personnes | 1,2 million |
-| 🏙️ Une ville (500 000 hab.) | 6 milliards |
-| 🇫🇷 La France | 780 milliards |
-| 🌍 Le monde | 96 000 milliards |
+Les échelles « ville » et « pays » s'adaptent à la langue (🇫🇷 Paris / France, 🇬🇧 Londres / Royaume-Uni), avec leur population ≈ 2026.
+
+| Échelle (🇫🇷) | Population | Budget (1 an d'IA) |
+|---|---|---|
+| 🧍 Toi | 1 | 12 000 prompts |
+| 👥 100 personnes | 100 | 1,2 million |
+| 🏙️ Paris | ~2,1 M | ~25 milliards |
+| 🇫🇷 La France | ~69,1 M | ~830 milliards |
+| 🌍 Le monde | ~8,3 Md | ~99 600 milliards |
 
 Passer de « toi » à « le monde » ne change pas les ratios entre gestes : ça montre surtout à quelle vitesse l'échelle fait basculer les ordres de grandeur.
 
