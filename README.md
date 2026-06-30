@@ -2,7 +2,7 @@
 
 **Combien consomme *vraiment* un prompt IA ?**
 
-PromptCost est une expérience interactive qui remet le coût environnemental de l'intelligence artificielle en perspective — sans catastrophisme, sans déni. Les chiffres sont sourcés ; c'est toi qui les manipules.
+PromptCost est une expérience interactive qui remet le coût environnemental de l'intelligence artificielle en perspective, sans catastrophisme, sans déni. Les chiffres sont sourcés ; c'est toi qui les manipules.
 
 ---
 
@@ -16,7 +16,7 @@ On entend souvent que l'IA « consomme énormément » d'électricité, d'eau ou
 
 ## Comment ça marche
 
-On te donne un **budget de prompts IA** — l'équivalent d'un an d'usage pour une personne, une ville, la France ou le monde entier. À toi de le « dépenser » en ajoutant des gestes du quotidien :
+On te donne un **budget de prompts IA**, l'équivalent d'un an d'usage pour une personne, une ville, la France ou le monde entier. À toi de le « dépenser » en ajoutant des gestes du quotidien :
 
 - ⚡ **Électricité** — four, Netflix, gaming, lessive…
 - 💧 **Eau** — douche, café, burger, lessive…
@@ -83,6 +83,6 @@ Disponible en **français** et **anglais**.
 
 ---
 
-Un projet [Majoli](https://majoli.io).
+Un projet [GHIS!](https://ghis.fr).
 
 *Données indicatives — ordres de grandeur sourcés.*
