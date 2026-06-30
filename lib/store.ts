@@ -1,11 +1,16 @@
 import { create } from 'zustand';
 import type { MetricId } from './data';
 
+/** Modes de jeu : chacun a sa propre page (/, /convertir, …). */
+export type GameMode = 'spend' | 'reverse';
+
 export interface GameState {
   metric: MetricId;
   scaleId: string;
   /** Panier : quantité par actionId. */
   cart: Record<string, number>;
+  /** Mode inversé : nombre de requêtes par type d'usage (texte, image…). */
+  usage: Record<string, number>;
   reducedMotion: boolean;
 
   setMetric: (metric: MetricId) => void;
@@ -13,6 +18,8 @@ export interface GameState {
   add: (actionId: string) => void;
   remove: (actionId: string) => void;
   reset: () => void;
+  setUsage: (typeId: string, n: number) => void;
+  bumpUsage: (typeId: string, delta: number) => void;
   setReducedMotion: (v: boolean) => void;
 }
 
@@ -20,6 +27,7 @@ export const useGame = create<GameState>((set) => ({
   metric: 'elec',
   scaleId: 'you',
   cart: {},
+  usage: { text: 30, image: 2 },
   reducedMotion: false,
 
   setMetric: (metric) => set({ metric }),
@@ -35,5 +43,11 @@ export const useGame = create<GameState>((set) => ({
       return { cart };
     }),
   reset: () => set({ cart: {} }),
+  setUsage: (typeId, n) =>
+    set((s) => ({ usage: { ...s.usage, [typeId]: Math.max(0, Math.round(n)) } })),
+  bumpUsage: (typeId, delta) =>
+    set((s) => ({
+      usage: { ...s.usage, [typeId]: Math.max(0, (s.usage[typeId] ?? 0) + delta) },
+    })),
   setReducedMotion: (v) => set({ reducedMotion: v }),
 }));

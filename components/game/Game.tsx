@@ -1,23 +1,27 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Shuffle, RotateCcw } from 'lucide-react';
-import { ACTIONS, SCALES, METRIC_BY_ID } from '@/lib/data';
+import { ACTIONS, SCALES, METRIC_BY_ID, scalePopulation } from '@/lib/data';
 import { budget, totalPrompts, yearsOfAI } from '@/lib/convert';
 import { useGame } from '@/lib/store';
 import { useTheme } from '../ui/ThemeProvider';
 import { TotalBar } from './TotalBar';
 import { ScaleSelector } from './ScaleSelector';
 import { MetricTabs } from './MetricTabs';
-import { ActionList } from './ActionList';
+import { ActionGrid } from './ActionGrid';
+import { Receipt } from './Receipt';
 import { ResultCard } from './ResultCard';
 import { Confetti } from '../ui/Confetti';
+import { ModeToggle } from './ModeToggle';
+import { ReverseMode } from './ReverseMode';
 
 const FACT_KEYS = ['facts.f1', 'facts.f2', 'facts.f3', 'facts.f4', 'facts.f5'];
 
-export function Game() {
+export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const t = useTranslations();
+  const locale = useLocale();
   const { theme } = useTheme();
 
   const metric = useGame((s) => s.metric);
@@ -27,7 +31,7 @@ export function Game() {
   const reset = useGame((s) => s.reset);
 
   const scale = SCALES.find((s) => s.id === scaleId) ?? SCALES[0];
-  const population = scale.population;
+  const population = scalePopulation(scale, locale);
   const scaleLabel = t(`scale.${scale.id}`);
 
   // Accent CSS variable suit la métrique + le thème (signature visuelle).
@@ -63,9 +67,20 @@ export function Game() {
   const [confetti, setConfetti] = useState(false);
   const [factKey, setFactKey] = useState(FACT_KEYS[0]);
   const prevRatio = useRef(0);
+  const prevKey = useRef(`${metric}:${scaleId}`);
 
   useEffect(() => {
+    const key = `${metric}:${scaleId}`;
     const ratio = goal > 0 ? spent / goal : 0;
+
+    // Changement d'onglet ou d'échelle : on resynchronise sans rouvrir le bilan
+    // (sinon revenir sur un onglet déjà « fini » le redéclencherait).
+    if (key !== prevKey.current) {
+      prevKey.current = key;
+      prevRatio.current = ratio;
+      return;
+    }
+
     if (prevRatio.current < 1 && ratio >= 1) {
       setFactKey(FACT_KEYS[count % FACT_KEYS.length]);
       setShowResult(true);
@@ -76,13 +91,7 @@ export function Game() {
       }
     }
     prevRatio.current = ratio;
-  }, [spent, goal, count]);
-
-  // Reset du "déjà franchi" quand on change de métrique/échelle ou qu'on remet à zéro.
-  useEffect(() => {
-    prevRatio.current = goal > 0 ? spent / goal : 0;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [metric, scaleId]);
+  }, [spent, goal, count, metric, scaleId]);
 
   function surprise() {
     const list = ACTIONS[metric];
@@ -97,50 +106,64 @@ export function Game() {
         <div className="accent-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-64" />
 
         <div className="mx-auto max-w-app px-4">
-          {/* Intro */}
+          {/* Intro (s'adapte au mode) */}
           <section className="pt-8 text-center sm:pt-12">
             <h1 className="text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl">
-              {t('intro.lead')}
+              {mode === 'reverse' ? t('reverse.title') : t('intro.lead')}
             </h1>
             <p className="mx-auto mt-3 max-w-md text-sm text-muted sm:text-base">
-              {t('intro.sub')}
+              {mode === 'reverse' ? t('reverse.sub') : t('intro.sub')}
             </p>
           </section>
+
+          <ModeToggle />
         </div>
 
-        <div className="mt-6">
-          <TotalBar spent={spent} goal={goal} scaleLabel={scaleLabel} />
-        </div>
-
-        <div className="mx-auto mt-5 flex max-w-app flex-col gap-5 px-4">
-          <ScaleSelector />
-          <MetricTabs />
-          <ActionList metric={metric} />
-
-          <div className="flex gap-2 pb-4">
-            <button
-              onClick={surprise}
-              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-white transition-transform active:scale-95"
-            >
-              <Shuffle size={18} />
-              {t('controls.surprise')}
-            </button>
-            <button
-              onClick={reset}
-              disabled={count === 0}
-              className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-4 text-base font-bold text-text transition-colors hover:border-accent disabled:opacity-40"
-            >
-              <RotateCcw size={18} />
-              <span className="hidden sm:inline">{t('controls.reset')}</span>
-            </button>
+        {mode === 'reverse' ? (
+          <div className="mt-6">
+            <ReverseMode />
           </div>
-        </div>
+        ) : (
+          /* Ce conteneur enveloppe la facture ET le contenu : il donne à la
+             facture (sticky) la hauteur de défilement nécessaire pour rester
+             collée en haut tant qu'on parcourt le jeu. */
+          <div className="mt-6">
+            <TotalBar metric={metric} spent={spent} goal={goal} scaleLabel={scaleLabel} />
+
+            <div className="mx-auto mt-5 flex max-w-app flex-col gap-5 px-4 pb-4">
+              <ScaleSelector />
+              <MetricTabs />
+              <ActionGrid metric={metric} />
+
+              <div className="flex gap-2">
+                <button
+                  onClick={surprise}
+                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-white transition-transform active:scale-95"
+                >
+                  <Shuffle size={18} />
+                  {t('controls.surprise')}
+                </button>
+                <button
+                  onClick={reset}
+                  disabled={count === 0}
+                  className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-4 text-base font-bold text-text transition-colors hover:border-accent disabled:opacity-40"
+                >
+                  <RotateCcw size={18} />
+                  <span className="hidden sm:inline">{t('controls.reset')}</span>
+                </button>
+              </div>
+
+              <Receipt metric={metric} goal={goal} scaleLabel={scaleLabel} />
+            </div>
+          </div>
+        )}
       </div>
 
       {confetti && <Confetti />}
 
       <ResultCard
         open={showResult}
+        metric={metric}
         years={years}
         count={count}
         scaleLabel={scaleLabel}

@@ -1,9 +1,21 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
+import { ACTION_BY_ID } from '@/lib/data';
 
 const SITE_URL = 'https://promptcost.app';
 
-const PATHS = ['', '/comparatif', '/sources', '/methodologie', '/a-propos', '/mentions-legales'];
+const PATHS = [
+  '',
+  '/convertir',
+  '/combien',
+  '/glossaire',
+  '/comparatif',
+  '/sources',
+  '/methodologie',
+  '/a-propos',
+  '/mentions-legales',
+  ...Object.keys(ACTION_BY_ID).map((id) => `/combien/${id}`),
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

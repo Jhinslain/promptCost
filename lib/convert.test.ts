@@ -1,6 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { promptsForAction, budget, totalPrompts, progress, yearsOfAI } from './convert';
-import { PERSON_YEAR } from './data';
+import {
+  promptsForAction,
+  budget,
+  totalPrompts,
+  progress,
+  yearsOfAI,
+  tierTotals,
+  pickEquivalent,
+  usageTotals,
+} from './convert';
+import { PERSON_YEAR, EQUIV_REFS, USAGE_TYPES } from './data';
 
 describe('promptsForAction', () => {
   it('divides the action value by the per-prompt cost', () => {
@@ -59,5 +68,45 @@ describe('yearsOfAI', () => {
   it('converts spent prompts into years for a scale', () => {
     expect(yearsOfAI(PERSON_YEAR * 3, 1)).toBeCloseTo(3);
     expect(yearsOfAI(PERSON_YEAR * 100 * 2, 100)).toBeCloseTo(2);
+  });
+});
+
+describe('usageTotals', () => {
+  it('sums each usage type × its per-request cost', () => {
+    // 100 prompts texte (0,3 Wh) + 1 image (9 Wh) = 39 Wh.
+    const totals = usageTotals({ text: 100, image: 1 }, USAGE_TYPES);
+    expect(totals.elec).toBeCloseTo(39);
+    expect(totals.water).toBeCloseTo(39);
+  });
+
+  it('treats missing types as zero', () => {
+    expect(usageTotals({}, USAGE_TYPES)).toEqual({ elec: 0, water: 0, co2: 0 });
+  });
+});
+
+describe('tierTotals', () => {
+  it('multiplies the per-prompt cost by the prompt count', () => {
+    const cost = { elec: 0.3, water: 0.3, co2: 0.2 };
+    expect(tierTotals(100, cost)).toEqual({ elec: 30, water: 30, co2: 20 });
+  });
+});
+
+describe('pickEquivalent', () => {
+  it('picks the largest unit that still yields a quantity ≥ 1', () => {
+    // 600 Wh : aspirateur 9 → 66, LED 10 → 60, charge 19 → 31, TV 70 → 8,6.
+    // La plus grande unité avec qty ≥ 1 est la TV (qty la plus faible ≥ 1).
+    const r = pickEquivalent(600, 'elec', EQUIV_REFS);
+    expect(r?.ref.unitKey).toBe('tv_h');
+    expect(r?.qty).toBeCloseTo(600 / 70);
+  });
+
+  it('falls back to the finest unit when everything is below 1', () => {
+    // 4 Wh : aspirateur (9) → 0,44, plus fine que LED/charge/TV.
+    const r = pickEquivalent(4, 'elec', EQUIV_REFS);
+    expect(r?.ref.unitKey).toBe('vacuum_min');
+  });
+
+  it('returns null when no reference matches the metric', () => {
+    expect(pickEquivalent(10, 'water', [])).toBeNull();
   });
 });

@@ -7,13 +7,14 @@ import { useGame } from '@/lib/store';
 
 export function MetricTabs() {
   const t = useTranslations('metric');
+  const tBill = useTranslations('bill');
   const metric = useGame((s) => s.metric);
   const setMetric = useGame((s) => s.setMetric);
 
   return (
     <div className="flex flex-col gap-2">
       <span className="px-1 text-xs font-bold uppercase tracking-wider text-muted">
-        {t('label')}
+        {tBill('choose')}
       </span>
       <div
         role="tablist"

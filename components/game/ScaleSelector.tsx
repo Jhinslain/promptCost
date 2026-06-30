@@ -1,11 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { SCALES } from '@/lib/data';
+import { useTranslations, useLocale } from 'next-intl';
+import { SCALES, scaleEmoji } from '@/lib/data';
 import { useGame } from '@/lib/store';
 
 export function ScaleSelector() {
   const t = useTranslations('scale');
+  const locale = useLocale();
   const scaleId = useGame((s) => s.scaleId);
   const setScale = useGame((s) => s.setScale);
 
@@ -28,7 +29,7 @@ export function ScaleSelector() {
                   : 'border-line bg-surface text-muted hover:border-accent/50'
               }`}
             >
-              <span className="text-base">{s.emoji}</span>
+              <span className="text-base">{scaleEmoji(s, locale)}</span>
               {t(s.id)}
             </button>
           );

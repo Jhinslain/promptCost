@@ -2,7 +2,7 @@
 
 **Combien consomme *vraiment* un prompt IA ?**
 
-PromptCost est une expérience interactive qui remet le coût environnemental de l'intelligence artificielle en perspective — sans catastrophisme, sans déni. Les chiffres sont sourcés ; c'est toi qui les manipules.
+PromptCost est une expérience interactive qui remet le coût environnemental de l'intelligence artificielle en perspective, sans catastrophisme ni déni. Les chiffres sont sourcés ; c'est toi qui les manipules.
 
 ---
 
@@ -16,11 +16,11 @@ On entend souvent que l'IA « consomme énormément » d'électricité, d'eau ou
 
 ## Comment ça marche
 
-On te donne un **budget de prompts IA** — l'équivalent d'un an d'usage pour une personne, une ville, la France ou le monde entier. À toi de le « dépenser » en ajoutant des gestes du quotidien :
+On te donne un **budget de prompts IA** : l'équivalent d'un an d'usage pour une personne, une ville, la France ou le monde entier. À toi de le « dépenser » en ajoutant des gestes du quotidien :
 
-- ⚡ **Électricité** — four, Netflix, gaming, lessive…
-- 💧 **Eau** — douche, café, burger, lessive…
-- 🌍 **CO₂** — voiture, train, vol, steak, jean…
+- ⚡ **Électricité** : four, Netflix, gaming, lessive…
+- 💧 **Eau** : douche, café, burger, lessive…
+- 🌍 **CO₂** : voiture, train, vol, steak, jean…
 
 Chaque geste consomme une part de ton budget. Une douche de 5 minutes « coûte » environ **250 000 prompts** en eau. Un vol Paris → New York, des **millions** en CO₂. Une ampoule LED une heure ? **33 prompts**.
 
@@ -30,7 +30,7 @@ Quand tu atteins ton objectif, tu obtiens un bilan partageable : *« En X gestes
 
 ## Choisir son échelle
 
-Le même geste pèse toujours pareil en prompts — mais l'objectif change selon l'échelle :
+Le même geste pèse toujours pareil en prompts, mais l'objectif change selon l'échelle :
 
 | Échelle | Budget (1 an d'IA) |
 |---|---|
@@ -46,10 +46,10 @@ Passer de « toi » à « le monde » ne change pas les ratios entre gestes : ç
 
 ## Ce que tu peux explorer
 
-- **Le jeu** — dépense ton budget, compare les gestes, partage ton score
-- **Comparatif** — recherche Google vs requête IA, image téléchargée vs image générée, streaming vs prompt
-- **Sources** — Epoch AI, Google Cloud, OpenAI, Our World in Data, Water Footprint Network…
-- **Méthodologie** — hypothèses, fourchettes et calculs expliqués simplement
+- **Le jeu** : dépense ton budget, compare les gestes, partage ton score
+- **Comparatif** : recherche Google vs requête IA, image téléchargée vs image générée, streaming vs prompt
+- **Sources** : Epoch AI, Google Cloud, OpenAI, Our World in Data, Water Footprint Network…
+- **Méthodologie** : hypothèses, fourchettes et calculs expliqués simplement
 
 ---
 
@@ -70,10 +70,10 @@ Passer de « toi » à « le monde » ne change pas les ratios entre gestes : ç
 
 ## Notre approche
 
-- **Curieux et honnête** — jamais militant. Les chiffres et les sources parlent d'eux-mêmes.
-- **Ordres de grandeur** — fourchettes plutôt que fausse précision. Les sources divergent ; on le dit.
-- **Tu manipules** — pas de discours imposé. Tu ajoutes les gestes, tu vois le résultat.
-- **Transparent** — chaque chiffre est traçable jusqu'à sa source.
+- **Curieux et honnête** : jamais militant. Les chiffres et les sources parlent d'eux-mêmes.
+- **Ordres de grandeur** : fourchettes plutôt que fausse précision. Les sources divergent ; on le dit.
+- **Tu manipules** : pas de discours imposé. Tu ajoutes les gestes, tu vois le résultat.
+- **Transparent** : chaque chiffre est traçable jusqu'à sa source.
 
 ---
 
@@ -85,4 +85,4 @@ Disponible en **français** et **anglais**.
 
 Un projet [Majoli](https://majoli.io).
 
-*Données indicatives — ordres de grandeur sourcés.*
+*Données indicatives : ordres de grandeur sourcés.*

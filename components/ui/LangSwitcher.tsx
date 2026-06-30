@@ -19,7 +19,7 @@ export function LangSwitcher() {
       disabled={isPending}
       onClick={() => startTransition(() => router.replace(pathname, { locale: next }))}
       aria-label="Language"
-      className="flex h-10 items-center gap-1.5 rounded-full border border-line bg-surface px-3 text-sm font-semibold text-text transition-colors hover:border-accent disabled:opacity-50"
+      className="flex h-9 items-center gap-1 rounded-full px-2 text-sm font-semibold text-muted transition-colors hover:text-text disabled:opacity-50"
     >
       <Globe size={16} />
       {next.toUpperCase()}

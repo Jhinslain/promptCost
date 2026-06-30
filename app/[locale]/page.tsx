@@ -30,7 +30,7 @@ export default async function HomePage({
       />
       <Header />
       <main>
-        <Game />
+        <Game mode="spend" />
       </main>
       <Footer />
     </>

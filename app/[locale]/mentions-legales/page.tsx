@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PageShell } from '@/components/layout/PageShell';
+import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -9,11 +10,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.legal' });
-  return {
+  return buildMetadata({
+    locale,
+    path: '/mentions-legales',
     title: t('title'),
     description: t('description'),
-    alternates: { canonical: `/${locale}/mentions-legales` },
-  };
+  });
 }
 
 export default async function LegalPage({
@@ -34,14 +36,29 @@ export default async function LegalPage({
           <div className="rounded-2xl border border-line bg-surface p-4">
             <dt className="font-bold text-muted">{t('editor')}</dt>
             <dd className="mt-1">
-              <a href="https://majoli.io" className="font-semibold text-accent hover:underline">
-                Majoli
+              GHIS (SASU) · RCS Manosque 105 680 078 ·{' '}
+              <a href="mailto:contact@ghis.fr" className="font-semibold text-accent hover:underline">
+                contact@ghis.fr
               </a>
             </dd>
           </div>
           <div className="rounded-2xl border border-line bg-surface p-4">
-            <dt className="font-bold text-muted">{t('data')}</dt>
-            <dd className="mt-1 text-muted">2025–2026</dd>
+            <dt className="font-bold text-muted">{t('director')}</dt>
+            <dd className="mt-1">Ghislain Levreau</dd>
+          </div>
+          <div className="rounded-2xl border border-line bg-surface p-4">
+            <dt className="font-bold text-muted">{t('host')}</dt>
+            <dd className="mt-1">
+              Vercel Inc., Walnut, CA, USA ·{' '}
+              <a
+                href="https://vercel.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:underline"
+              >
+                vercel.com
+              </a>
+            </dd>
           </div>
         </dl>
       </div>

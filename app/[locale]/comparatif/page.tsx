@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PageShell } from '@/components/layout/PageShell';
 import { VersusBlock } from '@/components/comparatif/VersusBlock';
+import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -10,11 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.comparatif' });
-  return {
+  return buildMetadata({
+    locale,
+    path: '/comparatif',
     title: t('title'),
     description: t('description'),
-    alternates: { canonical: `/${locale}/comparatif` },
-  };
+  });
 }
 
 export default async function ComparatifPage({

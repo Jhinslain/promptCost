@@ -2,7 +2,7 @@
 
 /**
  * Paliers de notation compacte, par langue (du plus grand au plus petit).
- * FR : on plafonne au « milliard » (Md) pour rester parlant —
+ * FR : on plafonne au « milliard » (Md) pour rester parlant :
  * 9,6e13 → « 96 000 Md » plutôt que « 96 Bn » (cf. SPEC.md idée §10).
  * EN : notation standard M / B / T.
  */
@@ -57,6 +57,37 @@ export function formatPercent(ratio: number, locale: string): string {
     minimumFractionDigits: 0,
     maximumFractionDigits: decimals,
   }).format(pct);
+}
+
+/** Quantité d'un geste de référence (mode inversé) : décimales adaptées. */
+export function formatQty(n: number, locale: string): string {
+  const abs = Math.abs(n);
+  if (abs >= 1000) return formatInt(Math.round(n), locale);
+  const decimals = abs >= 10 ? 0 : abs >= 1 ? 1 : 2;
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: decimals,
+  }).format(n);
+}
+
+export type DurationUnit = 'sec' | 'min' | 'hour' | 'day' | 'year';
+
+/**
+ * Choisit l'unité de durée la plus lisible pour un nombre d'heures donné
+ * (secondes → minutes → heures → jours → années).
+ */
+export function splitDuration(hours: number): { value: number; unit: DurationUnit } {
+  const h = Math.abs(hours);
+  if (h < 1 / 60) return { value: hours * 3600, unit: 'sec' };
+  if (h < 1) return { value: hours * 60, unit: 'min' };
+  if (h < 24) return { value: hours, unit: 'hour' };
+  if (h < 24 * 365) return { value: hours / 24, unit: 'day' };
+  return { value: hours / (24 * 365), unit: 'year' };
+}
+
+/** Choisit mètres ou kilomètres selon la distance. */
+export function splitDistance(km: number): { value: number; unit: 'm' | 'km' } {
+  return Math.abs(km) < 1 ? { value: km * 1000, unit: 'm' } : { value: km, unit: 'km' };
 }
 
 /** Nombre d'années avec un nombre de décimales adapté. */

@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, X, Check } from 'lucide-react';
+import { Share2, X, Check, Download } from 'lucide-react';
 import { formatYears } from '@/lib/format';
+import type { MetricId } from '@/lib/data';
 
 interface ResultCardProps {
   open: boolean;
+  metric: MetricId;
   years: number;
   count: number;
   scaleLabel: string;
@@ -17,6 +19,7 @@ interface ResultCardProps {
 
 export function ResultCard({
   open,
+  metric,
   years,
   count,
   scaleLabel,
@@ -29,21 +32,58 @@ export function ResultCard({
 
   const yearsStr = formatYears(years, locale);
 
-  async function share() {
+  /** URLs construites au clic (accès à window côté client). */
+  function links() {
+    const origin = window.location.origin;
+    const pageUrl = `${origin}/${locale}`;
     const text = t('result.shareText', { years: yearsStr, count });
-    const url = typeof window !== 'undefined' ? window.location.href : '';
+    const og =
+      `${origin}/api/og?years=${encodeURIComponent(yearsStr)}&count=${count}` +
+      `&metric=${metric}&lang=${locale}&scale=${encodeURIComponent(scaleLabel)}`;
+    return { pageUrl, text, og };
+  }
+
+  async function share() {
+    const { pageUrl, text } = links();
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
-        await navigator.share({ title: t('site.name'), text, url });
+        await navigator.share({ title: t('site.name'), text, url: pageUrl });
         return;
       } catch {
         /* annulé → fallback */
       }
     }
     try {
-      await navigator.clipboard.writeText(`${text} ${url}`);
+      await navigator.clipboard.writeText(`${text} ${pageUrl}`);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function openNetwork(net: 'x' | 'whatsapp' | 'linkedin') {
+    const { pageUrl, text } = links();
+    const e = encodeURIComponent;
+    const urls: Record<typeof net, string> = {
+      x: `https://twitter.com/intent/tweet?text=${e(text)}&url=${e(pageUrl)}`,
+      whatsapp: `https://wa.me/?text=${e(`${text} ${pageUrl}`)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${e(pageUrl)}`,
+    };
+    window.open(urls[net], '_blank', 'noopener,noreferrer');
+  }
+
+  async function downloadImage() {
+    try {
+      const { og } = links();
+      const res = await fetch(og);
+      const blob = await res.blob();
+      const href = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = href;
+      a.download = 'promptcost.png';
+      a.click();
+      URL.revokeObjectURL(href);
     } catch {
       /* ignore */
     }
@@ -74,7 +114,7 @@ export function ResultCard({
             <button
               onClick={onClose}
               aria-label={t('common.back')}
-              className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-line bg-bg text-muted transition-colors hover:text-text"
+              className="absolute right-4 top-4 z-20 grid h-9 w-9 place-items-center rounded-full border border-line bg-bg text-muted transition-colors hover:text-text"
             >
               <X size={18} />
             </button>
@@ -118,9 +158,30 @@ export function ResultCard({
                   {copied ? <Check size={18} /> : <Share2 size={18} />}
                   {copied ? t('result.copied') : t('result.share')}
                 </button>
+
+                <div className="grid grid-cols-3 gap-2">
+                  {(['x', 'whatsapp', 'linkedin'] as const).map((net) => (
+                    <button
+                      key={net}
+                      onClick={() => openNetwork(net)}
+                      className="flex h-10 items-center justify-center rounded-xl border border-line bg-surface text-sm font-bold text-text transition-colors hover:border-accent"
+                    >
+                      {net === 'x' ? 'X' : net === 'whatsapp' ? 'WhatsApp' : 'LinkedIn'}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={downloadImage}
+                  className="flex h-11 items-center justify-center gap-2 rounded-2xl border border-line bg-surface text-sm font-bold text-text transition-colors hover:border-accent"
+                >
+                  <Download size={16} />
+                  {t('result.downloadImage')}
+                </button>
+
                 <button
                   onClick={onClose}
-                  className="flex h-12 items-center justify-center rounded-2xl border border-line bg-surface text-base font-bold text-text transition-colors hover:border-accent"
+                  className="flex h-11 items-center justify-center rounded-2xl text-sm font-bold text-muted transition-colors hover:text-text"
                 >
                   {t('result.continue')}
                 </button>

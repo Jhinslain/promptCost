@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 :root {
-  /* Couleurs de base — mode clair */
+  /* Couleurs de base : mode clair */
   --bg: 248 250 252;
   --surface: 255 255 255;
   --text: 15 23 42;
   --muted: 100 116 139;
   --line: 226 232 240;
-  /* Accent par défaut (électricité, clair) — surchargé en JS par métrique */
+  /* Accent par défaut (électricité, clair) : surchargé en JS par métrique */
   --accent: 245 166 35;
 }
 
@@ -33,7 +33,7 @@ html {
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--text));
-  /* Transition douce de l'accent / thème — la signature du site */
+  /* Transition douce de l'accent / thème : la signature du site */
   transition: background-color 0.5s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

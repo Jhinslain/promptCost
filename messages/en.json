@@ -5,11 +5,15 @@
   },
   "meta": {
     "home": {
-      "title": "PromptCost — How much does 1 AI prompt really cost?",
+      "title": "PromptCost: how much does 1 AI prompt really cost?",
       "description": "See the real cost of an AI prompt (electricity, water, CO₂) by comparing it to everyday actions. Sourced numbers, no agenda."
     },
+    "convertir": {
+      "title": "Convert my AI prompts into everyday actions | PromptCost",
+      "description": "Tell us what you did with AI today (text, images, videos) and see the concrete equivalent in electricity, water and CO₂."
+    },
     "comparatif": {
-      "title": "Comparison — Classic search vs AI | PromptCost",
+      "title": "Comparison: classic search vs AI | PromptCost",
       "description": "Google search vs AI query, downloaded image vs AI-generated image: orders of magnitude, side by side, honestly."
     },
     "sources": {
@@ -17,7 +21,7 @@
       "description": "Every source behind the numbers: energy, water and CO₂ per prompt and per everyday action."
     },
     "methodologie": {
-      "title": "Methodology — how we calculate | PromptCost",
+      "title": "Methodology: how we calculate | PromptCost",
       "description": "Assumptions, ranges and the math behind the cost of an AI prompt in electricity, water and CO₂."
     },
     "apropos": {
@@ -34,23 +38,81 @@
     "openMenu": "Open menu"
   },
   "intro": {
-    "lead": "We love to demonize the cost of an AI prompt. What if you spent it yourself?",
-    "sub": "Here's one year of AI. Add everyday actions and watch how fast you burn through it."
+    "lead": "Spend a whole year of AI prompts.",
+    "sub": "One shower is worth 167,000 of them. A single AI prompt is tiny: add everyday actions and see how few it takes to burn through a whole year."
   },
   "total": {
     "goalLabel": "1 year of AI · {scale}",
-    "ofGoal": "of {goal} prompts",
+    "ofGoal": "/ {goal}",
     "spent": "{spent} prompts spent",
-    "yearsLabel": "{years} years of AI",
+    "yearsLabel": "{years} years of AI burned",
     "reached": "Goal reached!",
     "promptsUnit": "prompts"
+  },
+  "bill": {
+    "elec": "Electricity bill",
+    "water": "Water bill",
+    "co2": "Carbon footprint",
+    "choose": "Type of bill",
+    "caption": "of 1 year of AI at this scale"
+  },
+  "receipt": {
+    "title": "Your itemized bills",
+    "empty": "Add actions: your itemized bills show up here.",
+    "emptyMetric": "Nothing for this resource yet.",
+    "total": "Total due",
+    "budget": "Budget · {scale}"
+  },
+  "reverse": {
+    "tabSpend": "Spend",
+    "tabReverse": "Convert my prompts",
+    "modeNav": "Game modes",
+    "title": "Convert your prompts",
+    "sub": "Tell us what you did with AI today. We show what you could have done instead.",
+    "todayLabel": "Today, I did…",
+    "couldHave": "You could have…",
+    "another": "Another",
+    "empty": "Add some requests to see the equivalent.",
+    "totals": "{elec} Wh · {water} mL · {co2} g CO₂",
+    "note": "Orders of magnitude: only Google and OpenAI publish official figures, the rest comes from public benchmarks. We show the range.",
+    "noteLabel": "Where do these numbers come from?",
+    "types": {
+      "text": "Text prompts",
+      "reasoning": "Reasoning",
+      "image": "Images",
+      "video": "Videos"
+    },
+    "durationUnits": {
+      "sec": { "one": "s", "other": "s" },
+      "min": { "one": "min", "other": "min" },
+      "hour": { "one": "h", "other": "h" },
+      "day": { "one": "day", "other": "days" },
+      "year": { "one": "year", "other": "years" }
+    },
+    "distanceUnits": {
+      "m": "m",
+      "km": "km"
+    },
+    "deeds": {
+      "led": "keep a lamp on for {d}",
+      "tv": "watch TV for {d}",
+      "gaming": "game for {d}",
+      "oven": "run the oven for {d}",
+      "microwave": "microwave for {d}",
+      "shower": "shower for {d}",
+      "glass": "drink {q} glasses of water",
+      "toilet": "flush the toilet {q} times",
+      "streaming": "stream video for {d}",
+      "car": "drive {d} by car",
+      "email": "send {q} emails"
+    }
   },
   "scale": {
     "label": "At what scale?",
     "you": "You",
     "hundred": "100 people",
-    "city": "A city",
-    "france": "France",
+    "city": "London",
+    "country": "United Kingdom",
     "world": "The world"
   },
   "metric": {
@@ -63,8 +125,9 @@
     "co2Unit": "g CO₂"
   },
   "actions": {
-    "title": "Spend your budget",
+    "title": "The aisle of everyday actions",
     "costLabel": "= {cost} prompts",
+    "buy": "Buy",
     "virtualNote": "Food & goods = « virtual » footprint (production included), not tap water.",
     "led": "LED bulb for 1 h",
     "phone_charge": "Charge a smartphone",
@@ -101,6 +164,38 @@
     "steak": "1 beef steak",
     "jeans": "1 pair of jeans (making)",
     "smartphone": "Making 1 smartphone",
+    "laptop": "Laptop for 1 h",
+    "tv": "TV for 1 h",
+    "desktop": "Desktop PC for 1 h",
+    "ac": "Air conditioning 1 h",
+    "dryer": "1 tumble dryer cycle",
+    "ev_charge": "EV charge (100 km)",
+    "dishwasher_water": "Dishwasher (water)",
+    "paper": "1 sheet of A4 paper",
+    "bread_water": "1 slice of bread",
+    "beer": "1 glass of beer",
+    "wine_water": "1 glass of wine",
+    "egg_water": "1 egg",
+    "milk_water": "1 glass of milk",
+    "tshirt_water": "1 cotton t-shirt (water)",
+    "jeans_water": "1 pair of jeans (water)",
+    "tgv": "High-speed train (per km)",
+    "metro": "Metro / tram (per km)",
+    "ev_km": "Electric car (per km)",
+    "moto": "Motorbike / scooter (per km)",
+    "veggies": "Vegetables (75 g)",
+    "banana": "1 banana",
+    "pasta_co2": "Pasta (75 g)",
+    "egg_co2": "1 egg",
+    "rice": "Rice (75 g)",
+    "cheese": "Cheese (30 g)",
+    "chicken": "Chicken (150 g)",
+    "pork": "Pork (150 g)",
+    "shrimp": "Shrimp (150 g)",
+    "streaming": "1 h of streaming video",
+    "book": "1 paperback book",
+    "sneakers": "1 pair of sneakers",
+    "laptop_make": "Making 1 laptop",
     "flight": "Flight Paris → New York"
   },
   "controls": {
@@ -112,10 +207,11 @@
   "result": {
     "title": "Recap",
     "headline": "In {count, plural, one {# action} other {# actions}}, you spent {years} years of AI!",
-    "headlineScale": "… at the scale of {scale}.",
+    "headlineScale": "Scale: {scale}.",
     "efficiency": "A year of AI folded into {count, plural, one {# action} other {# actions}}.",
     "share": "Share my score",
     "shareText": "I spent {years} years of AI in {count, plural, one {# everyday action} other {# everyday actions}} on PromptCost 👀",
+    "downloadImage": "Download image",
     "copied": "Link copied!",
     "continue": "Keep playing",
     "didYouKnow": "Did you know?"
@@ -148,7 +244,7 @@
       "title": "1 min of streaming video vs 1 text prompt",
       "leftLabel": "1 min of streaming",
       "rightLabel": "1 text prompt",
-      "verdict": "One minute of HD video is worth several text prompts. A single AI text prompt is tiny — volume is what builds the total."
+      "verdict": "One minute of HD video is worth several text prompts. A single AI text prompt is tiny, and volume is what builds the total."
     }
   },
   "sources": {
@@ -156,7 +252,14 @@
     "intro": "Every number on this site comes from one of these sources. Cross-referenced 2025-2026.",
     "perTitle": "Cost of one prompt (reference)",
     "actionsTitle": "Sources for everyday actions",
-    "noUrl": "(book / report reference)"
+    "noUrl": "(book / report reference)",
+    "asOf": "data updated on {date}",
+    "cat": {
+      "ai": "Artificial intelligence & digital",
+      "elec": "Electricity",
+      "water": "Water",
+      "co2": "CO₂: transport, food & goods"
+    }
   },
   "methodologie": {
     "title": "Methodology",
@@ -164,35 +267,59 @@
     "q1": "How much does an AI prompt consume?",
     "a1": "For an average text prompt (GPT-4o class): ~0.3 Wh of electricity, ~0.3 mL of direct cooling water, ~0.2 g of CO₂. « Reasoning » queries or image generation cost far more.",
     "q2": "How do I compute the « cost in prompts » of an action?",
-    "a2": "We divide the action's consumption by a prompt's: prompts = action value ÷ prompt cost. A 75 L shower ≈ 75,000 mL ÷ 0.3 mL = 250,000 prompts.",
+    "a2": "We divide the action's consumption by a prompt's: prompts = action value ÷ prompt cost. A 50 L shower ≈ 50,000 mL ÷ 0.3 mL ≈ 167,000 prompts.",
     "q3": "Why 12,000 prompts per person per year?",
     "a3": "It's a heavy-use assumption (≈ 33 prompts/day). A scale's budget = 12,000 × number of people. Your actions, though, stay counted for a single person: only the goal grows with the scale. That's how one person can be « worth » a whole group's yearly AI.",
     "q4": "What are « virtual » water and CO₂?",
     "a4": "For food and goods we count the production footprint (« virtual » water and CO₂), not just tap water. A burger « costs » mostly through farming, not the glass of water at the meal.",
     "q5": "Why ranges instead of one exact figure?",
-    "a5": "Sources vary (power mix, measurement method, scope). We keep a credible median and show the range. Goal: honest orders of magnitude, not false precision."
+    "a5": "Sources vary (power mix, measurement method, scope). We keep a credible median and show the range. Goal: honest orders of magnitude, not false precision. For instance, a flight may or may not include radiative forcing (×~1.9 per DEFRA/ADEME, CO₂ only for ICAO, plus one-way vs round-trip); beef ranges from ~60 to ~99 kg CO₂e/kg depending on farming."
   },
   "apropos": {
     "title": "About",
     "p1": "PromptCost puts the cost of an AI prompt in perspective. Neither doom nor denial: just sourced orders of magnitude you handle yourself.",
-    "p2": "A prompt is tiny on its own. At the scale of the planet, the totals become dizzying. Both are true — scale is what counts.",
+    "p2": "A prompt is tiny on its own. At the scale of the planet, the totals become dizzying. Both are true, scale is what counts.",
     "p3": "A Majoli project.",
     "by": "A project by"
   },
   "legal": {
     "title": "Legal notice",
     "p1": "Editorial site for educational purposes. Numbers are indicative: sourced orders of magnitude, not certified measurements.",
-    "p2": "Cookie-free, privacy-friendly analytics. No personal data is sold.",
+    "p2": "No personal data collected, no tracking cookies.",
     "editor": "Editor",
-    "data": "Data"
+    "director": "Publication director",
+    "host": "Host"
+  },
+  "footprint": {
+    "label": "This site's footprint",
+    "prefix": "Building this site:",
+    "method": "This site used AI for in-depth research and a bit of development. All in, building it adds up to about 250 Wh, 0.25 L of water and 170 g of CO₂.",
+    "perVisit": "And each visit? A few tenths of a Wh on lightweight static hosting: negligible, even with lots of traffic.",
+    "elec": {
+      "0": "≈ 2 h of TV",
+      "1": "≈ 25 min of vacuuming",
+      "2": "≈ 13 phone charges"
+    },
+    "water": {
+      "0": "≈ 1 glass of water",
+      "1": "≈ far less than a toilet flush",
+      "2": "≈ 1/20th of a shower"
+    },
+    "co2": {
+      "0": "≈ 1 km by car",
+      "1": "≈ 5 h of video streaming",
+      "2": "≈ 3 coffees"
+    }
   },
   "footer": {
+    "compare": "Comparisons",
+    "glossary": "Glossary",
     "comparatif": "Comparison",
     "sources": "Sources",
     "methodologie": "Methodology",
     "apropos": "About",
     "legal": "Legal notice",
-    "disclaimer": "Indicative data — sourced orders of magnitude.",
+    "disclaimer": "Indicative data: sourced orders of magnitude.",
     "by": "A Majoli project"
   },
   "theme": {
@@ -209,5 +336,51 @@
     "back": "Back to the game",
     "exact": "Exact number",
     "source": "Source"
+  },
+  "compare": {
+    "metaTitle": "{label} = {cost} AI prompts | PromptCost",
+    "metaDescription": "How many AI prompts is {label} worth? A sourced number: {cost} prompts ({metric}).",
+    "metaIndexTitle": "How many AI prompts is an everyday action worth? | PromptCost",
+    "metaIndexDescription": "Shower, car, burger, streaming… see how many AI prompts each everyday action is worth. Sourced numbers.",
+    "h1": "{label} = {cost} AI prompts",
+    "lead": "On the {metric} side, {label} costs as much as {cost} AI prompts. A text prompt barely weighs {per} {unit}.",
+    "unit": "AI prompts",
+    "cta": "Spend a prompt budget",
+    "related": "Other comparisons",
+    "indexTitle": "How many prompts is an everyday action worth?",
+    "indexIntro": "Every everyday action translated into a number of AI prompts. Click for the detail.",
+    "metric": { "elec": "electricity", "water": "water", "co2": "CO₂" }
+  },
+  "glossary": {
+    "metaTitle": "Glossary: Wh, virtual water, radiative forcing… | PromptCost",
+    "metaDescription": "The key terms to understand the cost of an AI prompt and everyday actions.",
+    "title": "Glossary",
+    "intro": "The key terms to understand the numbers on this site.",
+    "terms": {
+      "prompt": {
+        "term": "Prompt",
+        "def": "A request sent to an AI model. Site reference: an average text prompt ≈ 0.3 Wh, 0.3 mL of water and 0.2 g of CO₂."
+      },
+      "wh": {
+        "term": "Watt-hour (Wh)",
+        "def": "A unit of energy: running a 1 W device for 1 h. An LED bulb uses ~10 Wh per hour."
+      },
+      "virtualWater": {
+        "term": "Virtual water",
+        "def": "The water used to produce a good (farming, livestock, manufacturing), not just tap water."
+      },
+      "co2e": {
+        "term": "CO₂e",
+        "def": "CO₂ equivalent: all greenhouse gases expressed as their CO₂ impact."
+      },
+      "radiative": {
+        "term": "Radiative forcing",
+        "def": "Extra warming from flights at altitude. DEFRA/ADEME include it (×~1.9), ICAO counts CO₂ only."
+      },
+      "reasoning": {
+        "term": "Reasoning model",
+        "def": "A model that thinks before answering. Far costlier than a text prompt: ~15 to 40 Wh."
+      }
+    }
   }
 }

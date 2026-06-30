@@ -14,7 +14,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={t('toggle')}
-      className="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface text-text transition-colors hover:border-accent"
+      className="grid h-9 w-9 place-items-center rounded-full text-muted transition-colors hover:text-text"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span

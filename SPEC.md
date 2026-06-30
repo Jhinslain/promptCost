@@ -1,18 +1,18 @@
-# Spec produit & technique — « 1 Prompt = ? »
+# Spec produit & technique : « 1 Prompt = ? »
 > Document de cadrage destiné à **Claude Code**. Objectif : construire un site web moderne, interactif et pédagogique qui met en perspective le coût environnemental réel d'un prompt IA en le comparant aux gestes du quotidien.
 >
-> **Nom de travail :** `[NOM_DU_SITE]` (à trancher — pistes : *PromptCost*, *1 Prompt =*, *DropByPrompt*). Remplacer partout avant le build.
+> **Nom de travail :** `[NOM_DU_SITE]` (à trancher : pistes : *PromptCost*, *1 Prompt =*, *DropByPrompt*). Remplacer partout avant le build.
 > **Langues v1 :** Français + Anglais (système extensible).
-> **Hébergement cible :** Vercel — Next.js App Router + middleware (détection géo serveur).
+> **Hébergement cible :** Vercel : Next.js App Router + middleware (détection géo serveur).
 > **Comparatif :** version minimale en v1, version poussée détaillée en v2 (voir §12).
 
 ---
 
 ## 1. Vision & message
 
-Projet à construire **à partir de zéro** en Next.js, avec une UI/UX très soignée. (Aucun code existant à reprendre — cette spec est la seule source.)
+Projet à construire **à partir de zéro** en Next.js, avec une UI/UX très soignée. (Aucun code existant à reprendre : cette spec est la seule source.)
 
-**Pitch :** on donne à l'utilisateur un « budget » de prompts IA (l'usage annuel d'une personne… ou du monde entier), et il le « dépense » en gestes du quotidien (douche, four, vol en avion…). Il réalise tout seul qu'un prompt est minuscule — c'est l'échelle qui compte.
+**Pitch :** on donne à l'utilisateur un « budget » de prompts IA (l'usage annuel d'une personne… ou du monde entier), et il le « dépense » en gestes du quotidien (douche, four, vol en avion…). Il réalise tout seul qu'un prompt est minuscule : c'est l'échelle qui compte.
 
 **Ton :** curieux et honnête, **jamais militant**. Les chiffres bruts et les sources font le travail. Un sceptique qui creuse doit trouver des sources sérieuses, pas un parti pris.
 
@@ -97,7 +97,7 @@ La couleur d'accent **change selon la métrique active**, avec **transition douc
 | Eau | 💧 | `#2f9bff` (bleu) | `#5cc8ff` |
 | CO₂ | 🌍 | `#16a34a` (vert) | `#34d399` |
 
-Le changement d'onglet **anime tout l'accent** (barre de progression, boutons, chips, halos) — c'est une signature visuelle du site.
+Le changement d'onglet **anime tout l'accent** (barre de progression, boutons, chips, halos) : c'est une signature visuelle du site.
 
 ### Typographie & layout
 - Police variable moderne (Inter / Geist). Gros chiffres en `font-weight: 800`, `letter-spacing` serré.
@@ -150,21 +150,21 @@ budget(populationMultiplier) = PERSON_YEAR * populationMultiplier   // PERSON_YE
 - **`sitemap.ts`** multilingue + **`robots.ts`**.
 - **JSON-LD (structured data)** : `WebApplication` sur la home, `FAQPage` sur méthodologie/sources, `BreadcrumbList`.
 - **OG image dynamique** (`/api/og`) : carte de score partageable (chiffre + échelle + couleur d'onglet).
-- **Mots-clés cibles** (à placer dans titres, h1/h2, FAQ — sobrement, sans bourrage) :
+- **Mots-clés cibles** (à placer dans titres, h1/h2, FAQ : sobrement, sans bourrage) :
   `consommation ChatGPT`, `coût d'un prompt IA`, `empreinte IA eau électricité CO2`, `combien consomme une IA`, `AI energy use per prompt`, `ChatGPT water usage`, `is AI bad for the environment`, `prompt carbon footprint`.
 - **Performance = SEO** : viser Lighthouse 95+ (LCP, CLS, INP). SSG des pages, images optimisées, pas de JS bloquant.
 - **Accessibilité** : contrastes AA dans les deux thèmes, navigation clavier, `aria-label` sur steppers/boutons, focus visibles.
 
 ### Pages SEO du footer
 Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-page sinon trop léger) :
-- `/sources` — liste complète et cliquable de toutes les sources (§7).
-- `/methodologie` — comment chaque chiffre est calculé, fourchettes, hypothèses (réseau électrique, eau directe vs amont, eau « virtuelle » des aliments). Format FAQ → JSON-LD.
-- `/a-propos` — le pourquoi du projet, lien Majoli.
-- `/mentions-legales` — légal + politique analytics sans cookie.
+- `/sources` : liste complète et cliquable de toutes les sources (§7).
+- `/methodologie` : comment chaque chiffre est calculé, fourchettes, hypothèses (réseau électrique, eau directe vs amont, eau « virtuelle » des aliments). Format FAQ → JSON-LD.
+- `/a-propos` : le pourquoi du projet, lien Majoli.
+- `/mentions-legales` : légal + politique analytics sans cookie.
 
 ---
 
-## 7. Données (source de vérité) — `/lib/data.ts`
+## 7. Données (source de vérité) : `/lib/data.ts`
 
 > Chiffres issus d'une recherche croisée (2025-2026). Chaque entrée doit embarquer `value`, `unit`, `sourceId`. Les `sourceId` pointent vers le tableau `SOURCES` en bas.
 
@@ -175,7 +175,7 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 | Eau | **0,3 mL** (refroidissement direct) | 0,26–0,32 mL direct ; ~1,5 mL avec l'amont électrique | Google 0,26 mL · OpenAI 0,32 mL. |
 | CO₂ | **0,2 g** | ~0,15 g opérationnel (réseau mondial ~480 g/kWh) → ~1 g en analyse cycle de vie | Dérivé de 0,3 Wh × intensité réseau. |
 
-### Activités — Électricité (Wh)
+### Activités : Électricité (Wh)
 | Action | Emoji | Wh | sourceId |
 |---|---|---|---|
 | Aspirateur 10 min | 🧹 | 165 | energyusecalculator |
@@ -191,7 +191,7 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 | 2 toasts | 🍞 | 75 | energybot |
 | Ampoule LED 1 h | 💡 | 10 | energyusecalculator |
 
-### Activités — Eau (mL ; aliments = empreinte « virtuelle » production comprise)
+### Activités : Eau (mL ; aliments = empreinte « virtuelle » production comprise)
 | Action | Emoji | mL | sourceId |
 |---|---|---|---|
 | Douche 5 min | 🚿 | 75 000 | watercalculator |
@@ -207,7 +207,7 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 | 1 verre d'eau | 🥤 | 250 | watercalculator |
 | 1 assiette de pâtes | 🍝 | 165 000 | utwente-pasta |
 
-### Activités — CO₂ (g CO₂e)
+### Activités : CO₂ (g CO₂e)
 | Action | Emoji | g | sourceId |
 |---|---|---|---|
 | 1 km en voiture | 🚗 | 170 | owid-transport |
@@ -224,16 +224,16 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 | Fabriquer 1 smartphone | 🔋 | 60 000 | apple-lca |
 
 ### SOURCES (à afficher sur `/sources`)
-- **Epoch AI** — énergie par requête ChatGPT : https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use
-- **Google Cloud** — impact environnemental de l'inférence (0,24 Wh / 0,26 mL) : https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference
-- **OpenAI / Sam Altman** — « The Gentle Singularity » (0,34 Wh / 0,32 mL) : https://blog.samaltman.com/the-gentle-singularity
+- **Epoch AI** : énergie par requête ChatGPT : https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use
+- **Google Cloud** : impact environnemental de l'inférence (0,24 Wh / 0,26 mL) : https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference
+- **OpenAI / Sam Altman** : « The Gentle Singularity » (0,34 Wh / 0,32 mL) : https://blog.samaltman.com/the-gentle-singularity
 - **« How Hungry is AI? »** (arXiv 2505.09598) : https://arxiv.org/abs/2505.09598
-- **IEA** — Energy and AI : https://www.iea.org/reports/energy-and-ai
+- **IEA** : Energy and AI : https://www.iea.org/reports/energy-and-ai
 - **EcoLogits / GenAI Impact** : https://ecologits.ai/
-- **Our World in Data** — transport & alimentation : https://ourworldindata.org/travel-carbon-footprint · https://ourworldindata.org/less-meat-or-sustainable-meat
+- **Our World in Data** : transport & alimentation : https://ourworldindata.org/travel-carbon-footprint · https://ourworldindata.org/less-meat-or-sustainable-meat
 - **Water Footprint Network / watercalculator.org** : https://watercalculator.org/water-footprint-of-food-guide/
 - **EPA WaterSense** : https://www.epa.gov/watersense
-- **Mike Berners-Lee — « How Bad Are Bananas? »** (email/numérique)
+- **Mike Berners-Lee : « How Bad Are Bananas? »** (email/numérique)
 - **Carbonfact** (jean, t-shirt) : https://www.carbonfact.com/
 - Sites énergie (energysage, energyusecalculator, energybot, directenergy, nexamp, bkvenergy) pour les appareils ménagers.
 
@@ -245,17 +245,17 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 
 - Liens : Comparatif · Sources · Méthodologie · À propos · Mentions légales.
 - `LangSwitcher` + `ThemeToggle` (rappel).
-- Mention « Données indicatives — ordres de grandeur sourcés » + lien Majoli.
+- Mention « Données indicatives : ordres de grandeur sourcés » + lien Majoli.
 - Petit bloc de maillage interne (bon SEO).
 
 ---
 
-## 9. Page Comparatif — v1 (minimale)
+## 9. Page Comparatif : v1 (minimale)
 
 Objectif : montrer **côte à côte**, de façon claire, le « classique » vs « l'IA » sur 2-3 cas phares. Données **statiques et sourcées** (pas de live en v1).
 
 Cas v1 (composant `VersusBlock` : gauche vs droite, barres proportionnelles + chiffres + verdict) :
-1. **Recherche Google vs requête IA texte** (énergie). Message nuancé : ordres de grandeur comparables selon les sources — présenter la fourchette honnêtement, sans trancher abusivement.
+1. **Recherche Google vs requête IA texte** (énergie). Message nuancé : ordres de grandeur comparables selon les sources : présenter la fourchette honnêtement, sans trancher abusivement.
 2. **Image téléchargée (existante) vs image générée par IA** (énergie). Génération ≈ 20–40× une requête texte (~6–12 Wh) ; télécharger une image ≈ quasi nul.
 3. **(optionnel) 1 min de vidéo en streaming vs 1 prompt texte.**
 
@@ -301,7 +301,7 @@ Chaque bloc : 2 colonnes animées, couleur selon métrique, source en pied, micr
 
 ## 13. Définition de « terminé » (v1)
 
-- [ ] Home jouable (échelle, onglets, liste, barre, carte de bilan, partage) — desktop & mobile.
+- [ ] Home jouable (échelle, onglets, liste, barre, carte de bilan, partage) : desktop & mobile.
 - [ ] Transitions de couleur par onglet + dark/light auto + toggle.
 - [ ] FR + EN complets, détection géo, hreflang, sitemap, robots, JSON-LD.
 - [ ] Pages footer : comparatif (v1), sources, méthodologie, à propos, mentions légales.

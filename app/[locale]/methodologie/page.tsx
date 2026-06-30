@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { PageShell } from '@/components/layout/PageShell';
+import { buildMetadata } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -9,11 +10,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta.methodologie' });
-  return {
+  return buildMetadata({
+    locale,
+    path: '/methodologie',
     title: t('title'),
     description: t('description'),
-    alternates: { canonical: `/${locale}/methodologie` },
-  };
+  });
 }
 
 const QA = ['1', '2', '3', '4', '5'] as const;
