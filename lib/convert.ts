@@ -19,11 +19,6 @@ export function promptsForAction(
   return (value / PER[metric]) * population;
 }
 
-/** Budget de prompts pour une échelle : PERSON_YEAR × population. */
-export function budget(population: number): number {
-  return PERSON_YEAR * population;
-}
-
 /** Total de prompts dépensés pour un panier { actionValue: quantité }. */
 export function totalPrompts(
   items: { value: number; qty: number }[],
@@ -42,11 +37,14 @@ export function progress(spent: number, goal: number): number {
   return spent / goal;
 }
 
-/** Nombre d'"années d'IA" représentées par un nombre de prompts à une échelle. */
-export function yearsOfAI(spent: number, population: number): number {
-  const perYear = budget(population);
-  if (perYear <= 0) return 0;
-  return spent / perYear;
+/**
+ * Nombre d'« années de TON usage d'IA » qu'un total de prompts représente
+ * (ancre personnelle constante : 1 an = PERSON_YEAR prompts, quelle que soit
+ * l'échelle sélectionnée).
+ */
+export function yearsOfUse(spent: number): number {
+  if (PERSON_YEAR <= 0) return 0;
+  return spent / PERSON_YEAR;
 }
 
 // ── Mode inversé ────────────────────────────────────────────────────────────

@@ -1,10 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import {
   promptsForAction,
-  budget,
   totalPrompts,
   progress,
-  yearsOfAI,
+  yearsOfUse,
   tierTotals,
   pickEquivalent,
   usageTotals,
@@ -28,13 +27,6 @@ describe('promptsForAction', () => {
 
   it('handles CO2 (0,2 g per prompt)', () => {
     expect(promptsForAction(0.2, 'co2', 1)).toBeCloseTo(1);
-  });
-});
-
-describe('budget', () => {
-  it('is PERSON_YEAR times population', () => {
-    expect(budget(1)).toBe(PERSON_YEAR);
-    expect(budget(8_000_000_000)).toBe(PERSON_YEAR * 8_000_000_000);
   });
 });
 
@@ -64,10 +56,10 @@ describe('progress', () => {
   });
 });
 
-describe('yearsOfAI', () => {
-  it('converts spent prompts into years for a scale', () => {
-    expect(yearsOfAI(PERSON_YEAR * 3, 1)).toBeCloseTo(3);
-    expect(yearsOfAI(PERSON_YEAR * 100 * 2, 100)).toBeCloseTo(2);
+describe('yearsOfUse', () => {
+  it('converts spent prompts into personal AI-years (vs PERSON_YEAR)', () => {
+    expect(yearsOfUse(PERSON_YEAR * 3)).toBeCloseTo(3);
+    expect(yearsOfUse(43_500_000)).toBeCloseTo(3625);
   });
 });
 

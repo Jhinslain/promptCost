@@ -29,8 +29,8 @@ export async function GET(req: Request) {
       : `scale: ${scale}`
     : '';
   const tagline = fr
-    ? 'Combien coûte vraiment 1 prompt IA ?'
-    : 'How much does 1 AI prompt really cost?';
+    ? 'Combien de prompts IA « vaut » un geste du quotidien ?'
+    : 'How many AI prompts is an everyday action worth?';
 
   return new ImageResponse(
     (
@@ -49,7 +49,7 @@ export async function GET(req: Request) {
       >
         <div style={{ fontSize: 40, display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 56 }}>{emoji}</span>
-          <span style={{ color: '#94a3b8', fontWeight: 700 }}>PromptCost</span>
+          <span style={{ color: '#94a3b8', fontWeight: 700 }}>HowManyPrompts</span>
           {scaleLine ? (
             <span style={{ fontSize: 26, color: accent, fontWeight: 700 }}>· {scaleLine}</span>
           ) : null}

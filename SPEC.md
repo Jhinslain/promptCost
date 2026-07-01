@@ -159,7 +159,7 @@ budget(populationMultiplier) = PERSON_YEAR * populationMultiplier   // PERSON_YE
 Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-page sinon trop léger) :
 - `/sources` : liste complète et cliquable de toutes les sources (§7).
 - `/methodologie` : comment chaque chiffre est calculé, fourchettes, hypothèses (réseau électrique, eau directe vs amont, eau « virtuelle » des aliments). Format FAQ → JSON-LD.
-- `/a-propos` : le pourquoi du projet, lien Majoli.
+- `/a-propos` : le pourquoi du projet.
 - `/mentions-legales` : légal + politique analytics sans cookie.
 
 ---
@@ -245,7 +245,7 @@ Chaque page = contenu indexable + maillage interne (bon pour le SEO d'un one-pag
 
 - Liens : Comparatif · Sources · Méthodologie · À propos · Mentions légales.
 - `LangSwitcher` + `ThemeToggle` (rappel).
-- Mention « Données indicatives : ordres de grandeur sourcés » + lien Majoli.
+- Badge « empreinte de ce site » (clin d'œil transparent).
 - Petit bloc de maillage interne (bon SEO).
 
 ---

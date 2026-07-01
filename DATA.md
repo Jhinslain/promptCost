@@ -191,6 +191,40 @@ Repères : raisonnement ≈ 50–100× le texte standard · image ≈ 20–40× 
 
 ---
 
+## 4G. Grands gestes personnels (magnitude élevée)
+
+> Actions **lourdes mais personnelles** (usage annuel, gros achat) pour atteindre vite les grandes échelles (ville / pays / monde) sans multiplier les petits clics. À **taguer `size: "grand"`** dans `data.ts` (groupe « gros gestes » ou mis en avant aux grandes échelles). Rien d'industriel : uniquement ce qu'une personne fait, consomme ou achète.
+
+### Électricité (Wh)
+| Grand geste | Emoji | Wh | Source |
+|---|---|---|---|
+| Climatisation maison / an | ❄️ | 1 900 000 | US EIA |
+| Voiture électrique / an (~24 000 km) | 🔌 | 3 500 000 | US DOE/EPA |
+| Électricité du foyer / an (FR) | 🏡 | 4 300 000 | ADEME *(US ~10,8 M)* |
+| Chauffage élec. maison / an | 🔥 | 5 000 000 | ADEME |
+
+### Eau (mL)
+| Grand geste | Emoji | mL | Source |
+|---|---|---|---|
+| Manger 1 kg de bœuf | 🥩 | 15 400 000 | WFN |
+| 1 an de douches (1 pers.) | 🚿 | 18 000 000 | dérivé US EPA (≈50 L × 365) |
+| Une garde-robe coton (1 jean + 5 t-shirts) | 👖 | 20 500 000 | WFN |
+| Eau domestique / an / pers. (UE) | 🚰 | 52 600 000 | EEA *(US ~113 M)* |
+| Remplir une piscine privée (~50 m³) | 🏊 | 50 000 000 | ordre de grandeur (volume type) |
+
+### CO₂ (g)
+| Grand geste | Emoji | g | Source |
+|---|---|---|---|
+| Vol Paris → New York (aller-retour) | ✈️ | 2 600 000 | ADEME *(avec forçage radiatif ; 1,3 M en CO₂ seul)* |
+| 1 semaine de croisière | 🚢 | 3 000 000 | ICCT / analyses sectorielles (ordre de grandeur) |
+| Émissions de sa voiture / an | 🚗 | 4 600 000 | US EPA |
+| Fabriquer 1 voiture thermique neuve | 🚙 | 6 000 000 | Zemo Partnership *(5,6 t ; jusqu'à ~17 t gros SUV)* |
+| Fabriquer 1 voiture électrique neuve | 🔋 | 8 800 000 | Zemo Partnership |
+| Empreinte carbone perso / an (France) | 🌍 | 9 000 000 | Eurostat *(conso ; US ~17,6 M)* |
+| Construire une maison | 🏠 | 50 000 000 | MIT Climate Portal *(type 50–80 t sur le cycle de vie)* |
+
+---
+
 ## 5. SOURCES (à afficher sur la page `/sources` du site)
 
 **IA / numérique**
@@ -235,6 +269,9 @@ Repères : raisonnement ≈ 50–100× le texte standard · image ≈ 20–40× 
 - Apple — Product Environmental Reports : https://www.apple.com/environment/
 - Fairphone — Life Cycle Assessment : https://www.fairphone.com/
 - MIT — empreinte d'une paire de baskets (Cheah et al. 2013) : https://news.mit.edu/2013/footwear-carbon-footprint-0522
+- MIT Climate Portal — CO₂ de la construction d'une maison : https://climate.mit.edu/ask-mit/how-much-co2-emitted-building-new-house
+- Zemo Partnership — émissions cycle de vie / fabrication des voitures : https://www.zemo.org.uk/
+- ICCT — émissions du transport maritime / croisières : https://theicct.org/marine-cruising-flying-may22/
 - Mike Berners-Lee — *How Bad Are Bananas?* (email/numérique)
 - Eurostat — empreinte carbone par habitant : https://ec.europa.eu/eurostat/
 

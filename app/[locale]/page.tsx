@@ -15,7 +15,7 @@ export default async function HomePage({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'PromptCost',
+    name: 'HowManyPrompts',
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Any',
     description: t('description'),

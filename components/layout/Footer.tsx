@@ -25,7 +25,6 @@ export function Footer() {
           </span>
           <span className="text-lg">{t('site.name')}</span>
         </Link>
-        <p className="mt-1.5 text-sm font-semibold text-muted">{t('site.tagline')}</p>
 
         <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-muted">
           {links.map((l) => (
@@ -34,10 +33,10 @@ export function Footer() {
             </Link>
           ))}
         </nav>
-        <div className="mt-6">
+
+        <div className="mt-8 flex justify-center">
           <SiteFootprint />
         </div>
-        <p className="mt-4 text-xs text-muted">{t('footer.disclaimer')}</p>
       </div>
     </footer>
   );

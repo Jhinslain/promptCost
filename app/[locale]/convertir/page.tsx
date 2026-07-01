@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Game } from '@/components/game/Game';
 
-const SITE_URL = 'https://promptcost.app';
+const SITE_URL = 'https://howmanyprompts.com';
 
 export async function generateMetadata({
   params,
@@ -29,7 +29,7 @@ export async function generateMetadata({
       title: t('title'),
       description: t('description'),
       url: `${SITE_URL}/${locale}/convertir`,
-      siteName: 'PromptCost',
+      siteName: 'HowManyPrompts',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
       images: [{ url: `/api/og?lang=${locale}`, width: 1200, height: 630 }],

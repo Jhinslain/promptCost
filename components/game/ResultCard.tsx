@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, X, Check, Download } from 'lucide-react';
-import { formatYears } from '@/lib/format';
+import { formatCompact, formatYears } from '@/lib/format';
 import type { MetricId } from '@/lib/data';
 
 interface ResultCardProps {
   open: boolean;
   metric: MetricId;
+  scaleId: string;
+  spent: number;
   years: number;
   count: number;
   scaleLabel: string;
@@ -20,6 +22,8 @@ interface ResultCardProps {
 export function ResultCard({
   open,
   metric,
+  scaleId,
+  spent,
   years,
   count,
   scaleLabel,
@@ -31,12 +35,14 @@ export function ResultCard({
   const [copied, setCopied] = useState(false);
 
   const yearsStr = formatYears(years, locale);
+  // Ce qu'on a « payé » = l'usage annuel d'IA de l'échelle choisie.
+  const phrase = t(`scale.spent.${scaleId}`);
 
   /** URLs construites au clic (accès à window côté client). */
   function links() {
     const origin = window.location.origin;
     const pageUrl = `${origin}/${locale}`;
-    const text = t('result.shareText', { years: yearsStr, count });
+    const text = t('result.shareText', { phrase });
     const og =
       `${origin}/api/og?years=${encodeURIComponent(yearsStr)}&count=${count}` +
       `&metric=${metric}&lang=${locale}&scale=${encodeURIComponent(scaleLabel)}`;
@@ -81,7 +87,7 @@ export function ResultCard({
       const href = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = href;
-      a.download = 'promptcost.png';
+      a.download = 'howmanyprompts.png';
       a.click();
       URL.revokeObjectURL(href);
     } catch {
@@ -128,19 +134,16 @@ export function ResultCard({
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1, type: 'spring', stiffness: 300, damping: 18 }}
-                className="num mt-3 text-6xl font-extrabold text-accent"
+                className="num mt-3 text-5xl font-extrabold leading-none text-accent sm:text-6xl"
               >
-                {yearsStr}×
+                {formatCompact(spent, locale)}
+                <span className="ml-2 text-lg font-bold text-muted">
+                  {t('total.promptsSuffix')}
+                </span>
               </motion.div>
 
               <p className="mt-3 text-lg font-bold leading-snug text-text">
-                {t('result.headline', { count, years: yearsStr })}
-              </p>
-              <p className="mt-1 text-sm font-semibold text-muted">
-                {t('result.headlineScale', { scale: scaleLabel })}
-              </p>
-              <p className="mt-1 text-sm font-semibold text-accent">
-                {t('result.efficiency', { count })}
+                {t('result.headline', { phrase })}
               </p>
 
               <div className="mt-5 rounded-2xl border border-line bg-bg p-4">

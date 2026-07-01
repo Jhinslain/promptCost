@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = 'https://promptcost.app';
+export const SITE_URL = 'https://howmanyprompts.com';
 
 /**
  * Métadonnées d'une page : titre, description, canonical + hreflang, et carte
@@ -35,7 +35,7 @@ export function buildMetadata({
       title,
       description,
       url,
-      siteName: 'PromptCost',
+      siteName: 'HowManyPrompts',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
       images: [{ url: og, width: 1200, height: 630 }],

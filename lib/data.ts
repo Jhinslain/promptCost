@@ -50,66 +50,8 @@ export const METRIC_BY_ID: Record<MetricId, MetricConfig> = Object.fromEntries(
   METRICS.map((m) => [m.id, m]),
 ) as Record<MetricId, MetricConfig>;
 
-export interface ScaleConfig {
-  id: string;
-  /** Emoji fixe, ou par langue pour les échelles localisées. */
-  emoji: string | Record<string, string>;
-  /** Population fixe, ou par langue. budget = PERSON_YEAR × population. */
-  population: number | Record<string, number>;
-}
-
-/**
- * Échelles jouables. « ville » et « pays » sont localisées par **région** :
- * 🇫🇷 Paris/France · 🇬🇧 Londres/Royaume-Uni · 🇺🇸 New York/USA.
- * En anglais, l'utilisateur bascule entre 'gb' et 'us' ; en français, 'fr'.
- * Populations ≈ 2026 (INSEE · ONS · US Census · ONU).
- */
-export const SCALES: ScaleConfig[] = [
-  { id: 'you', emoji: '🧍', population: 1 },
-  { id: 'hundred', emoji: '👥', population: 100 },
-  { id: 'city', emoji: '🏙️', population: { fr: 2_100_000, gb: 8_900_000, us: 8_300_000 } },
-  {
-    id: 'country',
-    emoji: { fr: '🇫🇷', gb: '🇬🇧', us: '🇺🇸' },
-    population: { fr: 69_100_000, gb: 69_900_000, us: 341_000_000 },
-  },
-  { id: 'world', emoji: '🌍', population: 8_300_000_000 },
-];
-
-export type RegionKey = 'fr' | 'gb' | 'us';
-
-/**
- * Pays de référence effectif : le choix explicite ('fr'/'gb'/'us') s'il existe,
- * sinon 'auto' → 🇬🇧 en anglais, 🇫🇷 sinon.
- */
-export const regionKey = (locale: string, region: string): RegionKey => {
-  if (region === 'fr' || region === 'gb' || region === 'us') return region;
-  return locale === 'en' ? 'gb' : 'fr';
-};
-
-function pickByKey<T>(value: T | Record<string, T>, key: string): T {
-  if (typeof value === 'object' && value !== null) {
-    const rec = value as Record<string, T>;
-    return rec[key] ?? Object.values(rec)[0];
-  }
-  return value as T;
-}
-
-/** Population d'une échelle pour une région donnée. */
-export const scalePopulation = (scale: ScaleConfig, key: string): number =>
-  pickByKey(scale.population, key);
-
-/** Emoji d'une échelle pour une région donnée. */
-export const scaleEmoji = (scale: ScaleConfig, key: string): string =>
-  pickByKey(scale.emoji, key);
-
-/** Clé i18n du libellé (city/country varient par région : cityFr, cityGb…). */
-export function scaleLabelKey(id: string, key: RegionKey): string {
-  if (id === 'city' || id === 'country') {
-    return `${id}${key.charAt(0).toUpperCase()}${key.slice(1)}`;
-  }
-  return id;
-}
+// Les échelles vivent désormais dans lib/scales.ts (budgets de prompts basés
+// sur l'usage réel de l'IA, sans multiplicateur de population).
 
 export interface ActionData {
   id: string;
@@ -142,7 +84,16 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     { id: 'dishwasher', emoji: '🍽️', value: 900, sourceId: 'ademe' },
     { id: 'ac', emoji: '❄️', value: 1000, sourceId: 'ademe' },
     { id: 'dryer', emoji: '🌀', value: 1600, sourceId: 'ademe' },
+    { id: 'kettle_full', emoji: '🫖', value: 125, sourceId: 'us-doe' },
     { id: 'ev_charge', emoji: '🔌', value: 18_000, sourceId: 'fueleconomy' },
+    // Grands gestes & variantes annuelles (Data.md §2b, kWh/an → Wh)
+    { id: 'laptop_year', emoji: '💻', value: 25_000, sourceId: 'ademe' },
+    { id: 'lighting_year', emoji: '💡', value: 105_000, sourceId: 'ademe' },
+    { id: 'tv_year', emoji: '📺', value: 155_000, sourceId: 'ademe' },
+    { id: 'fridge_year', emoji: '🧊', value: 180_000, sourceId: 'ademe' },
+    { id: 'ev_year', emoji: '🔋', value: 3_750_000, sourceId: 'fueleconomy' },
+    { id: 'home_year', emoji: '🏡', value: 4_300_000, sourceId: 'ademe' },
+    { id: 'heating_year', emoji: '🏠', value: 5_000_000, sourceId: 'ademe' },
   ],
   // 💧 EAU : mL (direct = robinet ; virtuelle = production)
   water: [
@@ -166,7 +117,11 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     { id: 'milk_water', emoji: '🥛', value: 255_000, sourceId: 'wfn-animals' },
     { id: 'tshirt_water', emoji: '👕', value: 2_500_000, sourceId: 'wfn-cotton' },
     { id: 'burger_water', emoji: '🍔', value: 2_500_000, sourceId: 'wfn-animals' },
+    { id: 'chocolate_water', emoji: '🍫', value: 1_700_000, sourceId: 'wfn-crops' },
+    { id: 'steak_water', emoji: '🥩', value: 3_080_000, sourceId: 'wfn-animals' },
     { id: 'jeans_water', emoji: '👖', value: 8_000_000, sourceId: 'wfn-cotton' },
+    // Grand geste : consommation d'eau domestique sur une année (Data.md §3a)
+    { id: 'home_water_year', emoji: '🚰', value: 52_600_000, sourceId: 'eea-water' },
   ],
   // 🌍 CO₂ : g CO₂e (transport par km, aliments/objets par unité)
   co2: [
@@ -198,6 +153,9 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     { id: 'smartphone', emoji: '📱', value: 50_000, sourceId: 'apple-env' },
     { id: 'laptop_make', emoji: '💻', value: 250_000, sourceId: 'laptop-lca' },
     { id: 'flight', emoji: '✈️', value: 620_000, sourceId: 'icao' },
+    // Grands gestes annuels (Data.md §4b / §4e)
+    { id: 'car_year', emoji: '🚙', value: 4_600_000, sourceId: 'us-epa-vehicle' },
+    { id: 'footprint_year', emoji: '🌐', value: 9_000_000, sourceId: 'eurostat-footprint' },
   ],
 };
 
@@ -228,6 +186,9 @@ export const SOURCES: SourceData[] = [
   { id: 'iea-ai', category: 'ai', label: 'IEA : Energy and AI', url: 'https://www.iea.org/reports/energy-and-ai' },
   { id: 'iea-streaming', category: 'ai', label: 'IEA : empreinte du streaming vidéo', url: 'https://www.iea.org/commentaries/the-carbon-footprint-of-streaming-video-fact-checking-the-headlines' },
   { id: 'ecologits', category: 'ai', label: 'EcoLogits / GenAI Impact', url: 'https://ecologits.ai/' },
+  { id: 'hf-energy', category: 'ai', label: 'Hugging Face : AI Energy Score / S. Luccioni (énergie image & vidéo)', url: 'https://huggingface.co/blog/sasha/ai-energy-score-v2' },
+  { id: 'arxiv-image', category: 'ai', label: '« The Hidden Cost of an Image » (arXiv 2506.17016)', url: 'https://arxiv.org/abs/2506.17016' },
+  { id: 'chatgpt-volume', category: 'ai', label: 'OpenAI / TechCrunch : ChatGPT ~2,5 milliards de prompts/jour (2026) ; part de l\'IA générative ~80 % (Demandsage / Statista). Calcul : ChatGPT ~900 Md/an ÷ 0,8 ≈ 1 100 Md pour toute l\'IA générative.', url: 'https://techcrunch.com/2025/08/04/openai-says-chatgpt-users-send-2-5-billion-prompts-a-day/' },
 
   // Électricité
   { id: 'ademe', category: 'elec', label: 'ADEME : consommation des appareils ménagers', url: 'https://agirpourlatransition.ademe.fr/particuliers/economiser/energie/consommation-appareils-menagers' },
@@ -323,19 +284,20 @@ export interface ModelConfig {
 
 /** Modèles proposés dans le sélecteur (regroupés par palier à l'affichage). */
 export const MODELS: ModelConfig[] = [
-  { id: 'gpt4o', label: 'GPT-4o', tier: 'standard' },
+  { id: 'gpt55', label: 'GPT-5.5', tier: 'standard' },
   { id: 'gpt41', label: 'GPT-4.1', tier: 'standard' },
-  { id: 'claude-sonnet', label: 'Claude Sonnet', tier: 'standard' },
-  { id: 'gemini-pro', label: 'Gemini 2.5 Pro', tier: 'standard' },
-  { id: 'gpt-mini', label: 'GPT-4o mini', tier: 'light' },
-  { id: 'gemini-flash', label: 'Gemini Flash', tier: 'light' },
-  { id: 'gemini-flash-lite', label: 'Gemini Flash-Lite', tier: 'light' },
-  { id: 'claude-haiku', label: 'Claude Haiku', tier: 'light' },
-  { id: 'o-series', label: 'OpenAI o-series', tier: 'reasoning' },
+  { id: 'claude-sonnet', label: 'Claude Sonnet 4.6', tier: 'standard' },
+  { id: 'gemini-pro', label: 'Gemini 3.1 Pro', tier: 'standard' },
+  { id: 'gpt5-mini', label: 'GPT-5 mini / nano', tier: 'light' },
+  { id: 'gemini-flash', label: 'Gemini 3.5 Flash', tier: 'light' },
+  { id: 'gemini-flash-lite', label: 'Gemini 3.5 Flash-Lite', tier: 'light' },
+  { id: 'claude-haiku', label: 'Claude Haiku 4.5', tier: 'light' },
+  { id: 'gpt5-thinking', label: 'GPT-5 Thinking / Pro', tier: 'reasoning' },
   { id: 'deepseek-r1', label: 'DeepSeek-R1', tier: 'reasoning' },
-  { id: 'claude-thinking', label: 'Claude (extended thinking)', tier: 'reasoning' },
-  { id: 'gemini-thinking', label: 'Gemini (thinking)', tier: 'reasoning' },
-  { id: 'image-gen', label: 'Génération d\'image', tier: 'image' },
+  { id: 'claude-opus', label: 'Claude Opus 4.8 (thinking)', tier: 'reasoning' },
+  { id: 'gemini-thinking', label: 'Gemini 3 (thinking)', tier: 'reasoning' },
+  { id: 'grok4', label: 'Grok 4', tier: 'reasoning' },
+  { id: 'image-gen', label: 'DALL·E / Imagen / Midjourney', tier: 'image' },
 ];
 
 export const MODEL_BY_ID: Record<string, ModelConfig> = Object.fromEntries(

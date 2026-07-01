@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, Trash2 } from 'lucide-react';
 import { ACTIONS, SOURCE_BY_ID, type MetricId } from '@/lib/data';
 import { promptsForAction } from '@/lib/convert';
 import { formatCompact } from '@/lib/format';
@@ -25,6 +25,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
   const cart = useGame((s) => s.cart);
   const add = useGame((s) => s.add);
   const remove = useGame((s) => s.remove);
+  const removeAll = useGame((s) => s.removeAll);
 
   const rows = useMemo(
     () =>
@@ -72,7 +73,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
                     transition={{ type: 'spring', stiffness: 500, damping: 20 }}
                     className="num absolute right-2 top-2 z-10 grid h-6 min-w-[1.5rem] place-items-center rounded-full bg-accent px-1.5 text-xs font-extrabold text-white shadow"
                   >
-                    ×{qty}
+                    ×{formatCompact(qty, locale)}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -125,22 +126,36 @@ export function ActionGrid({ metric }: ActionGridProps) {
                     {t('actions.buy')}
                   </button>
                 ) : (
-                  <div className="flex h-9 items-center justify-between rounded-xl bg-accent px-1.5 text-white">
-                    <button
-                      onClick={() => remove(a.id)}
-                      aria-label={t('controls.remove', { action: label })}
-                      className="grid h-7 w-7 place-items-center rounded-lg transition-colors hover:bg-white/20 active:scale-90"
-                    >
-                      <Minus size={16} strokeWidth={2.5} />
-                    </button>
-                    <span className="num text-sm font-extrabold tabular-nums">{qty}</span>
-                    <button
-                      onClick={() => add(a.id)}
-                      aria-label={t('controls.add', { action: label })}
-                      className="grid h-7 w-7 place-items-center rounded-lg transition-colors hover:bg-white/20 active:scale-90"
-                    >
-                      <Plus size={16} strokeWidth={2.5} />
-                    </button>
+                  <div className="flex items-center gap-1.5">
+                    {qty > 1 && (
+                      <button
+                        onClick={() => removeAll(a.id)}
+                        aria-label={t('controls.removeAll', { action: label })}
+                        title={t('controls.removeAll', { action: label })}
+                        className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-line text-muted transition-colors hover:border-red-400 hover:text-red-500 active:scale-90"
+                      >
+                        <Trash2 size={15} strokeWidth={2.5} />
+                      </button>
+                    )}
+                    <div className="flex h-9 flex-1 items-center justify-between rounded-xl bg-accent px-1.5 text-white">
+                      <button
+                        onClick={() => remove(a.id)}
+                        aria-label={t('controls.remove', { action: label })}
+                        className="grid h-7 w-7 place-items-center rounded-lg transition-colors hover:bg-white/20 active:scale-90"
+                      >
+                        <Minus size={16} strokeWidth={2.5} />
+                      </button>
+                      <span className="num text-sm font-extrabold tabular-nums">
+                        {formatCompact(qty, locale)}
+                      </span>
+                      <button
+                        onClick={() => add(a.id)}
+                        aria-label={t('controls.add', { action: label })}
+                        className="grid h-7 w-7 place-items-center rounded-lg transition-colors hover:bg-white/20 active:scale-90"
+                      >
+                        <Plus size={16} strokeWidth={2.5} />
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

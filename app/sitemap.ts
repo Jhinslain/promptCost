@@ -1,8 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
 import { ACTION_BY_ID } from '@/lib/data';
+import { COMPARISONS } from '@/lib/comparisons';
 
-const SITE_URL = 'https://promptcost.app';
+const SITE_URL = 'https://howmanyprompts.com';
 
 const PATHS = [
   '',
@@ -14,6 +15,7 @@ const PATHS = [
   '/methodologie',
   '/a-propos',
   '/mentions-legales',
+  ...COMPARISONS.map((c) => `/comparatif/${c.slug}`),
   ...Object.keys(ACTION_BY_ID).map((id) => `/combien/${id}`),
 ];
 

@@ -57,8 +57,13 @@ export function SiteFootprint() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-semibold text-muted transition-colors hover:border-accent"
+        className="group flex items-center gap-2 rounded-full border border-line/70 bg-gradient-to-r from-accent-soft/70 via-surface to-surface px-4 py-2 text-xs font-semibold text-muted shadow-sm ring-1 ring-black/[0.02] transition-all hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-md"
       >
+        <span
+          className="h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover:scale-125"
+          style={{ backgroundColor: color }}
+          aria-hidden
+        />
         <span>{t('prefix')}</span>
         <span className="num inline-flex items-center gap-1 font-bold" style={{ color }}>
           <span aria-hidden>{METRIC_BY_ID[cur.m].emoji}</span>
@@ -74,16 +79,16 @@ export function SiteFootprint() {
             </motion.span>
           </AnimatePresence>
         </span>
-        <Info size={13} />
+        <Info size={13} className="text-muted/70 transition-colors group-hover:text-accent" />
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            className="absolute bottom-full left-0 z-50 mb-2 w-72 max-w-[calc(100vw-2rem)] rounded-2xl border border-line bg-surface p-4 text-left shadow-xl"
+            initial={{ opacity: 0, y: 6, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: 6, x: '-50%' }}
+            className="absolute bottom-full left-1/2 z-50 mb-2 w-72 max-w-[calc(100vw-2rem)] rounded-2xl border border-line bg-surface p-4 text-left shadow-xl"
           >
             <div className="flex items-start justify-between gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-accent">

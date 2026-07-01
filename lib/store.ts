@@ -17,6 +17,10 @@ export interface GameState {
   setScale: (scaleId: string) => void;
   add: (actionId: string) => void;
   remove: (actionId: string) => void;
+  /** Retire d'un coup toutes les unités d'un même geste. */
+  removeAll: (actionId: string) => void;
+  /** Remplace tout le panier (utilisé par « Surprends-moi » pour remplir la jauge). */
+  setCart: (cart: Record<string, number>) => void;
   reset: () => void;
   setUsage: (typeId: string, n: number) => void;
   bumpUsage: (typeId: string, delta: number) => void;
@@ -42,6 +46,13 @@ export const useGame = create<GameState>((set) => ({
       else cart[actionId] = next;
       return { cart };
     }),
+  removeAll: (actionId) =>
+    set((s) => {
+      const cart = { ...s.cart };
+      delete cart[actionId];
+      return { cart };
+    }),
+  setCart: (cart) => set({ cart }),
   reset: () => set({ cart: {} }),
   setUsage: (typeId, n) =>
     set((s) => ({ usage: { ...s.usage, [typeId]: Math.max(0, Math.round(n)) } })),

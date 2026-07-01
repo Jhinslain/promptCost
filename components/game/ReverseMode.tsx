@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Minus, Plus, Shuffle, Info } from 'lucide-react';
@@ -146,15 +146,23 @@ export function ReverseMode() {
                 {t('reverse.couldHave')}
               </span>
 
-              {/* 3 cartes côte à côte, une par ressource */}
-              <div className="mt-5 grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
-                {METRIC_ORDER.map((m) => {
+              {/* 3 catégories côte à côte, une par ressource, reliées par « + » */}
+              <div className="mt-5 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
+                {METRIC_ORDER.map((m, idx) => {
                   const deed = EQUIV_DEEDS.find((d) => d.id === deeds[m]) ?? EQUIV_DEEDS[0];
                   const color = colorOf(m);
                   return (
+                    <Fragment key={m}>
+                      {idx > 0 && (
+                        <span
+                          className="flex select-none items-center justify-center text-2xl font-bold text-muted/50"
+                          aria-hidden
+                        >
+                          +
+                        </span>
+                      )}
                     <div
-                      key={m}
-                      className="flex flex-col items-center rounded-2xl border border-line bg-bg/40 px-3 py-5 text-center"
+                      className="flex flex-1 flex-col items-center rounded-2xl border border-line bg-bg/40 px-3 py-5 text-center"
                     >
                       <AnimatePresence mode="wait">
                         <motion.div
@@ -184,6 +192,7 @@ export function ReverseMode() {
                         {formatInt(Math.round(totals[m]), locale)} {METRIC_BY_ID[m].unit}
                       </span>
                     </div>
+                    </Fragment>
                   );
                 })}
               </div>

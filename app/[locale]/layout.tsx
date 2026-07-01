@@ -9,7 +9,7 @@ import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
-const SITE_URL = 'https://promptcost.app';
+const SITE_URL = 'https://howmanyprompts.com';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -39,7 +39,7 @@ export async function generateMetadata({
       title: t('title'),
       description: t('description'),
       url: `${SITE_URL}/${locale}`,
-      siteName: 'PromptCost',
+      siteName: 'HowManyPrompts',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
       images: [{ url: `/api/og?lang=${locale}`, width: 1200, height: 630 }],

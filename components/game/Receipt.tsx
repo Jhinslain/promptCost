@@ -2,9 +2,9 @@
 
 import { useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { ACTIONS, METRIC_BY_ID, type MetricId } from '@/lib/data';
+import { ACTIONS, METRIC_BY_ID, PERSON_YEAR, type MetricId } from '@/lib/data';
 import { promptsForAction } from '@/lib/convert';
-import { formatCompact, formatPercent, formatYears } from '@/lib/format';
+import { formatCompact, formatInt, formatYears } from '@/lib/format';
 import { useGame } from '@/lib/store';
 import { useTheme } from '../ui/ThemeProvider';
 
@@ -40,9 +40,6 @@ export function Receipt({ metric, goal, scaleLabel }: ReceiptProps) {
     return { items: list, total: list.reduce((s, l) => s + l.cost, 0) };
   }, [cart, metric]);
 
-  const ratio = goal > 0 ? total / goal : 0;
-  const over = ratio >= 1;
-
   return (
     <section className="overflow-hidden rounded-2xl border border-line bg-surface">
       <div className="h-1 w-full" style={{ backgroundColor: color }} />
@@ -74,7 +71,9 @@ export function Receipt({ metric, goal, scaleLabel }: ReceiptProps) {
                 </span>
                 <span className="truncate font-semibold text-text">{t(`actions.${l.id}`)}</span>
                 {l.qty > 1 && (
-                  <span className="num shrink-0 text-xs font-bold text-muted">×{l.qty}</span>
+                  <span className="num shrink-0 text-xs font-bold text-muted">
+                    ×{formatCompact(l.qty, locale)}
+                  </span>
                 )}
                 <span className="num ml-auto shrink-0 font-bold text-text">
                   {formatCompact(l.cost, locale)}
@@ -96,15 +95,16 @@ export function Receipt({ metric, goal, scaleLabel }: ReceiptProps) {
           </span>
         </div>
 
-        <div className="mt-1 flex items-baseline justify-between gap-2 text-xs font-semibold text-muted">
-          <span>{t('receipt.budget', { scale: scaleLabel })}</span>
-          <span className="num">{formatCompact(goal, locale)}</span>
-        </div>
-
-        <div className="mt-1 text-right text-xs font-bold" style={{ color }}>
-          {over
-            ? t('total.yearsLabel', { years: formatYears(ratio, locale) })
-            : `${formatPercent(ratio, locale)} %`}
+        <div className="mt-1.5 flex items-baseline justify-between gap-2">
+          <span className="text-xs font-bold" style={{ color }}>
+            {t('total.yearsUse', { years: formatYears(total / PERSON_YEAR, locale) })}
+          </span>
+          <span className="shrink-0 text-[11px] font-semibold text-muted">
+            {t('total.target', {
+              scale: scaleLabel,
+              goal: goal >= 1_000_000 ? formatCompact(goal, locale) : formatInt(goal, locale),
+            })}
+          </span>
         </div>
       </div>
     </section>

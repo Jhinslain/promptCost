@@ -1,36 +1,42 @@
 {
   "site": {
-    "name": "PromptCost",
-    "tagline": "1 prompt IA = ?"
+    "name": "HowManyPrompts"
+  },
+  "nav": {
+    "spend": "Dépenser",
+    "convert": "Convertir",
+    "games": "Jeux",
+    "more": "En savoir plus",
+    "menu": "Menu"
   },
   "meta": {
     "home": {
-      "title": "PromptCost : combien consomme vraiment 1 prompt IA ?",
+      "title": "HowManyPrompts : combien de prompts IA « vaut » un geste du quotidien ?",
       "description": "Visualise le coût réel d'un prompt IA (électricité, eau, CO₂) en le comparant aux gestes du quotidien. Chiffres sourcés, sans parti pris."
     },
     "convertir": {
-      "title": "Convertir mes prompts IA en gestes du quotidien | PromptCost",
+      "title": "Convertir mes prompts IA en gestes du quotidien | HowManyPrompts",
       "description": "Dis ce que tu as fait avec l'IA aujourd'hui (texte, images, vidéos) et vois l'équivalent concret en électricité, eau et CO₂."
     },
     "comparatif": {
-      "title": "Comparatif : recherche classique vs IA | PromptCost",
+      "title": "Comparatif : recherche classique vs IA | HowManyPrompts",
       "description": "Recherche Google vs requête IA, image téléchargée vs image générée : ordres de grandeur côte à côte, honnêtement."
     },
     "sources": {
-      "title": "Sources & données | PromptCost",
+      "title": "Sources & données | HowManyPrompts",
       "description": "Toutes les sources des chiffres utilisés : énergie, eau et CO₂ par prompt et par geste du quotidien."
     },
     "methodologie": {
-      "title": "Méthodologie : comment on calcule | PromptCost",
+      "title": "Méthodologie : comment on calcule | HowManyPrompts",
       "description": "Hypothèses, fourchettes et calculs derrière le coût d'un prompt IA en électricité, eau et CO₂."
     },
     "apropos": {
-      "title": "À propos | PromptCost",
+      "title": "À propos | HowManyPrompts",
       "description": "Pourquoi ce projet : remettre le coût d'un prompt IA en perspective, sans diaboliser ni minimiser."
     },
     "legal": {
-      "title": "Mentions légales | PromptCost",
-      "description": "Mentions légales et politique analytics sans cookie de PromptCost."
+      "title": "Mentions légales | HowManyPrompts",
+      "description": "Mentions légales et politique analytics sans cookie de HowManyPrompts."
     }
   },
   "header": {
@@ -39,14 +45,19 @@
   },
   "intro": {
     "lead": "Dépense les prompts d'un an d'IA.",
-    "sub": "Une seule douche en vaut 167 000. Un prompt IA est minuscule : ajoute des gestes du quotidien et regarde en combien de gestes tu épuises une année entière."
+    "sub": "{label} : c'est déjà {cost} prompts IA. Un prompt est minuscule, mais c'est leur nombre qui pèse : ajoute des gestes du quotidien et regarde en combien tu épuises une année entière d'IA."
   },
   "total": {
-    "goalLabel": "1 an d'IA · {scale}",
-    "ofGoal": "/ {goal}",
-    "spent": "{spent} prompts dépensés",
-    "yearsLabel": "{years} ans d'IA engloutis",
-    "reached": "Objectif atteint !",
+    "emptyHint": "Ajoute un geste : tu verras combien de prompts IA consommeraient autant.",
+    "promptsSuffix": "prompts IA",
+    "equiv": {
+      "elec": "consommeraient autant d'électricité que tes gestes",
+      "water": "consommeraient autant d'eau que tes gestes",
+      "co2": "émettraient autant de CO₂ que tes gestes"
+    },
+    "yourYear": "ton année d'IA",
+    "yearsUse": "= {years} ans de ton usage d'IA",
+    "target": "cible : {scale} = {goal} prompts",
     "promptsUnit": "prompts"
   },
   "bill": {
@@ -68,8 +79,8 @@
     "tabReverse": "Convertir mes prompts",
     "modeNav": "Modes de jeu",
     "title": "Convertis tes prompts",
-    "sub": "Dis ce que tu as fait aujourd'hui avec l'IA. On te montre ce que tu aurais pu faire à la place.",
-    "todayLabel": "Aujourd'hui, j'ai fait…",
+    "sub": "Dis ce que tu as fait aujourd'hui avec l'IA générative. On te montre ce que tu aurais pu faire à la place.",
+    "todayLabel": "Aujourd'hui, j'ai fait avec l'IA…",
     "couldHave": "Tu aurais pu…",
     "another": "Un autre",
     "empty": "Ajoute des requêtes pour voir l'équivalent.",
@@ -108,17 +119,20 @@
     }
   },
   "scale": {
-    "label": "À quelle échelle ?",
-    "region": "Pays de référence",
+    "label": "À quelle échelle ? (usage d'IA sur 1 an)",
     "you": "Toi",
     "hundred": "100 personnes",
-    "cityFr": "Paris",
-    "cityGb": "Londres",
-    "cityUs": "New York",
-    "countryFr": "La France",
-    "countryGb": "Le Royaume-Uni",
-    "countryUs": "Les États-Unis",
-    "world": "Le monde"
+    "all_ai": "Toute l'IA générative",
+    "unit": {
+      "you": "ton année d'IA",
+      "hundred": "100 personnes / an",
+      "all_ai": "l'IA générative / an"
+    },
+    "spent": {
+      "you": "un an de ton usage d'IA",
+      "hundred": "un an d'IA pour 100 personnes",
+      "all_ai": "un an de toute l'IA générative mondiale"
+    }
   },
   "metric": {
     "label": "Quelle ressource ?",
@@ -201,21 +215,33 @@
     "book": "1 livre (broché)",
     "sneakers": "1 paire de baskets",
     "laptop_make": "Fabriquer 1 laptop",
-    "flight": "Vol Paris → New York"
+    "flight": "Vol Paris → New York",
+    "kettle_full": "Bouilloire (pleine)",
+    "laptop_year": "Laptop (1 an)",
+    "lighting_year": "Éclairage maison (1 an)",
+    "tv_year": "TV (1 an)",
+    "fridge_year": "Réfrigérateur (1 an)",
+    "ev_year": "Voiture élec. (1 an)",
+    "home_year": "Foyer entier (1 an)",
+    "heating_year": "Chauffage maison (1 an)",
+    "chocolate_water": "Tablette de chocolat (100 g)",
+    "steak_water": "Steak de bœuf (200 g)",
+    "home_water_year": "Conso d'eau (1 an, UE)",
+    "car_year": "Voiture (1 an, US)",
+    "footprint_year": "Empreinte carbone (1 an, UE)"
   },
   "controls": {
     "surprise": "Surprends-moi",
     "reset": "Recommencer",
     "add": "Ajouter {action}",
-    "remove": "Retirer {action}"
+    "remove": "Retirer {action}",
+    "removeAll": "Tout retirer : {action}"
   },
   "result": {
     "title": "Bilan",
-    "headline": "En {count, plural, one {# geste} other {# gestes}}, tu as dépensé {years} ans d'IA !",
-    "headlineScale": "Échelle : {scale}.",
-    "efficiency": "Année d'IA pliée en {count, plural, one {# geste} other {# gestes}}.",
+    "headline": "Tu as dépensé {phrase} !",
     "share": "Partager mon score",
-    "shareText": "J'ai dépensé {years} ans d'IA en {count, plural, one {# geste} other {# gestes}} du quotidien sur PromptCost 👀",
+    "shareText": "Mes gestes du quotidien coûtent autant qu'{phrase} 👀 HowManyPrompts",
     "downloadImage": "Télécharger l'image",
     "copied": "Lien copié !",
     "continue": "Continuer à jouer",
@@ -229,27 +255,81 @@
     "f5": "Un vol Paris → New York « vaut » des millions de prompts en CO₂."
   },
   "comparatif": {
-    "title": "Comparatif",
-    "subtitle": "Le « classique » face à l'IA, côte à côte. Données statiques et sourcées.",
-    "left": "Classique",
-    "right": "Intelligence artificielle",
-    "case1": {
-      "title": "Recherche Google vs requête IA texte",
-      "leftLabel": "Recherche Google",
-      "rightLabel": "Requête IA texte",
-      "verdict": "Ordres de grandeur comparables : selon les sources, l'écart va de « quasi identique » à « quelques fois plus ». La fourchette compte plus que le verdict."
+    "title": "Comparatif : le classique face à l'IA",
+    "subtitle": "Le geste habituel face à son équivalent en IA, côte à côte. Données statiques et sourcées, verdict honnête.",
+    "learnMore": "Voir le comparatif",
+    "verdictLabel": "Verdict",
+    "faqLabel": "Questions fréquentes",
+    "sourcesLabel": "Sources",
+    "back": "Tous les comparatifs",
+    "bonusTitle": "IA vs gestes du quotidien",
+    "bonusText": "1 douche = 167 000 prompts, 1 h de Netflix = 300 prompts… Manipule les ordres de grandeur toi-même dans le jeu.",
+    "bonusCta": "Ouvrir le jeu",
+    "moreTitle": "Pour aller plus loin",
+    "links": {
+      "game": "Dépenser un budget de prompts",
+      "combien": "Combien de prompts « vaut » un geste ?",
+      "glossaire": "Le glossaire de l'IA"
     },
-    "case2": {
-      "title": "Image téléchargée vs image générée par IA",
-      "leftLabel": "Télécharger une image",
-      "rightLabel": "Générer une image (IA)",
-      "verdict": "Générer une image coûte ~20 à 40× une requête texte. Télécharger une image existante est quasi nul."
-    },
-    "case3": {
-      "title": "1 min de vidéo en streaming vs 1 prompt texte",
-      "leftLabel": "1 min de streaming",
-      "rightLabel": "1 prompt texte",
-      "verdict": "Une minute de vidéo HD pèse plusieurs prompts texte. L'IA texte est minuscule à l'unité, c'est le volume qui fait le total."
+    "cases": {
+      "ia-vs-google": {
+        "title": "Recherche IA vs recherche Google",
+        "short": "Un prompt texte consomme-t-il plus qu'une recherche Google ? Réponse chiffrée et sourcée.",
+        "leftLabel": "Recherche Google",
+        "rightLabel": "Prompt IA (texte)",
+        "verdict": "Aujourd'hui, un prompt texte consomme à peu près autant qu'une recherche Google (~0,3 Wh). Le fameux « 10× plus » vient d'une ancienne estimation IEA (2,9 Wh) désormais obsolète : les modèles récents ont divisé leur consommation par ~10. Nuance honnête : les requêtes de raisonnement ou multimodales restent, elles, bien plus lourdes.",
+        "faq": {
+          "q1": "ChatGPT consomme-t-il plus qu'une recherche Google ?",
+          "a1": "Pour un prompt texte moyen, non : les deux tournent autour de 0,3 Wh. L'écart apparaît surtout avec les requêtes de raisonnement, d'image ou de vidéo.",
+          "q2": "D'où vient le chiffre « 10× plus » ?",
+          "a2": "D'une estimation IEA de ~2,9 Wh par requête, aujourd'hui dépassée : les modèles récents ont divisé leur consommation par environ 10 (Google annonce 0,24 Wh).",
+          "q3": "Une réponse d'IA peut-elle remplacer plusieurs recherches ?",
+          "a3": "Souvent oui : une seule réponse synthétise ce qui demanderait plusieurs recherches et ouvertures de pages. À l'usage, le bilan peut même pencher en faveur de l'IA."
+        }
+      },
+      "image-ia-vs-photo": {
+        "title": "Image générée par IA vs image existante",
+        "short": "Combien coûte une image générée par IA face à la réutilisation d'une photo existante ?",
+        "leftLabel": "Réutiliser une image existante",
+        "rightLabel": "Générer une image par IA",
+        "verdict": "Générer une image coûte 20 à 40× un prompt texte (~6 à 12 Wh), bien plus que réutiliser une image déjà en ligne. Ça reste modeste face à un geste physique (≈ quelques minutes de four), mais c'est le premier vrai « saut » de consommation quand on quitte le texte.",
+        "faq": {
+          "q1": "Combien consomme une image générée par IA ?",
+          "a1": "De l'ordre de 6 à 12 Wh, soit 20 à 40 fois un prompt texte.",
+          "q2": "Est-ce pire que télécharger une photo ?",
+          "a2": "Oui : réutiliser une image existante ne coûte qu'un transfert de données (~0,1 Wh). La génération, elle, mobilise des GPU.",
+          "q3": "Pourquoi une image coûte-t-elle plus qu'un texte ?",
+          "a3": "Produire une image demande beaucoup plus de calcul (des milliers d'étapes de « débruitage ») qu'une réponse en texte."
+        }
+      },
+      "video-ia-vs-streaming": {
+        "title": "Vidéo générée par IA vs streaming vidéo",
+        "short": "Générer une vidéo par IA, est-ce pire que regarder Netflix ? Les chiffres.",
+        "leftLabel": "Regarder de la vidéo (streaming)",
+        "rightLabel": "Générer une vidéo par IA",
+        "verdict": "Générer 5 secondes de vidéo par IA consomme autant que ~12 heures de streaming (~940 Wh contre ~77 Wh/heure). C'est de loin le poste le plus lourd de l'IA grand public, et sa consommation n'augmente pas linéairement (doubler la durée quadruple l'énergie). À utiliser en conscience.",
+        "faq": {
+          "q1": "Combien consomme une vidéo générée par IA ?",
+          "a1": "Environ 940 Wh pour un clip de ~5 secondes, un ordre de grandeur bien au-dessus du texte ou de l'image.",
+          "q2": "Est-ce pire que regarder Netflix ?",
+          "a2": "Pour la même durée, oui, largement : 5 s de génération valent ~12 h de streaming. Mais on regarde des heures de vidéo et on génère rarement plus de quelques secondes.",
+          "q3": "Pourquoi la vidéo IA est-elle si gourmande ?",
+          "a3": "Elle génère de nombreuses images cohérentes entre elles ; le coût croît plus vite que la durée (doubler la durée peut quadrupler l'énergie)."
+        }
+      },
+      "prompt-vs-email": {
+        "title": "Poser une question à l'IA vs envoyer un email",
+        "short": "Un email pollue-t-il plus qu'un prompt IA ? Comparaison en CO₂.",
+        "leftLabel": "Envoyer un email",
+        "rightLabel": "Prompt IA (texte)",
+        "verdict": "Un prompt texte émet moins qu'un simple email : ~0,2 g de CO₂ contre 4 g (email simple) à 19 g (avec pièce jointe). De quoi relativiser : nos gestes numériques les plus banals pèsent souvent plus qu'une question à l'IA.",
+        "faq": {
+          "q1": "Un email pollue-t-il plus qu'un prompt IA ?",
+          "a1": "En CO₂, oui : un email simple (~4 g) ou avec pièce jointe (~19 g) dépasse un prompt texte (~0,2 g).",
+          "q2": "Combien émet un email ?",
+          "a2": "De l'ordre de 4 g de CO₂ pour un email simple, jusqu'à ~19 g avec une pièce jointe (estimations Berners-Lee / ADEME)."
+        }
+      }
     }
   },
   "sources": {
@@ -268,24 +348,139 @@
   },
   "methodologie": {
     "title": "Méthodologie",
-    "intro": "Comment on transforme un geste en « nombre de prompts ». Tout est honnête et fourchetté.",
-    "q1": "Combien consomme un prompt IA ?",
-    "a1": "Pour un prompt texte moyen (type GPT-4o) : ~0,3 Wh d'électricité, ~0,3 mL d'eau de refroidissement direct, ~0,2 g de CO₂. Les requêtes « raisonnement » ou la génération d'images coûtent bien plus.",
-    "q2": "Comment je calcule le « coût en prompts » d'un geste ?",
-    "a2": "On divise la consommation du geste par celle d'un prompt : prompts = valeur du geste ÷ coût d'un prompt. Une douche de 50 L d'eau ≈ 50 000 mL ÷ 0,3 mL ≈ 167 000 prompts.",
+    "intro": "Comment on transforme un geste du quotidien en « nombre de prompts ». Tout est honnête et fourchetté : des ordres de grandeur, jamais une fausse précision.",
+    "briefTitle": "En bref",
+    "brief": "On part de la consommation mesurée et sourcée d'un geste, on la divise par la consommation d'un prompt, et on obtient son équivalent en prompts d'IA. Rien d'autre.",
+    "flow": {
+      "s1": "Un geste (ex. douche 50 L)",
+      "s2": "÷ coût d'un prompt (0,3 mL d'eau)",
+      "s3": "≈ 167 000 prompts"
+    },
+    "costTitle": "Combien consomme un prompt d'IA ?",
+    "costLead": "Pour un prompt texte moyen : l'inférence d'un grand modèle de langage (LLM) de type GPT-4o.",
+    "costRange": "Fourchette",
+    "costSources": "Sources",
+    "elecSrc": "Google (0,24) · Epoch AI (0,30) · OpenAI (0,34)",
+    "waterSrc": "Google · OpenAI (refroidissement direct)",
+    "co2Src": "dérivé : 0,3 Wh × intensité du réseau",
+    "costNote": "On ne compte que l'inférence (l'usage), pas l'entraînement. Les requêtes de raisonnement (~15-40 Wh) et la génération d'images (~6-12 Wh) ou de vidéos (~940 Wh/5 s) coûtent bien plus, voir le glossaire.",
+    "formulaTitle": "La formule",
+    "formula": "prompts = consommation du geste ÷ consommation d'un prompt",
+    "formulaLead": "Trois exemples, un par métrique :",
+    "formulaNote": "C'est toute la mécanique du jeu : chaque geste ajouté est converti en son équivalent en prompts, puis comparé à un « budget » d'IA.",
+    "ex": {
+      "showerG": "🚿 Douche 5 min (~50 L)",
+      "showerC": "50 000 mL ÷ 0,3 mL",
+      "showerR": "≈ 167 000 prompts",
+      "ovenG": "🔥 Four 1 h (~2,1 kWh)",
+      "ovenC": "2 100 Wh ÷ 0,3 Wh",
+      "ovenR": "≈ 7 000 prompts",
+      "carG": "🚗 1 km en voiture (~170 g)",
+      "carC": "170 g ÷ 0,2 g",
+      "carR": "≈ 850 prompts"
+    },
+    "virtualTitle": "Eau et CO₂ « virtuels »",
+    "virtual": "Pour les aliments et objets, on compte l'empreinte de production (eau et CO₂ « virtuels »), pas seulement l'eau du robinet du repas. Un burger « coûte » surtout par l'élevage (~2 500 L d'eau virtuelle), pas par le verre d'eau à côté : une chasse d'eau (eau directe) et un steak (eau virtuelle) ne mesurent pas la même chose.",
+    "scalesTitle": "Les échelles : quel « budget » d'IA ?",
+    "scalesLead": "Le budget qu'on cherche à « dépenser » correspond à une consommation réelle d'IA :",
+    "scalesBase": "Base",
+    "sc": {
+      "youL": "🧍 Toi (1 an)",
+      "youB": "12 000",
+      "youBase": "usage intensif ≈ 33 prompts/jour",
+      "hundredL": "👥 100 personnes (1 an)",
+      "hundredB": "1 200 000",
+      "hundredBase": "12 000 × 100",
+      "dayL": "📅 ChatGPT en 1 jour",
+      "dayB": "2 500 000 000",
+      "dayBase": "~2,5 Md prompts/jour (OpenAI, 2026)",
+      "allL": "🌍 Toute l'IA générative (1 an)",
+      "allB": "~1 100 000 000 000",
+      "allBase": "ChatGPT ~900 Md/an ÷ ~80 % du marché"
+    },
+    "scalesNote": "On ne suppose pas que tout le monde utilise l'IA : les grandes échelles reposent sur l'usage observé (2,5 milliards de prompts par jour), pas sur la population mondiale. On voit ainsi combien peu de gestes du quotidien suffisent à « valoir » l'IA d'une journée entière de ChatGPT.",
+    "rangeTitle": "Pourquoi des fourchettes plutôt qu'un chiffre exact ?",
+    "rangeLead": "Les sources varient (mix électrique, méthode de mesure, périmètre). On retient une médiane crédible et on affiche la fourchette. Deux exemples parlants :",
+    "rangeFlight": "Vol : selon qu'on intègre ou non le forçage radiatif (×~1,9 chez DEFRA/ADEME ; CO₂ seul chez l'ICAO) et qu'on compte l'aller ou l'aller-retour, le chiffre varie du simple au double.",
+    "rangeBeef": "Bœuf : de ~60 à ~99 kg CO₂e/kg selon le type d'élevage.",
+    "rangeEnd": "Afficher la fourchette, c'est refuser la fausse précision.",
+    "trainTitle": "Et l'entraînement des modèles ?",
+    "train1": "Il compte, et il est loin d'être négligeable : entraîner un LLM peut consommer de l'ordre du gigawattheure d'électricité, parfois bien davantage, l'équivalent de centaines de foyers sur une année entière.",
+    "train2": "C'est toutefois un coût unique, amorti sur les centaines de milliards d'inférences qui suivent ; ramené à un seul prompt, il redevient faible. Le site ne chiffre que l'inférence (l'usage quotidien, celui sur lequel chacun a prise), mais l'entraînement fait bel et bien partie de l'empreinte globale de l'IA : on le dit clairement plutôt que de le cacher.",
+    "faqTitle": "FAQ",
+    "q1": "Combien consomme un prompt d'IA ?",
+    "a1": "Pour un prompt texte moyen : ~0,3 Wh d'électricité, ~0,3 mL d'eau de refroidissement direct, ~0,2 g de CO₂. On ne compte que l'inférence, pas l'entraînement.",
+    "q2": "Comment calculez-vous le « coût en prompts » d'un geste ?",
+    "a2": "On divise la consommation du geste par celle d'un prompt : prompts = valeur du geste ÷ coût d'un prompt. Une douche de 50 L ≈ 50 000 mL ÷ 0,3 mL ≈ 167 000 prompts.",
     "q3": "Pourquoi 12 000 prompts par an et par personne ?",
-    "a3": "C'est une hypothèse d'usage intensif (≈ 33 prompts/jour). Le budget d'une échelle = 12 000 × nombre de personnes. Tes gestes, eux, restent comptés pour une seule personne : seul l'objectif grandit avec l'échelle. On voit ainsi qu'une personne peut « valoir » l'IA annuelle de tout un groupe.",
+    "a3": "C'est une hypothèse d'usage intensif (≈ 33 prompts/jour). Les échelles plus grandes ne multiplient pas par la population mondiale : elles reposent sur la consommation réelle de l'IA (ChatGPT ≈ 2,5 milliards de prompts/jour).",
     "q4": "Eau et CO₂ « virtuels », c'est quoi ?",
-    "a4": "Pour les aliments et objets, on compte l'empreinte de production (eau et CO₂ « virtuels »), pas seulement l'eau du robinet. Un burger « coûte » surtout par l'élevage, pas par le verre d'eau du repas.",
+    "a4": "Pour les aliments et objets, on compte l'empreinte de production (eau/CO₂ « virtuels »), pas seulement l'eau du robinet.",
     "q5": "Pourquoi des fourchettes plutôt qu'un chiffre exact ?",
-    "a5": "Les sources varient (mix électrique, méthode de mesure, périmètre). On retient une médiane crédible et on affiche la fourchette. Objectif : des ordres de grandeur honnêtes, pas une fausse précision. Exemples : un vol intègre ou non le forçage radiatif (×~1,9 selon DEFRA/ADEME, CO₂ seul pour l'ICAO, et aller vs aller-retour) ; le bœuf va de ~60 à ~99 kg CO₂e/kg selon l'élevage."
+    "a5": "Parce que les sources varient. On retient une médiane crédible et on affiche l'écart : des ordres de grandeur honnêtes, pas une fausse précision.",
+    "q6": "Et l'entraînement des modèles ?",
+    "a6": "Coûteux mais unique, amorti sur des centaines de milliards de requêtes ; par prompt, il redevient faible. Le site chiffre l'usage (l'inférence), tout en reconnaissant que l'entraînement fait partie de l'empreinte globale.",
+    "outro": "Toutes les valeurs sont datées et reliées à leur source sur la page Sources.",
+    "moreTitle": "Pour aller plus loin",
+    "links": {
+      "sources": "Toutes les sources & données",
+      "glossaire": "Le glossaire de l'IA",
+      "comparatif": "Le classique face à l'IA",
+      "game": "Dépenser un budget de prompts"
+    }
   },
   "apropos": {
     "title": "À propos",
-    "p1": "PromptCost remet le coût d'un prompt IA en perspective. Ni catastrophisme, ni déni : juste des ordres de grandeur sourcés que tu manipules toi-même.",
-    "p2": "Un prompt est minuscule à l'unité. À l'échelle de la planète, les totaux deviennent vertigineux. Les deux sont vrais, c'est l'échelle qui compte.",
-    "p3": "Un projet Majoli.",
-    "by": "Un projet"
+    "lead": "Un site informatif pour remettre la consommation de l'IA à sa juste place, chiffres à l'appui.",
+    "purposeTitle": "Notre but",
+    "purpose1": "HowManyPrompts a un but purement informatif : remettre à sa juste place la consommation réelle d'un prompt d'IA générative. On la met en regard des gestes du quotidien, et même d'une simple recherche Google, pour donner des ordres de grandeur concrets plutôt que des impressions.",
+    "purpose2": "L'objectif n'est ni de diaboliser l'IA, ni de la survendre. Les grands modèles de langage (LLM) sont des outils qui font gagner du temps, déjà intégrés au quotidien de centaines de millions de personnes ; comme toute technologie, ils consomment des ressources. Comprendre cette consommation, sans catastrophisme ni déni, c'est pouvoir les utiliser de façon lucide.",
+    "dataTitle": "D'où viennent les chiffres",
+    "data1": "Toutes les données proviennent de sources publiques et vérifiées : agences publiques (ADEME, US EPA / DOE / EIA, EEA), instituts de recherche et publications scientifiques (Water Footprint Network, Our World in Data d'après Poore & Nemecek, arXiv), l'Agence internationale de l'énergie (IEA), et les chiffres officiels des acteurs de l'IA (Google, OpenAI, Epoch AI).",
+    "data2": "Quand les sources divergent, on retient une médiane crédible et on affiche la fourchette : des ordres de grandeur honnêtes, jamais une fausse précision. Chaque valeur est datée et reliée à sa source.",
+    "flow": {
+      "s1": "Sources publiques vérifiées",
+      "s2": "Médiane crédible + fourchette",
+      "s3": "Conversion en gestes du quotidien",
+      "s4": "Ordre de grandeur concret et honnête"
+    },
+    "perspectiveTitle": "Mettre un prompt en perspective",
+    "perspective1": "Un prompt texte moyen consomme de l'ordre de 0,3 Wh, 0,3 mL d'eau et 0,2 g de CO₂, soit à peu près l'énergie d'une recherche Google, et quelques gouttes d'eau. À l'unité, c'est minuscule.",
+    "perspective2": "Mais l'unité n'est pas toute l'histoire : multipliée par des milliards de requêtes par jour, la consommation devient significative à l'échelle mondiale. Les deux choses sont vraies en même temps, et c'est justement ce que ce site aide à visualiser.",
+    "chart": {
+      "title": "1 prompt vs gestes du quotidien (électricité)",
+      "prompt": "1 prompt IA",
+      "google": "≈ recherche Google",
+      "kettle": "Bouilloire (1 tasse)",
+      "vacuum": "Aspirateur 10 min",
+      "oven": "Four 1 h"
+    },
+    "debateTitle": "Le débat, honnêtement : deux lectures",
+    "debateIntro": "Sur l'impact de l'IA, deux camps coexistent, et chacun a des arguments solides. On les présente côte à côte.",
+    "campGreen": "« L'IA, ce n'est pas si lourd »",
+    "campOrange": "« Restons vigilants »",
+    "green1": "L'impact unitaire est faible : ~0,3 Wh, comparable à une recherche Google (Google, OpenAI, Epoch AI).",
+    "green2": "L'efficacité progresse : les nouveaux modèles consomment moins par requête (Google : 0,24 Wh).",
+    "green3": "Des bénéfices concrets : productivité, aide au diagnostic médical, recherche climatique, accessibilité.",
+    "green4": "Comparé au streaming, à la viande, à la voiture ou à l'avion, l'IA reste modeste par personne.",
+    "orange1": "L'effet d'échelle est réel : ~2,5 milliards de prompts/jour ; les data centers pèsent déjà ~1 à 1,5 % de l'électricité mondiale et croissent vite (IEA).",
+    "orange2": "Les modèles de raisonnement et surtout la vidéo consomment beaucoup plus (jusqu'à ×1 000).",
+    "orange3": "Eau et stress hydrique local autour des data centers (UC Riverside, Water Footprint Network).",
+    "orange4": "Emploi, biais, vie privée, concentration du pouvoir : jusqu'à ~40 % des heures travaillées pourraient être touchées (WEF, ILO, Stanford HAI).",
+    "jobsTitle": "IA et emploi : une transformation, pas une nouveauté",
+    "jobs1": "Comme à chaque grande révolution, l'industrie puis le web, des métiers se transforment ou disparaissent pendant que d'autres émergent. L'IA générative s'inscrit dans cette continuité. Les études (WEF « Future of Jobs », OCDE, PwC) pointent surtout une transformation des tâches plutôt qu'un remplacement pur : l'outil augmente l'expert plus qu'il ne le remplace, là où le jugement, la responsabilité et le contexte humain restent décisifs.",
+    "positionTitle": "Notre position",
+    "position1": "Ni technophiles béats, ni technophobes. Nous pensons que rester conscient de l'évolution de l'IA, de ses usages et de ses coûts est la meilleure façon d'en tirer parti, sans naïveté ni peur. Ce site donne les chiffres ; les conclusions, chacun se les fait.",
+    "transparencyTitle": "Transparence",
+    "transparency1": "Fabriquer ce site (recherche et conception assistées par IA) a coûté un ordre de grandeur modeste, l'équivalent de quelques heures de télé. On l'affiche aussi, par cohérence : on ne demande pas aux autres une transparence qu'on ne s'applique pas.",
+    "moreTitle": "Pour aller plus loin",
+    "links": {
+      "sources": "Toutes les sources & données",
+      "methodologie": "La méthodologie de calcul",
+      "glossaire": "Le glossaire : IA générative, LLM, inférence…",
+      "comparatif": "Recherche Google vs IA générative",
+      "combien": "Combien de prompts « vaut » un geste ?"
+    }
   },
   "legal": {
     "title": "Mentions légales",
@@ -323,9 +518,7 @@
     "sources": "Sources",
     "methodologie": "Méthodologie",
     "apropos": "À propos",
-    "legal": "Mentions légales",
-    "disclaimer": "Données indicatives : ordres de grandeur sourcés.",
-    "by": "Un projet Majoli"
+    "legal": "Mentions légales"
   },
   "theme": {
     "toggle": "Changer de thème",
@@ -343,9 +536,9 @@
     "source": "Source"
   },
   "compare": {
-    "metaTitle": "{label} = {cost} prompts IA | PromptCost",
+    "metaTitle": "{label} = {cost} prompts IA | HowManyPrompts",
     "metaDescription": "Combien de prompts IA vaut {label} ? Réponse chiffrée et sourcée : {cost} prompts ({metric}).",
-    "metaIndexTitle": "Combien de prompts IA vaut un geste du quotidien ? | PromptCost",
+    "metaIndexTitle": "Combien de prompts IA vaut un geste du quotidien ? | HowManyPrompts",
     "metaIndexDescription": "Douche, voiture, burger, streaming… combien de prompts IA « vaut » chaque geste du quotidien. Chiffres sourcés.",
     "h1": "{label} = {cost} prompts IA",
     "lead": "Côté {metric}, {label} « coûte » autant que {cost} prompts IA. Un prompt texte en pèse à peine {per} {unit}.",
@@ -357,34 +550,145 @@
     "metric": { "elec": "électricité", "water": "eau", "co2": "CO₂" }
   },
   "glossary": {
-    "metaTitle": "Glossaire : Wh, eau virtuelle, forçage radiatif… | PromptCost",
+    "metaTitle": "Glossaire : Wh, eau virtuelle, forçage radiatif… | HowManyPrompts",
     "metaDescription": "Les termes clés pour comprendre le coût d'un prompt IA et des gestes du quotidien.",
     "title": "Glossaire",
-    "intro": "Les termes clés pour comprendre les chiffres du site.",
+    "intro": "Les termes clés pour comprendre les chiffres du site, et l'IA en général.",
+    "outro": "Un terme manque ? Toutes les valeurs citées sont sourcées sur la page Sources.",
+    "cat": {
+      "ai": "Comprendre l'IA",
+      "energy": "Énergie",
+      "water": "Eau",
+      "climate": "Climat & CO₂",
+      "reading": "Lire les chiffres"
+    },
+    "moreTitle": "Pour aller plus loin",
+    "links": {
+      "game": "Dépenser un budget de prompts",
+      "combien": "Combien de prompts « vaut » un geste ?",
+      "sources": "Toutes les sources & données",
+      "apropos": "À propos & positionnement"
+    },
     "terms": {
+      "generativeAI": {
+        "term": "IA générative",
+        "def": "Famille d'IA qui produit du contenu (texte, image, audio, vidéo) à partir d'une requête. Les grands modèles de langage (ChatGPT, Claude, Gemini) en sont la forme la plus répandue."
+      },
+      "llm": {
+        "term": "LLM (grand modèle de langage)",
+        "def": "Large Language Model : un réseau de neurones entraîné sur d'immenses corpus de texte pour prédire le token suivant. C'est le moteur des chatbots ; son empreinte se joue surtout à l'inférence, à chaque prompt."
+      },
       "prompt": {
         "term": "Prompt",
         "def": "Une requête envoyée à un modèle d'IA. Référence du site : un prompt texte moyen ≈ 0,3 Wh, 0,3 mL d'eau et 0,2 g de CO₂."
+      },
+      "token": {
+        "term": "Token",
+        "def": "La plus petite unité de texte manipulée par un modèle (≈ ¾ d'un mot en anglais, souvent moins en français). Les modèles lisent, génèrent et « facturent » par token : plus il y a de tokens, plus l'inférence consomme."
+      },
+      "inference": {
+        "term": "Inférence",
+        "def": "La phase d'utilisation d'un modèle déjà entraîné : chaque prompt déclenche une inférence. C'est elle qu'on chiffre ici, pas l'entraînement."
+      },
+      "training": {
+        "term": "Entraînement (training)",
+        "def": "La phase d'apprentissage initiale du modèle, très coûteuse en énergie, mais unique, puis amortie sur des milliards de requêtes. Le site chiffre l'inférence, pas l'entraînement."
+      },
+      "hallucination": {
+        "term": "Hallucination",
+        "def": "Quand un modèle génère une information fausse mais plausible. C'est la raison principale pour laquelle une vérification humaine reste indispensable."
+      },
+      "contextWindow": {
+        "term": "Fenêtre de contexte",
+        "def": "La quantité de texte qu'un modèle peut prendre en compte d'un coup (la « mémoire » d'une conversation). Plus elle est remplie, plus l'inférence coûte cher."
+      },
+      "parameters": {
+        "term": "Paramètres",
+        "def": "Les « réglages » internes appris pendant l'entraînement, comptés en milliards. En règle générale, plus un modèle a de paramètres, plus il est capable… et gourmand."
+      },
+      "multimodal": {
+        "term": "Multimodal",
+        "def": "Un modèle capable de traiter plusieurs types de données (texte, image, audio, vidéo) dans une même requête."
+      },
+      "agent": {
+        "term": "Agent IA",
+        "def": "Une IA qui enchaîne plusieurs étapes en autonomie pour accomplir une tâche (donc plusieurs inférences). Utile, mais multiplie la consommation par rapport à un prompt unique."
+      },
+      "reasoning": {
+        "term": "Modèle de raisonnement",
+        "def": "Un modèle qui « réfléchit » (génère des étapes intermédiaires) avant de répondre. Bien plus coûteux qu'un prompt texte : ~15 à 40 Wh par requête, soit 50 à 100× un prompt standard."
+      },
+      "imageVideo": {
+        "term": "Génération d'image / vidéo",
+        "def": "Produire un média coûte beaucoup plus que du texte : une image ≈ 6–12 Wh (20–40× un prompt texte), une vidéo ≈ 1 000× (~940 Wh pour un clip de ~5 s)."
       },
       "wh": {
         "term": "Wattheure (Wh)",
         "def": "Unité d'énergie : faire fonctionner un appareil de 1 W pendant 1 h. Une ampoule LED consomme ~10 Wh par heure."
       },
+      "kwh": {
+        "term": "Kilowattheure (kWh)",
+        "def": "1 000 Wh, l'unité de votre facture d'électricité. Un four électrique consomme ~2 kWh en une heure."
+      },
+      "datacenter": {
+        "term": "Data center (centre de données)",
+        "def": "Le bâtiment qui héberge les serveurs où tourne l'IA. Il consomme de l'électricité pour calculer et de l'eau pour se refroidir."
+      },
+      "gpu": {
+        "term": "GPU",
+        "def": "Le processeur graphique : le composant qui fait réellement tourner les modèles d'IA. Puissant et énergivore, c'est lui qui domine la consommation à l'inférence."
+      },
+      "pue": {
+        "term": "PUE (Power Usage Effectiveness)",
+        "def": "Ratio entre l'énergie totale d'un data center et celle réellement utile aux serveurs. ~1,1 (très efficace) à 1,5+ : le complément part surtout dans le refroidissement."
+      },
+      "twh": {
+        "term": "TWh (térawattheure)",
+        "def": "1 milliard de kWh. C'est l'échelle des consommations nationales ou mondiales, celle où l'IA « pèse » à l'échelle globale."
+      },
       "virtualWater": {
         "term": "Eau virtuelle",
-        "def": "L'eau utilisée pour produire un bien (culture, élevage, fabrication), pas seulement l'eau du robinet."
+        "def": "L'eau utilisée pour produire un bien (culture, élevage, fabrication), pas seulement l'eau du robinet. Un burger « contient » ainsi des milliers de litres d'eau virtuelle."
+      },
+      "directWater": {
+        "term": "Eau directe (refroidissement)",
+        "def": "L'eau évaporée sur place pour refroidir les serveurs d'un data center. C'est le chiffre « officiel » communiqué par Google (~0,26 mL/prompt) ou OpenAI (~0,32 mL)."
+      },
+      "wue": {
+        "term": "WUE (Water Usage Effectiveness)",
+        "def": "Litres d'eau consommés par kWh utilisé par un data center. Sert à estimer l'eau « directe » d'un prompt."
+      },
+      "waterStress": {
+        "term": "Stress hydrique",
+        "def": "Quand la demande en eau dépasse la ressource disponible localement. Enjeu clé autour de certains data centers implantés en régions sèches."
       },
       "co2e": {
-        "term": "CO₂e",
-        "def": "Équivalent CO₂ : tous les gaz à effet de serre ramenés à leur impact en CO₂."
+        "term": "CO₂e (équivalent CO₂)",
+        "def": "Tous les gaz à effet de serre ramenés à leur impact exprimé en CO₂, pour pouvoir les additionner."
       },
       "radiative": {
         "term": "Forçage radiatif",
-        "def": "Réchauffement supplémentaire des vols en altitude. DEFRA/ADEME le comptent (×~1,9), l'ICAO compte le CO₂ seul."
+        "def": "Le réchauffement supplémentaire causé par les vols en altitude (traînées, autres gaz). DEFRA et l'ADEME le comptent (×~1,9) ; l'ICAO compte le CO₂ seul, d'où des chiffres d'avion qui varient du simple au double."
       },
-      "reasoning": {
-        "term": "Modèle de raisonnement",
-        "def": "Un modèle qui « réfléchit » avant de répondre. Bien plus coûteux qu'un prompt texte : ~15 à 40 Wh."
+      "gridIntensity": {
+        "term": "Intensité carbone du réseau",
+        "def": "Les grammes de CO₂ émis par kWh d'électricité. Très variable selon le pays (faible avec nucléaire/renouvelables, élevée au charbon) ; ~480 g/kWh en moyenne mondiale."
+      },
+      "lca": {
+        "term": "Analyse de cycle de vie (ACV / LCA)",
+        "def": "Méthode qui compte l'impact « du berceau à la tombe » : fabrication, usage et fin de vie. Elle explique pourquoi l'empreinte d'un objet dépasse sa seule consommation à l'usage."
+      },
+      "scopes": {
+        "term": "Scopes 1 / 2 / 3",
+        "def": "Les périmètres d'émissions : directes (1), liées à l'électricité achetée (2), et tout le reste de la chaîne de valeur (3)."
+      },
+      "orderMagnitude": {
+        "term": "Ordre de grandeur",
+        "def": "La « taille » approximative d'un nombre (×10, ×100, ×1 000). Sur des données incertaines, c'est plus honnête et plus utile qu'une fausse précision."
+      },
+      "medianRange": {
+        "term": "Médiane & fourchette",
+        "def": "Quand les sources divergent, on retient une valeur centrale crédible (médiane) et on affiche l'écart (fourchette), jamais un chiffre unique faussement précis."
       }
     }
   }

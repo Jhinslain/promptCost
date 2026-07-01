@@ -3,15 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Shuffle, RotateCcw } from 'lucide-react';
-import {
-  ACTIONS,
-  SCALES,
-  METRIC_BY_ID,
-  scalePopulation,
-  regionKey,
-  scaleLabelKey,
-} from '@/lib/data';
-import { budget, totalPrompts, yearsOfAI } from '@/lib/convert';
+import { ACTIONS, METRIC_BY_ID, type MetricId } from '@/lib/data';
+import { SCALES, SCALE_BY_ID } from '@/lib/scales';
+import { promptsForAction, totalPrompts, yearsOfUse } from '@/lib/convert';
+import { formatCompact } from '@/lib/format';
 import { useGame } from '@/lib/store';
 import { useTheme } from '../ui/ThemeProvider';
 import { TotalBar } from './TotalBar';
@@ -26,6 +21,13 @@ import { ReverseMode } from './ReverseMode';
 
 const FACT_KEYS = ['facts.f1', 'facts.f2', 'facts.f3', 'facts.f4', 'facts.f5'];
 
+/** Geste d'exemple montré dans l'intro, cohérent avec l'onglet actif. */
+const EXAMPLE_BY_METRIC: Record<MetricId, string> = {
+  elec: 'oven',
+  water: 'shower',
+  co2: 'steak',
+};
+
 export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const t = useTranslations();
   const locale = useLocale();
@@ -34,20 +36,18 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const metric = useGame((s) => s.metric);
   const scaleId = useGame((s) => s.scaleId);
   const cart = useGame((s) => s.cart);
-  const add = useGame((s) => s.add);
+  const setCart = useGame((s) => s.setCart);
   const reset = useGame((s) => s.reset);
 
-  // Pays de référence : cookie posé par le middleware (géo), sinon la langue.
-  const [region, setRegion] = useState('auto');
-  useEffect(() => {
-    const m = document.cookie.match(/(?:^|;\s*)pc-region=(fr|gb|us)/);
-    if (m) setRegion(m[1]);
-  }, []);
+  const scale = SCALE_BY_ID[scaleId] ?? SCALES[0];
+  const goal = scale.budget; // budget de prompts = valeur de l'échelle, sans multiplicateur
+  const scaleLabel = t(`scale.${scale.id}`);
 
-  const scale = SCALES.find((s) => s.id === scaleId) ?? SCALES[0];
-  const rkey = regionKey(locale, region);
-  const population = scalePopulation(scale, rkey);
-  const scaleLabel = t(`scale.${scaleLabelKey(scale.id, rkey)}`);
+  // Exemple d'intro cohérent avec l'onglet actif (élec → four, eau → douche…).
+  const example =
+    ACTIONS[metric].find((a) => a.id === EXAMPLE_BY_METRIC[metric]) ?? ACTIONS[metric][0];
+  const exampleLabel = t(`actions.${example.id}`);
+  const exampleCost = formatCompact(promptsForAction(example.value, metric, 1), locale);
 
   // Accent CSS variable suit la métrique + le thème (signature visuelle).
   useEffect(() => {
@@ -56,12 +56,8 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
     document.documentElement.style.setProperty('--accent', value);
   }, [metric, theme]);
 
-  // L'objectif (budget IA) grandit avec l'échelle…
-  const goal = budget(population);
-
-  // …mais les gestes restent comptés pour UNE personne (leur propre échelle).
-  // Ainsi, changer d'échelle fait bouger la jauge : on voit que les gestes
-  // perso d'une personne pèsent autant que l'IA annuelle de tout un groupe.
+  // Les gestes sont comptés pour UNE personne ; changer d'échelle change juste
+  // le budget visé par la barre (usage réel de l'IA), pas le coût des gestes.
   const spent = useMemo(() => {
     const items = Object.entries(cart).map(([id, qty]) => {
       const action = ACTIONS[metric].find((a) => a.id === id);
@@ -75,7 +71,7 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
     [cart],
   );
 
-  const years = yearsOfAI(spent, population);
+  const years = yearsOfUse(spent);
 
   // Détection du franchissement de l'objectif.
   const [showResult, setShowResult] = useState(false);
@@ -108,11 +104,33 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
     prevRatio.current = ratio;
   }, [spent, goal, count, metric, scaleId]);
 
+  // « Surprends-moi » : remplit la jauge à ~100 % du budget de l'échelle avec
+  // des gestes aléatoires (remplissage glouton : chaque tour consomme une part
+  // du reste, jamais plus que le reste → on atterrit juste sur 100 %).
   function surprise() {
-    const list = ACTIONS[metric];
-    // Pseudo-aléatoire stable basé sur l'état courant (pas de Math.random au 1er rendu SSR).
-    const idx = (count * 7 + spent) % list.length;
-    add(list[Math.floor(idx) % list.length].id);
+    const withCost = ACTIONS[metric].map((a) => ({
+      id: a.id,
+      cost: promptsForAction(a.value, metric, 1),
+    }));
+    const cheapest = withCost.reduce((m, o) => (o.cost < m.cost ? o : m));
+
+    const next: Record<string, number> = {};
+    let remaining = goal;
+    let guard = 0;
+    while (remaining >= cheapest.cost && guard < 80) {
+      guard += 1;
+      const options = withCost.filter((o) => o.cost <= remaining);
+      const pick = options[Math.floor(Math.random() * options.length)];
+      const chunk = remaining * (0.3 + Math.random() * 0.4); // 30 à 70 % du reste
+      const fits = Math.floor(remaining / pick.cost);
+      const qty = Math.min(Math.max(1, Math.round(chunk / pick.cost)), fits);
+      next[pick.id] = (next[pick.id] ?? 0) + qty;
+      remaining -= qty * pick.cost;
+    }
+    // Dernière touche pour atteindre ~100 % (dépassement < coût du plus petit geste).
+    if (remaining > 0) next[cheapest.id] = (next[cheapest.id] ?? 0) + 1;
+
+    setCart(next);
   }
 
   return (
@@ -127,7 +145,9 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
               {mode === 'reverse' ? t('reverse.title') : t('intro.lead')}
             </h1>
             <p className="mx-auto mt-3 max-w-md text-sm text-muted sm:text-base">
-              {mode === 'reverse' ? t('reverse.sub') : t('intro.sub')}
+              {mode === 'reverse'
+                ? t('reverse.sub')
+                : t('intro.sub', { label: exampleLabel, cost: exampleCost })}
             </p>
           </section>
 
@@ -143,10 +163,16 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
              facture (sticky) la hauteur de défilement nécessaire pour rester
              collée en haut tant qu'on parcourt le jeu. */
           <div className="mt-6">
-            <TotalBar metric={metric} spent={spent} goal={goal} scaleLabel={scaleLabel} />
+            <TotalBar
+              metric={metric}
+              scaleId={scale.id}
+              spent={spent}
+              goal={goal}
+              scaleLabel={scaleLabel}
+            />
 
             <div className="mx-auto mt-5 flex max-w-app flex-col gap-5 px-4 pb-4">
-              <ScaleSelector rkey={rkey} />
+              <ScaleSelector />
               <MetricTabs />
               <ActionGrid metric={metric} />
 
@@ -179,6 +205,8 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
       <ResultCard
         open={showResult}
         metric={metric}
+        scaleId={scale.id}
+        spent={spent}
         years={years}
         count={count}
         scaleLabel={scaleLabel}
