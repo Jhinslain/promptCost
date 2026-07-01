@@ -8,27 +8,19 @@ import {
 } from './data';
 
 /**
- * Combien de prompts IA "valent" une action donnée, à une échelle donnée.
- * promptsForAction = value / PER[metric] × population
+ * Combien de prompts IA « valent » une action donnée (pour une personne).
+ * promptsForAction = valeur du geste / coût d'un prompt.
  */
-export function promptsForAction(
-  value: number,
-  metric: MetricId,
-  population: number,
-): number {
-  return (value / PER[metric]) * population;
+export function promptsForAction(value: number, metric: MetricId): number {
+  return value / PER[metric];
 }
 
 /** Total de prompts dépensés pour un panier { actionValue: quantité }. */
 export function totalPrompts(
   items: { value: number; qty: number }[],
   metric: MetricId,
-  population: number,
 ): number {
-  return items.reduce(
-    (sum, item) => sum + promptsForAction(item.value, metric, population) * item.qty,
-    0,
-  );
+  return items.reduce((sum, item) => sum + promptsForAction(item.value, metric) * item.qty, 0);
 }
 
 /** Progression vers l'objectif (0..1+, peut dépasser 1). */

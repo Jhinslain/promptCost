@@ -34,7 +34,7 @@ export function Receipt({ metric, goal, scaleLabel }: ReceiptProps) {
       .map((a) => ({
         ...a,
         qty: cart[a.id],
-        cost: promptsForAction(a.value, metric, 1) * cart[a.id],
+        cost: promptsForAction(a.value, metric) * cart[a.id],
       }))
       .sort((x, y) => y.cost - x.cost);
     return { items: list, total: list.reduce((s, l) => s + l.cost, 0) };

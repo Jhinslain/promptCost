@@ -5,9 +5,18 @@
   "nav": {
     "spend": "Dépenser",
     "convert": "Convertir",
-    "games": "Jeux",
-    "more": "En savoir plus",
-    "menu": "Menu"
+    "menu": "Menu",
+    "skip": "Aller au contenu"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Cette page n'existe pas ou a été déplacée.",
+    "cta": "Retour au jeu"
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "text": "Quelque chose a mal tourné de notre côté. Réessaie.",
+    "retry": "Réessayer"
   },
   "meta": {
     "home": {
@@ -36,7 +45,7 @@
     },
     "legal": {
       "title": "Mentions légales | HowManyPrompts",
-      "description": "Mentions légales et politique analytics sans cookie de HowManyPrompts."
+      "description": "Mentions légales de HowManyPrompts : aucun cookie de suivi, aucune donnée personnelle collectée."
     }
   },
   "header": {
@@ -50,6 +59,7 @@
   "total": {
     "emptyHint": "Ajoute un geste : tu verras combien de prompts IA consommeraient autant.",
     "promptsSuffix": "prompts IA",
+    "ofWord": "de",
     "equiv": {
       "elec": "consommeraient autant d'électricité que tes gestes",
       "water": "consommeraient autant d'eau que tes gestes",
@@ -240,12 +250,15 @@
   "result": {
     "title": "Bilan",
     "headline": "Tu as dépensé {phrase} !",
+    "inActions": "En {count} gestes du quotidien.",
     "share": "Partager mon score",
     "shareText": "Mes gestes du quotidien coûtent autant qu'{phrase} 👀 HowManyPrompts",
     "downloadImage": "Télécharger l'image",
     "copied": "Lien copié !",
     "continue": "Continuer à jouer",
-    "didYouKnow": "Le saviez-vous ?"
+    "didYouKnow": "Le saviez-vous ?",
+    "tryScale": "Teste une autre échelle",
+    "tryMetric": "Ou une autre ressource"
   },
   "facts": {
     "f1": "Un prompt texte ≈ 0,3 Wh : autant qu'une ampoule LED allumée ~2 minutes.",
@@ -398,7 +411,7 @@
       "allB": "~1 100 000 000 000",
       "allBase": "ChatGPT ~900 Md/an ÷ ~80 % du marché"
     },
-    "scalesNote": "On ne suppose pas que tout le monde utilise l'IA : les grandes échelles reposent sur l'usage observé (2,5 milliards de prompts par jour), pas sur la population mondiale. On voit ainsi combien peu de gestes du quotidien suffisent à « valoir » l'IA d'une journée entière de ChatGPT.",
+    "scalesNote": "On ne suppose pas que tout le monde utilise l'IA : ces budgets reposent sur l'usage réellement observé (ChatGPT ≈ 2,5 milliards de prompts par jour), pas sur la population mondiale. Dans le jeu, tu vises l'un des budgets annuels (Toi, 100 personnes, toute l'IA générative) ; « ChatGPT en 1 jour » est donné ici comme repère.",
     "rangeTitle": "Pourquoi des fourchettes plutôt qu'un chiffre exact ?",
     "rangeLead": "Les sources varient (mix électrique, méthode de mesure, périmètre). On retient une médiane crédible et on affiche la fourchette. Deux exemples parlants :",
     "rangeFlight": "Vol : selon qu'on intègre ou non le forçage radiatif (×~1,9 chez DEFRA/ADEME ; CO₂ seul chez l'ICAO) et qu'on compte l'aller ou l'aller-retour, le chiffre varie du simple au double.",

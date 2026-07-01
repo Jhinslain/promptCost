@@ -83,7 +83,7 @@ export function ModeToggle() {
               <it.Icon
                 size={20}
                 className={`relative z-10 transition-colors ${
-                  active ? 'text-white' : 'text-muted group-hover:text-text'
+                  active ? 'text-on-accent' : 'text-muted group-hover:text-text'
                 }`}
               />
               <span className="pointer-events-none absolute right-full mr-2 whitespace-nowrap rounded-lg bg-text px-2 py-1 text-xs font-bold text-bg opacity-0 shadow-md transition-opacity group-hover:opacity-100">

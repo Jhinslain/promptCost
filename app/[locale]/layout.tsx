@@ -5,6 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
+import { jsonLdScript } from '@/lib/seo';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -32,7 +33,7 @@ export async function generateMetadata({
       languages: {
         fr: '/fr',
         en: '/en',
-        'x-default': '/fr',
+        'x-default': '/en',
       },
     },
     openGraph: {
@@ -42,7 +43,7 @@ export async function generateMetadata({
       siteName: 'HowManyPrompts',
       locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       type: 'website',
-      images: [{ url: `/api/og?lang=${locale}`, width: 1200, height: 630 }],
+      images: [{ url: `/api/og?lang=${locale}`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -75,10 +76,32 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
+  const entityLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'HowManyPrompts',
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.svg`,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'HowManyPrompts',
+      url: `${SITE_URL}/${locale}`,
+      inLanguage: locale,
+      publisher: { '@type': 'Organization', name: 'HowManyPrompts' },
+    },
+  ];
+
   return (
     <html lang={locale} className={inter.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(entityLd) }}
+        />
       </head>
       <body className="min-h-dvh font-sans antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { usePathname, useRouter, routing } from '@/i18n/routing';
 import { useEffect, useRef, useState, useTransition } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -24,6 +24,7 @@ const metaFor = (code: string) =>
  * simple toggle. Ferme au clic extérieur / Échap ; accessible au clavier.
  */
 export function LangSwitcher() {
+  const t = useTranslations('lang');
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -63,7 +64,7 @@ export function LangSwitcher() {
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={`Language: ${cur.label}`}
+        aria-label={`${t('toggle')} : ${cur.label}`}
         className="grid h-9 w-9 place-items-center rounded-full transition-opacity hover:opacity-80 disabled:opacity-50"
       >
         <Flag region={cur.region} className="h-4 w-auto rounded-[2px]" />

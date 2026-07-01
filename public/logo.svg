@@ -1,0 +1,8 @@
+<svg width="560" height="140" viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="how many prompts">
+  <rect x="20" y="22" width="96" height="96" rx="24" fill="#F5A623"/>
+  <rect x="42" y="56" width="52" height="13" rx="6.5" fill="#FFFFFF"/>
+  <rect x="42" y="76" width="52" height="13" rx="6.5" fill="#FFFFFF"/>
+  <text x="140" y="84" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="40" font-weight="600" letter-spacing="-0.5">
+    <tspan fill="#111827">How many </tspan><tspan fill="#F5A623">prompts</tspan>
+  </text>
+</svg>

@@ -123,7 +123,7 @@ export function ReverseMode() {
                   <button
                     onClick={() => bumpUsage(ut.id, 1)}
                     aria-label={`+ ${label}`}
-                    className="grid h-7 w-7 place-items-center rounded-lg bg-accent text-white transition-transform active:scale-90"
+                    className="grid h-7 w-7 place-items-center rounded-lg bg-accent text-on-accent transition-transform active:scale-90"
                   >
                     <Plus size={14} strokeWidth={2.5} />
                   </button>
@@ -199,7 +199,7 @@ export function ReverseMode() {
 
               <button
                 onClick={another}
-                className="mt-6 flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-extrabold text-white transition-transform active:scale-95"
+                className="mt-6 flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-extrabold text-on-accent transition-transform active:scale-95"
               >
                 <Shuffle size={16} />
                 {t('reverse.another')}

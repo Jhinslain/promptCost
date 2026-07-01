@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Game } from '@/components/game/Game';
+import { jsonLdScript, SITE_URL } from '@/lib/seo';
 
 export default async function HomePage({
   params,
@@ -16,8 +17,11 @@ export default async function HomePage({
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'HowManyPrompts',
+    url: `${SITE_URL}/${locale}`,
+    '@id': `${SITE_URL}/#webapp`,
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Any',
+    inLanguage: locale,
     description: t('description'),
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
   };
@@ -26,7 +30,7 @@ export default async function HomePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <Header />
       <main>

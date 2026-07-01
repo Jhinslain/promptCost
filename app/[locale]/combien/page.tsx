@@ -38,7 +38,7 @@ export default async function CombienIndex({
     <PageShell title={tc('indexTitle')} intro={tc('indexIntro')}>
       {METRICS.map((m) => {
         const rows = [...ACTIONS[m]].sort(
-          (x, y) => promptsForAction(x.value, m, 1) - promptsForAction(y.value, m, 1),
+          (x, y) => promptsForAction(x.value, m) - promptsForAction(y.value, m),
         );
         return (
           <section key={m} className="mt-8">
@@ -60,7 +60,7 @@ export default async function CombienIndex({
                       {t(`actions.${a.id}`)}
                     </span>
                     <span className="num shrink-0 text-sm font-extrabold text-accent">
-                      {formatCompact(promptsForAction(a.value, m, 1), locale)}
+                      {formatCompact(promptsForAction(a.value, m), locale)}
                     </span>
                   </Link>
                 </li>

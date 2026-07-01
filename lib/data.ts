@@ -40,6 +40,9 @@ export interface MetricConfig {
   accent: { light: string; dark: string };
 }
 
+// 🎨 SOURCE UNIQUE DES COULEURS D'ACCENT (par métrique, clair/sombre).
+// Pour changer une couleur de marque : ici, en une ligne. Le texte posé SUR
+// ces aplats utilise --on-accent (foncé), donc les accents restent vifs.
 export const METRICS: MetricConfig[] = [
   { id: 'elec', emoji: '⚡', unit: 'Wh', accent: { light: '245 166 35', dark: '255 209 102' } },
   { id: 'water', emoji: '💧', unit: 'mL', accent: { light: '47 155 255', dark: '92 200 255' } },

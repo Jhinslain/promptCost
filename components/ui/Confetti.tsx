@@ -1,12 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useMemo } from 'react';
 
 const COLORS = ['#f5a623', '#2f9bff', '#16a34a', '#ff6b6b', '#a855f7', '#ffd166'];
 
-/** Pluie de confettis légère (CSS/Framer, sans dépendance). */
+/** Pluie de confettis légère (CSS/Framer, sans dépendance).
+ *  Respecte prefers-reduced-motion : rien ne tombe si l'utilisateur l'a demandé. */
 export function Confetti({ count = 80 }: { count?: number }) {
+  const reduced = useReducedMotion();
   const pieces = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => ({
@@ -20,6 +22,8 @@ export function Confetti({ count = 80 }: { count?: number }) {
       })),
     [count],
   );
+
+  if (reduced) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[60] overflow-hidden" aria-hidden>

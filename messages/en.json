@@ -5,9 +5,18 @@
   "nav": {
     "spend": "Spend",
     "convert": "Convert",
-    "games": "Games",
-    "more": "Learn more",
-    "menu": "Menu"
+    "menu": "Menu",
+    "skip": "Skip to content"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page doesn't exist or has moved.",
+    "cta": "Back to the game"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "text": "Something broke on our side. Please try again.",
+    "retry": "Try again"
   },
   "meta": {
     "home": {
@@ -36,7 +45,7 @@
     },
     "legal": {
       "title": "Legal notice | HowManyPrompts",
-      "description": "Legal notice and cookie-free analytics policy for HowManyPrompts."
+      "description": "Legal notice for HowManyPrompts: no tracking cookies, no personal data collected."
     }
   },
   "header": {
@@ -50,6 +59,7 @@
   "total": {
     "emptyHint": "Add an action: see how many AI prompts would use as much.",
     "promptsSuffix": "AI prompts",
+    "ofWord": "of",
     "equiv": {
       "elec": "would use as much electricity as your actions",
       "water": "would use as much water as your actions",
@@ -240,12 +250,15 @@
   "result": {
     "title": "Recap",
     "headline": "You spent {phrase}!",
+    "inActions": "In {count} everyday actions.",
     "share": "Share my score",
     "shareText": "My everyday actions cost as much as {phrase} 👀 HowManyPrompts",
     "downloadImage": "Download image",
     "copied": "Link copied!",
     "continue": "Keep playing",
-    "didYouKnow": "Did you know?"
+    "didYouKnow": "Did you know?",
+    "tryScale": "Try another scale",
+    "tryMetric": "Or another resource"
   },
   "facts": {
     "f1": "A text prompt ≈ 0.3 Wh: about an LED bulb on for ~2 minutes.",
@@ -398,7 +411,7 @@
       "allB": "~1,100,000,000,000",
       "allBase": "ChatGPT ~900 B/yr ÷ ~80% of the market"
     },
-    "scalesNote": "We don't assume everyone uses AI: the large scales rest on observed usage (2.5 billion prompts a day), not on world population. That shows how few everyday actions it takes to « match » a whole day of ChatGPT's AI.",
+    "scalesNote": "We don't assume everyone uses AI: these budgets rest on actually observed usage (ChatGPT ≈ 2.5 billion prompts a day), not on world population. In the game you aim at one of the annual budgets (You, 100 people, all generative AI); « ChatGPT in 1 day » is shown here as a reference point.",
     "rangeTitle": "Why ranges instead of one exact figure?",
     "rangeLead": "Sources vary (power mix, measurement method, scope). We keep a credible median and show the range. Two telling examples:",
     "rangeFlight": "Flight: depending on whether radiative forcing is included (×~1.9 for DEFRA/ADEME; CO₂ only for ICAO) and one-way vs round-trip, the figure varies twofold.",

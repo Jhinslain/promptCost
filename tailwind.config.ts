@@ -1,6 +1,9 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  // Le thème est piloté par la classe `.dark` (toggle + script), pas par l'OS :
+  // indispensable pour que les variantes `dark:` suivent le bouton de thème.
+  darkMode: 'class',
   content: [
     './app/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -15,6 +18,7 @@ const config: Config = {
         line: 'rgb(var(--line) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
         'accent-soft': 'rgb(var(--accent) / 0.12)',
+        'on-accent': 'rgb(var(--on-accent) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

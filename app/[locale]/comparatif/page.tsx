@@ -70,7 +70,7 @@ export default async function ComparatifPage({
         </div>
         <Link
           href="/"
-          className="inline-flex shrink-0 items-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-bold text-white transition-transform active:scale-95"
+          className="inline-flex shrink-0 items-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-bold text-on-accent transition-transform active:scale-95"
         >
           <Gamepad2 size={16} />
           {t('bonusCta')}

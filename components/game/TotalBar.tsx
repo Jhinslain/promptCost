@@ -79,7 +79,7 @@ export function TotalBar({ metric, scaleId, spent, goal, scaleLabel }: TotalBarP
                 {over ? `×${formatYears(ratio, locale)}` : `${formatPercent(ratio, locale)} %`}
               </div>
               <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
-                {t(`scale.unit.${scaleId}`)}
+                {(over ? '' : `${t('total.ofWord')} `) + t(`scale.unit.${scaleId}`)}
               </div>
             </div>
           </div>

@@ -25,7 +25,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale });
   const tc = await getTranslations({ locale, namespace: 'compare' });
   const label = t(`actions.${action}`);
-  const cost = formatCompact(promptsForAction(entry.action.value, entry.metric, 1), locale);
+  const cost = formatCompact(promptsForAction(entry.action.value, entry.metric), locale);
   return buildMetadata({
     locale,
     path: `/combien/${action}`,
@@ -48,7 +48,7 @@ export default async function ComparePage({
   const t = await getTranslations({ locale });
   const tc = await getTranslations({ locale, namespace: 'compare' });
   const label = t(`actions.${action}`);
-  const costStr = formatCompact(promptsForAction(a.value, metric, 1), locale);
+  const costStr = formatCompact(promptsForAction(a.value, metric), locale);
   const source = SOURCE_BY_ID[a.sourceId];
   const per = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(PER[metric]);
   const unit = METRIC_BY_ID[metric].unit;
@@ -90,7 +90,7 @@ export default async function ComparePage({
 
       <Link
         href="/"
-        className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-5 py-3 text-base font-bold text-white transition-transform active:scale-95"
+        className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-5 py-3 text-base font-bold text-on-accent transition-transform active:scale-95"
       >
         {tc('cta')}
         <ArrowRight size={18} />

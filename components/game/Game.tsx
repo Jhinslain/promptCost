@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Shuffle, RotateCcw } from 'lucide-react';
-import { ACTIONS, METRIC_BY_ID, type MetricId } from '@/lib/data';
+import { ACTIONS, ACTION_BY_ID, METRIC_BY_ID, type MetricId } from '@/lib/data';
 import { SCALES, SCALE_BY_ID } from '@/lib/scales';
-import { promptsForAction, totalPrompts, yearsOfUse } from '@/lib/convert';
+import { promptsForAction, yearsOfUse } from '@/lib/convert';
 import { formatCompact } from '@/lib/format';
 import { useGame } from '@/lib/store';
 import { useTheme } from '../ui/ThemeProvider';
@@ -47,7 +47,7 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const example =
     ACTIONS[metric].find((a) => a.id === EXAMPLE_BY_METRIC[metric]) ?? ACTIONS[metric][0];
   const exampleLabel = t(`actions.${example.id}`);
-  const exampleCost = formatCompact(promptsForAction(example.value, metric, 1), locale);
+  const exampleCost = formatCompact(promptsForAction(example.value, metric), locale);
 
   // Accent CSS variable suit la métrique + le thème (signature visuelle).
   useEffect(() => {
@@ -59,11 +59,16 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   // Les gestes sont comptés pour UNE personne ; changer d'échelle change juste
   // le budget visé par la barre (usage réel de l'IA), pas le coût des gestes.
   const spent = useMemo(() => {
-    const items = Object.entries(cart).map(([id, qty]) => {
-      const action = ACTIONS[metric].find((a) => a.id === id);
-      return { value: action?.value ?? 0, qty };
-    });
-    return totalPrompts(items, metric, 1);
+    let total = 0;
+    for (const [id, qty] of Object.entries(cart)) {
+      const entry = ACTION_BY_ID[id];
+      // On ne compte que les gestes de la métrique active (ids uniques toutes
+      // métriques confondues ; lookup O(1) via ACTION_BY_ID).
+      if (entry && entry.metric === metric) {
+        total += promptsForAction(entry.action.value, metric) * qty;
+      }
+    }
+    return total;
   }, [cart, metric]);
 
   const count = useMemo(
@@ -110,7 +115,7 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   function surprise() {
     const withCost = ACTIONS[metric].map((a) => ({
       id: a.id,
-      cost: promptsForAction(a.value, metric, 1),
+      cost: promptsForAction(a.value, metric),
     }));
     const cheapest = withCost.reduce((m, o) => (o.cost < m.cost ? o : m));
 
@@ -179,7 +184,7 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
               <div className="flex gap-2">
                 <button
                   onClick={surprise}
-                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-white transition-transform active:scale-95"
+                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-on-accent transition-transform active:scale-95"
                 >
                   <Shuffle size={18} />
                   {t('controls.surprise')}

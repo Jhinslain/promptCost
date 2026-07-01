@@ -3,7 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, jsonLdScript, SITE_URL } from '@/lib/seo';
 
 /** Termes regroupés par thème ; l'ordre suit glossaire.md. */
 const GROUPS = [
@@ -66,13 +66,16 @@ export default async function GlossairePage({
   const tg = await getTranslations({ locale, namespace: 'glossary' });
 
   // JSON-LD DefinedTermSet : chaque terme cible une requête « c'est quoi… ».
+  const glossaryUrl = `${SITE_URL}/${locale}/glossaire`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
     name: tg('title'),
+    url: glossaryUrl,
+    inLanguage: locale,
     hasDefinedTerm: ALL_TERMS.map((k) => ({
       '@type': 'DefinedTerm',
-      '@id': `#${k}`,
+      '@id': `${glossaryUrl}#${k}`,
       name: tg(`terms.${k}.term`),
       description: tg(`terms.${k}.def`),
     })),
@@ -82,7 +85,7 @@ export default async function GlossairePage({
     <PageShell title={tg('title')} intro={tg('intro')}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       {/* Navigation par thème (ancres) */}

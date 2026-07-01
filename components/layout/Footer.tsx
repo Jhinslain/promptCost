@@ -18,12 +18,25 @@ export function Footer() {
   return (
     <footer className="mt-16 border-t border-line">
       <div className="mx-auto max-w-app px-4 py-10">
-        {/* Marque (déménagée depuis l'ancienne navbar) */}
-        <Link href="/" className="inline-flex items-center gap-2 font-extrabold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-xl bg-accent-soft text-lg">
-            ⚡
-          </span>
-          <span className="text-lg">{t('site.name')}</span>
+        {/* Marque : logo (clair/sombre selon le thème) */}
+        <Link href="/" className="inline-flex" aria-label={t('site.name')}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.svg"
+            alt={t('site.name')}
+            width={200}
+            height={50}
+            className="h-9 w-auto dark:hidden"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-dark.svg"
+            alt=""
+            aria-hidden
+            width={200}
+            height={50}
+            className="hidden h-9 w-auto dark:block"
+          />
         </Link>
 
         <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-muted">

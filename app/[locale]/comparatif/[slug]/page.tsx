@@ -6,8 +6,8 @@ import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
 import { VersusBlock } from '@/components/comparatif/VersusBlock';
 import { COMPARISONS, COMPARISON_BY_SLUG } from '@/lib/comparisons';
-import { SOURCE_BY_ID } from '@/lib/data';
-import { buildMetadata, SITE_URL } from '@/lib/seo';
+import { SOURCE_BY_ID, DATA_AS_OF } from '@/lib/data';
+import { buildMetadata, jsonLdScript, SITE_URL } from '@/lib/seo';
 
 /** Une page statique par comparaison. */
 export function generateStaticParams() {
@@ -27,6 +27,7 @@ export async function generateMetadata({
     path: `/comparatif/${slug}`,
     title: `${t(`cases.${slug}.title`)} | HowManyPrompts`,
     description: t(`cases.${slug}.short`),
+    ogQuery: { metric: COMPARISON_BY_SLUG[slug].metric },
   });
 }
 
@@ -72,9 +73,16 @@ export default async function ComparisonPage({
       headline: title,
       description: t(`cases.${slug}.short`),
       inLanguage: locale,
-      mainEntityOfPage: url,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      datePublished: DATA_AS_OF,
+      dateModified: DATA_AS_OF,
+      image: [`${SITE_URL}/api/og?lang=${locale}&metric=${c.metric}`],
       author: { '@type': 'Organization', name: 'HowManyPrompts' },
-      publisher: { '@type': 'Organization', name: 'HowManyPrompts' },
+      publisher: {
+        '@type': 'Organization',
+        name: 'HowManyPrompts',
+        logo: { '@type': 'ImageObject', url: `${SITE_URL}/icon.svg` },
+      },
     },
     {
       '@context': 'https://schema.org',
@@ -96,7 +104,7 @@ export default async function ComparisonPage({
     <PageShell title={title}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <Link

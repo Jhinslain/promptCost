@@ -30,7 +30,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
   const rows = useMemo(
     () =>
       [...ACTIONS[metric]]
-        .map((a) => ({ ...a, cost: promptsForAction(a.value, metric, 1) }))
+        .map((a) => ({ ...a, cost: promptsForAction(a.value, metric) }))
         .sort((x, y) => x.cost - y.cost),
     [metric],
   );
@@ -71,7 +71,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0, opacity: 0 }}
                     transition={{ type: 'spring', stiffness: 500, damping: 20 }}
-                    className="num absolute right-2 top-2 z-10 grid h-6 min-w-[1.5rem] place-items-center rounded-full bg-accent px-1.5 text-xs font-extrabold text-white shadow"
+                    className="num absolute right-2 top-2 z-10 grid h-6 min-w-[1.5rem] place-items-center rounded-full bg-accent px-1.5 text-xs font-extrabold text-on-accent shadow"
                   >
                     ×{formatCompact(qty, locale)}
                   </motion.div>
@@ -120,7 +120,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
                   <button
                     onClick={() => add(a.id)}
                     aria-label={t('controls.add', { action: label })}
-                    className="flex h-9 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-accent text-sm font-extrabold text-accent transition-colors hover:bg-accent hover:text-white active:scale-95"
+                    className="flex h-9 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-accent text-sm font-extrabold text-accent transition-colors hover:bg-accent hover:text-on-accent active:scale-95"
                   >
                     <Plus size={15} strokeWidth={2.5} />
                     {t('actions.buy')}
@@ -137,7 +137,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
                         <Trash2 size={15} strokeWidth={2.5} />
                       </button>
                     )}
-                    <div className="flex h-9 flex-1 items-center justify-between rounded-xl bg-accent px-1.5 text-white">
+                    <div className="flex h-9 flex-1 items-center justify-between rounded-xl bg-accent px-1.5 text-on-accent">
                       <button
                         onClick={() => remove(a.id)}
                         aria-label={t('controls.remove', { action: label })}

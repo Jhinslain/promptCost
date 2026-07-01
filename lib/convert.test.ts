@@ -12,21 +12,17 @@ import { PERSON_YEAR, EQUIV_REFS, USAGE_TYPES } from './data';
 
 describe('promptsForAction', () => {
   it('divides the action value by the per-prompt cost', () => {
-    // Douche 75 000 mL ÷ 0,3 mL = 250 000 prompts (échelle 1).
-    expect(promptsForAction(75_000, 'water', 1)).toBeCloseTo(250_000);
-  });
-
-  it('scales linearly with population', () => {
-    expect(promptsForAction(75_000, 'water', 100)).toBeCloseTo(25_000_000);
+    // Douche 75 000 mL ÷ 0,3 mL = 250 000 prompts.
+    expect(promptsForAction(75_000, 'water')).toBeCloseTo(250_000);
   });
 
   it('handles electricity (0,3 Wh per prompt)', () => {
-    expect(promptsForAction(0.3, 'elec', 1)).toBeCloseTo(1);
-    expect(promptsForAction(2100, 'elec', 1)).toBeCloseTo(7000);
+    expect(promptsForAction(0.3, 'elec')).toBeCloseTo(1);
+    expect(promptsForAction(2100, 'elec')).toBeCloseTo(7000);
   });
 
   it('handles CO2 (0,2 g per prompt)', () => {
-    expect(promptsForAction(0.2, 'co2', 1)).toBeCloseTo(1);
+    expect(promptsForAction(0.2, 'co2')).toBeCloseTo(1);
   });
 });
 
@@ -36,11 +32,11 @@ describe('totalPrompts', () => {
       { value: 0.3, qty: 2 }, // 2 prompts
       { value: 0.6, qty: 1 }, // 2 prompts
     ];
-    expect(totalPrompts(items, 'elec', 1)).toBeCloseTo(4);
+    expect(totalPrompts(items, 'elec')).toBeCloseTo(4);
   });
 
   it('returns 0 for an empty cart', () => {
-    expect(totalPrompts([], 'elec', 1)).toBe(0);
+    expect(totalPrompts([], 'elec')).toBe(0);
   });
 });
 

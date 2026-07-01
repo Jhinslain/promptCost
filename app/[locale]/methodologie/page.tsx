@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
 import { METRICS, PER, PER_RANGE } from '@/lib/data';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, jsonLdScript } from '@/lib/seo';
 
 const FLOW = ['s1', 's2', 's3'] as const;
 const EXAMPLES = ['shower', 'oven', 'car'] as const;
@@ -68,7 +68,7 @@ export default async function MethodologiePage({
     <PageShell title={t('title')} intro={t('intro')}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <div className="flex flex-col gap-10">
