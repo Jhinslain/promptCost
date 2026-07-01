@@ -43,6 +43,10 @@
       "title": "À propos | HowManyPrompts",
       "description": "Pourquoi ce projet : remettre le coût d'un prompt IA en perspective, sans diaboliser ni minimiser."
     },
+    "feedback": {
+      "title": "Un avis, une erreur, une idée ? | HowManyPrompts",
+      "description": "Réagis aux chiffres, signale une erreur, suggère un geste ou contacte-nous. Ton retour aide à garder ce site juste et à jour."
+    },
     "legal": {
       "title": "Mentions légales | HowManyPrompts",
       "description": "Mentions légales de HowManyPrompts : aucun cookie de suivi, aucune donnée personnelle collectée."
@@ -567,7 +571,33 @@
     "sources": "Sources",
     "methodologie": "Méthodologie",
     "apropos": "À propos",
+    "feedback": "Contact & avis",
     "legal": "Mentions légales"
+  },
+  "feedback": {
+    "title": "Un avis ? Une erreur ? Une idée ?",
+    "lead": "Ce site vit grâce aux retours. Réagis à un chiffre, signale une coquille, propose un geste à ajouter, ou écris-nous pour la presse.",
+    "typeLabel": "De quoi s'agit-il ?",
+    "types": {
+      "avis": "💬 Avis",
+      "erreur": "⚠️ Erreur dans un chiffre",
+      "geste": "➕ Suggérer un geste",
+      "presse": "📰 Presse",
+      "autre": "Autre"
+    },
+    "messageLabel": "Ton message",
+    "messagePlaceholder": "Dis-nous tout : ce que tu as pensé, une source qui corrige un chiffre, une idée de geste...",
+    "emailLabel": "Ton email (optionnel)",
+    "emailPlaceholder": "toi@exemple.com",
+    "emailHint": "Uniquement si tu veux une réponse. On ne t'inscrit à aucune liste.",
+    "submit": "Envoyer",
+    "submitting": "Envoi...",
+    "successTitle": "Merci, c'est envoyé !",
+    "successBody": "On lit chaque retour. Si tu as laissé un email, on te répondra dès que possible.",
+    "error": "L'envoi a échoué. Réessaie dans un instant, ou écris-nous directement à contact@ghis.fr.",
+    "cta": {
+      "text": "Un avis ? Une erreur dans un chiffre ?"
+    }
   },
   "theme": {
     "toggle": "Changer de thème",

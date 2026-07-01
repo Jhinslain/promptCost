@@ -12,6 +12,7 @@ export function Footer() {
     { href: '/sources', label: t('footer.sources') },
     { href: '/methodologie', label: t('footer.methodologie') },
     { href: '/a-propos', label: t('footer.apropos') },
+    { href: '/feedback', label: t('footer.feedback') },
     { href: '/mentions-legales', label: t('footer.legal') },
   ] as const;
 

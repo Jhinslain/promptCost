@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ExternalLink } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
+import { FeedbackCTA } from '@/components/feedback/FeedbackCTA';
 import { SOURCES, PER, DATA_AS_OF } from '@/lib/data';
 import { buildMetadata } from '@/lib/seo';
 
@@ -89,6 +90,9 @@ export default async function SourcesPage({
           ),
         })}
       </p>
+      <div className="mt-12">
+        <FeedbackCTA />
+      </div>
     </PageShell>
   );
 }

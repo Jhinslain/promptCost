@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Game } from '@/components/game/Game';
+import { FeedbackCTA } from '@/components/feedback/FeedbackCTA';
 import { jsonLdScript, SITE_URL } from '@/lib/seo';
 
 export default async function HomePage({
@@ -35,6 +36,9 @@ export default async function HomePage({
       <Header />
       <main>
         <Game mode="spend" />
+        <div className="mx-auto mt-10 max-w-app px-4">
+          <FeedbackCTA />
+        </div>
       </main>
       <Footer />
     </>

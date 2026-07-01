@@ -43,6 +43,10 @@
       "title": "About | HowManyPrompts",
       "description": "Why this project: putting the cost of an AI prompt in perspective, without demonizing or downplaying it."
     },
+    "feedback": {
+      "title": "Feedback, a wrong number, an idea? | HowManyPrompts",
+      "description": "React to the numbers, flag an error, suggest an action, or get in touch. Your feedback keeps this site fair and up to date."
+    },
     "legal": {
       "title": "Legal notice | HowManyPrompts",
       "description": "Legal notice for HowManyPrompts: no tracking cookies, no personal data collected."
@@ -567,7 +571,33 @@
     "sources": "Sources",
     "methodologie": "Methodology",
     "apropos": "About",
+    "feedback": "Contact & feedback",
     "legal": "Legal notice"
+  },
+  "feedback": {
+    "title": "Feedback? A wrong number? An idea?",
+    "lead": "This site runs on feedback. React to a number, flag a typo, suggest an action to add, or reach out for press.",
+    "typeLabel": "What is it about?",
+    "types": {
+      "avis": "💬 Feedback",
+      "erreur": "⚠️ Wrong number",
+      "geste": "➕ Suggest an action",
+      "presse": "📰 Press",
+      "autre": "Other"
+    },
+    "messageLabel": "Your message",
+    "messagePlaceholder": "Tell us anything: what you thought, a source that corrects a number, an action idea...",
+    "emailLabel": "Your email (optional)",
+    "emailPlaceholder": "you@example.com",
+    "emailHint": "Only if you want a reply. We won't add you to any list.",
+    "submit": "Send",
+    "submitting": "Sending...",
+    "successTitle": "Thanks, it's sent!",
+    "successBody": "We read every message. If you left an email, we'll get back to you as soon as we can.",
+    "error": "Sending failed. Try again in a moment, or email us directly at contact@ghis.fr.",
+    "cta": {
+      "text": "Feedback? A wrong number?"
+    }
   },
   "theme": {
     "toggle": "Toggle theme",

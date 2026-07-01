@@ -14,6 +14,7 @@ const PATHS = [
   '/sources',
   '/methodologie',
   '/a-propos',
+  '/feedback',
   '/mentions-legales',
   ...COMPARISONS.map((c) => `/comparatif/${c.slug}`),
   ...Object.keys(ACTION_BY_ID).map((id) => `/combien/${id}`),
