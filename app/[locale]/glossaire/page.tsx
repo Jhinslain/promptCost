@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
+import { FeedbackCTA } from '@/components/feedback/FeedbackCTA';
 import { buildMetadata } from '@/lib/seo';
 
 /** Termes regroupés par thème ; l'ordre suit glossaire.md. */
@@ -152,6 +153,9 @@ export default async function GlossairePage({
           ))}
         </ul>
       </section>
+      <div className="mt-12">
+        <FeedbackCTA />
+      </div>
     </PageShell>
   );
 }

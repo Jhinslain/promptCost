@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight, Gamepad2 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
+import { FeedbackCTA } from '@/components/feedback/FeedbackCTA';
 import { VersusBlock } from '@/components/comparatif/VersusBlock';
 import { COMPARISONS } from '@/lib/comparisons';
 import { buildMetadata } from '@/lib/seo';
@@ -75,6 +76,9 @@ export default async function ComparatifPage({
           <Gamepad2 size={16} />
           {t('bonusCta')}
         </Link>
+      </div>
+      <div className="mt-12">
+        <FeedbackCTA />
       </div>
     </PageShell>
   );

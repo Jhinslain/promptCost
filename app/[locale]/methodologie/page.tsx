@@ -4,6 +4,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { PageShell } from '@/components/layout/PageShell';
+import { FeedbackCTA } from '@/components/feedback/FeedbackCTA';
 import { METRICS, PER, PER_RANGE } from '@/lib/data';
 import { buildMetadata } from '@/lib/seo';
 
@@ -238,6 +239,9 @@ export default async function MethodologiePage({
             ))}
           </ul>
         </section>
+      </div>
+      <div className="mt-12">
+        <FeedbackCTA />
       </div>
     </PageShell>
   );
