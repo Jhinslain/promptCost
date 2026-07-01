@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL = 'https://howmanyprompts.com';
+const SITE_URL = 'https://www.howmanyprompts.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {

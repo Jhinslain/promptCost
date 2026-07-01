@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = 'https://howmanyprompts.com';
+export const SITE_URL = 'https://www.howmanyprompts.com';
 
 /** Sérialise un objet JSON-LD en échappant `<` pour ne jamais casser la balise
  *  `</script>` (défense en profondeur, même si l'entrée est maîtrisée). */

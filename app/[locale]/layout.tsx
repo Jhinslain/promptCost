@@ -11,7 +11,7 @@ import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
-const SITE_URL = 'https://howmanyprompts.com';
+const SITE_URL = 'https://www.howmanyprompts.com';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -50,7 +50,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: [`/api/og?lang=${locale}`],
+      images: [{ url: `/api/og?lang=${locale}`, alt: t('title') }],
     },
   };
 }

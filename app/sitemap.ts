@@ -3,7 +3,7 @@ import { routing } from '@/i18n/routing';
 import { ACTION_BY_ID } from '@/lib/data';
 import { COMPARISONS } from '@/lib/comparisons';
 
-const SITE_URL = 'https://howmanyprompts.com';
+const SITE_URL = 'https://www.howmanyprompts.com';
 
 const PATHS = [
   '',

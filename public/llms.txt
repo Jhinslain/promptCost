@@ -7,18 +7,18 @@
 - Les requêtes de raisonnement (~15–40 Wh), la génération d'image (~6–12 Wh) et de vidéo (~940 Wh / 5 s) coûtent bien plus.
 
 ## Pages principales
-- [Accueil — le jeu](https://howmanyprompts.com/fr): dépenser une année d'IA en gestes du quotidien.
-- [Convertir](https://howmanyprompts.com/fr/convertir): « j'ai fait N prompts → voici l'équivalent concret ».
-- [Combien](https://howmanyprompts.com/fr/combien): le coût en prompts de chaque geste (douche, four, vol…).
-- [Comparatif](https://howmanyprompts.com/fr/comparatif): le « classique » face à l'IA (recherche Google, image, vidéo).
-- [Méthodologie](https://howmanyprompts.com/fr/methodologie): comment les chiffres sont calculés.
-- [Glossaire](https://howmanyprompts.com/fr/glossaire): les termes clés de l'IA et de l'énergie.
-- [Sources](https://howmanyprompts.com/fr/sources): toutes les sources (ADEME, IEA, EPA, Water Footprint Network, Our World in Data, Google, OpenAI, Epoch AI…).
-- [À propos](https://howmanyprompts.com/fr/a-propos): la démarche, neutre et sourcée.
+- [Accueil — le jeu](https://www.howmanyprompts.com/fr): dépenser une année d'IA en gestes du quotidien.
+- [Convertir](https://www.howmanyprompts.com/fr/convertir): « j'ai fait N prompts → voici l'équivalent concret ».
+- [Combien](https://www.howmanyprompts.com/fr/combien): le coût en prompts de chaque geste (douche, four, vol…).
+- [Comparatif](https://www.howmanyprompts.com/fr/comparatif): le « classique » face à l'IA (recherche Google, image, vidéo).
+- [Méthodologie](https://www.howmanyprompts.com/fr/methodologie): comment les chiffres sont calculés.
+- [Glossaire](https://www.howmanyprompts.com/fr/glossaire): les termes clés de l'IA et de l'énergie.
+- [Sources](https://www.howmanyprompts.com/fr/sources): toutes les sources (ADEME, IEA, EPA, Water Footprint Network, Our World in Data, Google, OpenAI, Epoch AI…).
+- [À propos](https://www.howmanyprompts.com/fr/a-propos): la démarche, neutre et sourcée.
 
 ## Langues
-- Français : https://howmanyprompts.com/fr
-- English : https://howmanyprompts.com/en
+- Français : https://www.howmanyprompts.com/fr
+- English : https://www.howmanyprompts.com/en
 
 ## Éditeur
 Édité par GHIS. Contact : contact@ghis.fr
