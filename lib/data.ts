@@ -62,6 +62,8 @@ export interface ActionData {
   /** Coût de l'action dans l'unité de base de la métrique (pour une personne). */
   value: number;
   sourceId: string;
+  /** « grand » = gros geste personnel (gros achat, usage annuel) : DATA2. */
+  size?: 'grand';
 }
 
 /**
@@ -97,6 +99,19 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     { id: 'ev_year', emoji: '🔋', value: 3_750_000, sourceId: 'fueleconomy' },
     { id: 'home_year', emoji: '🏡', value: 4_300_000, sourceId: 'ademe' },
     { id: 'heating_year', emoji: '🏠', value: 5_000_000, sourceId: 'ademe' },
+    // ── DATA2 : grands gestes personnels (magnitude élevée) ──
+    { id: 'vacuum_year', emoji: '🧹', value: 20_000, sourceId: 'ademe' },
+    { id: 'microwave_year', emoji: '♨️', value: 40_000, sourceId: 'ademe' },
+    { id: 'ev_full', emoji: '🚘', value: 60_000, sourceId: 'fueleconomy', size: 'grand' },
+    { id: 'laundry_year', emoji: '👕', value: 85_000, sourceId: 'ademe', size: 'grand' },
+    { id: 'desktop_year', emoji: '🖥️', value: 140_000, sourceId: 'ademe' },
+    { id: 'dishwasher_year', emoji: '🍽️', value: 150_000, sourceId: 'ademe' },
+    { id: 'dryer_year', emoji: '💨', value: 180_000, sourceId: 'ademe', size: 'grand' },
+    { id: 'freezer_year', emoji: '🥶', value: 250_000, sourceId: 'ademe', size: 'grand' },
+    { id: 'pool_pump', emoji: '🏊', value: 1_200_000, sourceId: 'us-eia', size: 'grand' },
+    { id: 'ac_year', emoji: '🌬️', value: 1_900_000, sourceId: 'us-eia', size: 'grand' },
+    { id: 'water_heater', emoji: '🚿', value: 2_400_000, sourceId: 'us-doe', size: 'grand' },
+    { id: 'spa', emoji: '🧖', value: 2_500_000, sourceId: 'us-eia', size: 'grand' },
   ],
   // 💧 EAU : mL (direct = robinet ; virtuelle = production)
   water: [
@@ -125,6 +140,19 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     { id: 'jeans_water', emoji: '👖', value: 8_000_000, sourceId: 'wfn-cotton' },
     // Grand geste : consommation d'eau domestique sur une année (Data.md §3a)
     { id: 'home_water_year', emoji: '🚰', value: 52_600_000, sourceId: 'eea-water' },
+    // ── DATA2 : grands gestes (eau virtuelle, au kg / à l'année) ──
+    { id: 'rice_kg', emoji: '🍚', value: 2_497_000, sourceId: 'wfn-crops', size: 'grand' },
+    { id: 'cheese_kg', emoji: '🧀', value: 3_200_000, sourceId: 'wfn-animals', size: 'grand' },
+    { id: 'leather_shoes', emoji: '👞', value: 14_000_000, sourceId: 'wfn-animals', size: 'grand' },
+    { id: 'beef_kg', emoji: '🐄', value: 15_400_000, sourceId: 'wfn-animals', size: 'grand' },
+    { id: 'almonds_kg', emoji: '🥜', value: 16_000_000, sourceId: 'wfn-crops', size: 'grand' },
+    { id: 'chocolate_kg', emoji: '🍫', value: 17_000_000, sourceId: 'wfn-crops', size: 'grand' },
+    { id: 'showers_year', emoji: '🚿', value: 18_000_000, sourceId: 'epa-watersense', size: 'grand' },
+    { id: 'coffee_kg', emoji: '🫘', value: 18_900_000, sourceId: 'wfn-crops', size: 'grand' },
+    { id: 'wardrobe', emoji: '👗', value: 20_500_000, sourceId: 'wfn-cotton', size: 'grand' },
+    { id: 'pool_fill', emoji: '🏊', value: 50_000_000, sourceId: 'epa-watersense', size: 'grand' },
+    { id: 'baths_year', emoji: '🛀', value: 54_750_000, sourceId: 'epa-watersense', size: 'grand' },
+    { id: 'home_water_year_us', emoji: '🚰', value: 113_000_000, sourceId: 'usgs', size: 'grand' },
   ],
   // 🌍 CO₂ : g CO₂e (transport par km, aliments/objets par unité)
   co2: [
@@ -159,6 +187,19 @@ export const ACTIONS: Record<MetricId, ActionData[]> = {
     // Grands gestes annuels (Data.md §4b / §4e)
     { id: 'car_year', emoji: '🚙', value: 4_600_000, sourceId: 'us-epa-vehicle' },
     { id: 'footprint_year', emoji: '🌐', value: 9_000_000, sourceId: 'eurostat-footprint' },
+    // ── DATA2 : grands gestes personnels (magnitude élevée) ──
+    { id: 'cat_year', emoji: '🐈', value: 310_000, sourceId: 'ucla-pets', size: 'grand' },
+    { id: 'dog_year', emoji: '🐕', value: 770_000, sourceId: 'ucla-pets', size: 'grand' },
+    { id: 'flight_tokyo', emoji: '🛫', value: 1_500_000, sourceId: 'myclimate', size: 'grand' },
+    { id: 'transport_year', emoji: '🛣️', value: 2_000_000, sourceId: 'eea-cars', size: 'grand' },
+    { id: 'gas_heating', emoji: '🔥', value: 2_500_000, sourceId: 'ademe-impact', size: 'grand' },
+    { id: 'meat_diet', emoji: '🍖', value: 2_620_000, sourceId: 'owid-diet', size: 'grand' },
+    { id: 'cruise', emoji: '🚢', value: 3_000_000, sourceId: 'icct', size: 'grand' },
+    { id: 'world_footprint', emoji: '🌎', value: 4_700_000, sourceId: 'eurostat-footprint', size: 'grand' },
+    { id: 'ice_car_make', emoji: '🏭', value: 6_000_000, sourceId: 'zemo', size: 'grand' },
+    { id: 'ev_car_make', emoji: '🔋', value: 8_800_000, sourceId: 'zemo', size: 'grand' },
+    { id: 'suv_make', emoji: '🛻', value: 17_000_000, sourceId: 'zemo', size: 'grand' },
+    { id: 'house_build', emoji: '🏗️', value: 50_000_000, sourceId: 'mit-climate', size: 'grand' },
   ],
 };
 
@@ -211,6 +252,11 @@ export const SOURCES: SourceData[] = [
   { id: 'eea-water', category: 'water', label: 'European Environment Agency : eau des ménages', url: 'https://www.eea.europa.eu/data-and-maps/indicators/household-energy-consumption/household-water-consumption' },
 
   // CO₂
+  { id: 'myclimate', category: 'co2', label: 'myclimate : calculateur d\'émissions de vol', url: 'https://co2.myclimate.org/en/flight_calculators/new' },
+  { id: 'owid-diet', category: 'co2', label: 'Our World in Data : empreinte carbone des régimes alimentaires (Scarborough et al.)', url: 'https://ourworldindata.org/food-choice-vs-eating-local' },
+  { id: 'ucla-pets', category: 'co2', label: 'UCLA : empreinte carbone des animaux de compagnie (G. Okin)', url: 'https://newsroom.ucla.edu/releases/the-truth-about-cats-and-dogs-environmental-impact' },
+  { id: 'zemo', category: 'co2', label: 'Zemo Partnership : fabrication des véhicules (analyse de cycle de vie)', url: 'https://www.zemo.org.uk/' },
+  { id: 'mit-climate', category: 'co2', label: 'MIT Climate Portal : empreinte de la construction d\'une maison', url: 'https://climate.mit.edu/' },
   { id: 'owid-transport', category: 'co2', label: 'Our World in Data : empreinte carbone des transports (DEFRA)', url: 'https://ourworldindata.org/travel-carbon-footprint' },
   { id: 'owid-food', category: 'co2', label: 'Our World in Data : GES par aliment (Poore & Nemecek 2018)', url: 'https://ourworldindata.org/grapher/ghg-per-kg-poore' },
   { id: 'ademe-impact', category: 'co2', label: 'ADEME : Base Empreinte / Impact CO2', url: 'https://impactco2.fr/' },
