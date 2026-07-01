@@ -25,9 +25,12 @@ export function FeedbackForm() {
   const [website, setWebsite] = useState(''); // honeypot
   const [status, setStatus] = useState<Status>('idle');
 
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const canSubmit = message.trim().length >= 2 && emailValid;
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (status === 'sending' || message.trim().length < 2) return;
+    if (status === 'sending' || !canSubmit) return;
     setStatus('sending');
     try {
       const res = await fetch('/api/feedback', {
@@ -95,15 +98,17 @@ export function FeedbackForm() {
         />
       </label>
 
-      {/* Email optionnel */}
+      {/* Email obligatoire */}
       <label className="flex flex-col gap-2">
         <span className="text-sm font-bold text-text">{t('emailLabel')}</span>
         <input
           type="email"
+          required
           maxLength={254}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t('emailPlaceholder')}
+          aria-required="true"
           className="rounded-2xl border border-line bg-surface p-4 text-base text-text outline-none transition-colors placeholder:text-muted/70 focus:border-accent"
         />
         <span className="text-xs text-muted">{t('emailHint')}</span>
@@ -132,8 +137,8 @@ export function FeedbackForm() {
 
       <button
         type="submit"
-        disabled={status === 'sending' || message.trim().length < 2}
-        className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={status === 'sending' || !canSubmit}
+        className="inline-flex items-center justify-center gap-2 self-start rounded-full bg-accent px-6 py-3 text-sm font-bold text-on-accent transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <Send size={16} aria-hidden />
         {status === 'sending' ? t('submitting') : t('submit')}

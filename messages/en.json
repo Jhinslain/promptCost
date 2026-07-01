@@ -565,6 +565,8 @@
     }
   },
   "footer": {
+    "colUseful": "Resources",
+    "colSociety": "The site",
     "compare": "Comparisons",
     "glossary": "Glossary",
     "comparatif": "Comparison",
@@ -587,9 +589,9 @@
     },
     "messageLabel": "Your message",
     "messagePlaceholder": "Tell us anything: what you thought, a source that corrects a number, an action idea...",
-    "emailLabel": "Your email (optional)",
+    "emailLabel": "Your email (required)",
     "emailPlaceholder": "you@example.com",
-    "emailHint": "Only if you want a reply. We won't add you to any list.",
+    "emailHint": "Required so we can reply and to limit spam. We won't add you to any list.",
     "submit": "Send",
     "submitting": "Sending...",
     "successTitle": "Thanks, it's sent!",

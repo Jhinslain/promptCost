@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 /**
  * Réception des feedbacks du site : sélecteur de type + message + email
- * optionnel. Envoi par Resend vers l'adresse de contact, avec reply-to sur
+ * (obligatoire). Envoi par Resend vers l'adresse de contact, avec reply-to sur
  * l'email du visiteur pour pouvoir répondre directement.
  *
  * Anti-spam léger : honeypot (champ `website` masqué) + limite de débit en
@@ -47,8 +47,7 @@ function rateLimited(ip: string): boolean {
   return false;
 }
 
-// Validation e-mail volontairement permissive : on ne bloque qu'un format
-// manifestement invalide (l'email est de toute façon optionnel).
+// L'email est OBLIGATOIRE : on rejette un format manifestement invalide.
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= MAX_EMAIL;
 }
@@ -85,7 +84,8 @@ export async function POST(req: Request) {
   if (message.length < 2 || message.length > MAX_MESSAGE) {
     return NextResponse.json({ ok: false, error: 'invalid_message' }, { status: 400 });
   }
-  if (email !== '' && !isValidEmail(email)) {
+  // Email obligatoire.
+  if (!isValidEmail(email)) {
     return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
   }
 
@@ -109,7 +109,7 @@ export async function POST(req: Request) {
     <div style="font-family:system-ui,sans-serif;line-height:1.5">
       <p><strong>Type&nbsp;:</strong> ${esc(label)}</p>
       <p><strong>Langue&nbsp;:</strong> ${locale}</p>
-      <p><strong>Email&nbsp;:</strong> ${email ? esc(email) : '(non fourni)'}</p>
+      <p><strong>Email&nbsp;:</strong> ${esc(email)}</p>
       <hr />
       <p style="white-space:pre-wrap">${esc(message)}</p>
     </div>`;
@@ -122,7 +122,7 @@ export async function POST(req: Request) {
       subject,
       html,
       // Permet de répondre directement au visiteur depuis sa boîte mail.
-      ...(email ? { replyTo: email } : {}),
+      replyTo: email,
     });
     if (error) {
       console.error('[feedback] Resend error', error);

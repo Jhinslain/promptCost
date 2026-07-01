@@ -5,16 +5,38 @@ import { SiteFootprint } from '../ui/SiteFootprint';
 export function Footer() {
   const t = useTranslations();
 
-  const links = [
+  // Colonne « utiles » (contenu) et colonne « société » (à propos, légal, contact).
+  const useful = [
+    { href: '/comparatif', label: t('footer.comparatif') },
     { href: '/combien', label: t('footer.compare') },
     { href: '/glossaire', label: t('footer.glossary') },
-    { href: '/comparatif', label: t('footer.comparatif') },
-    { href: '/sources', label: t('footer.sources') },
     { href: '/methodologie', label: t('footer.methodologie') },
+    { href: '/sources', label: t('footer.sources') },
+  ] as const;
+  const society = [
     { href: '/a-propos', label: t('footer.apropos') },
     { href: '/feedback', label: t('footer.feedback') },
     { href: '/mentions-legales', label: t('footer.legal') },
   ] as const;
+
+  const Column = ({
+    title,
+    items,
+  }: {
+    title: string;
+    items: readonly { href: string; label: string }[];
+  }) => (
+    <div>
+      <h3 className="text-xs font-bold uppercase tracking-wider text-muted">{title}</h3>
+      <nav className="mt-3 flex flex-col gap-2 text-sm font-semibold text-muted">
+        {items.map((l) => (
+          <Link key={l.href} href={l.href} className="transition-colors hover:text-accent">
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+  );
 
   return (
     <footer className="mt-16 border-t border-line">
@@ -40,13 +62,10 @@ export function Footer() {
           />
         </Link>
 
-        <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-muted">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className="transition-colors hover:text-accent">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="mt-6 grid grid-cols-2 gap-8 sm:max-w-sm">
+          <Column title={t('footer.colUseful')} items={useful} />
+          <Column title={t('footer.colSociety')} items={society} />
+        </div>
 
         <div className="mt-8 flex justify-center">
           <SiteFootprint />

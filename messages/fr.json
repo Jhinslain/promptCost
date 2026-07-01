@@ -565,6 +565,8 @@
     }
   },
   "footer": {
+    "colUseful": "Ressources",
+    "colSociety": "Le site",
     "compare": "Comparaisons",
     "glossary": "Glossaire",
     "comparatif": "Comparatif",
@@ -587,9 +589,9 @@
     },
     "messageLabel": "Ton message",
     "messagePlaceholder": "Dis-nous tout : ce que tu as pensé, une source qui corrige un chiffre, une idée de geste...",
-    "emailLabel": "Ton email (optionnel)",
+    "emailLabel": "Ton email (requis)",
     "emailPlaceholder": "toi@exemple.com",
-    "emailHint": "Uniquement si tu veux une réponse. On ne t'inscrit à aucune liste.",
+    "emailHint": "Requis pour te répondre et limiter les spams. On ne t'inscrit à aucune liste.",
     "submit": "Envoyer",
     "submitting": "Envoi...",
     "successTitle": "Merci, c'est envoyé !",
