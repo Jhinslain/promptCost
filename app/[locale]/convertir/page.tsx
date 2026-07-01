@@ -50,11 +50,18 @@ export default async function ConvertirPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const tn = await getTranslations({ locale, namespace: 'nav' });
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-3 focus:py-2 focus:text-sm focus:font-bold focus:text-on-accent"
+      >
+        {tn('skip')}
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Game mode="reverse" />
       </main>
       <Footer />

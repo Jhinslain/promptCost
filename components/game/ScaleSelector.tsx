@@ -31,7 +31,7 @@ export function ScaleSelector() {
               aria-pressed={active}
               className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm font-bold transition-all ${
                 active
-                  ? 'border-accent bg-accent-soft text-accent'
+                  ? 'border-accent bg-accent-soft text-accent-text'
                   : 'border-line bg-surface text-muted hover:border-accent/50'
               }`}
             >

@@ -101,6 +101,7 @@ export function Navbar() {
                 key={g.href}
                 href={g.href}
                 aria-current={active ? 'page' : undefined}
+                aria-label={t(g.key)}
                 className={`group flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-sm font-extrabold transition-colors ${
                   active ? `${g.activeBg} ${g.color}` : `${g.color} opacity-70 hover:opacity-100`
                 }`}
@@ -124,7 +125,7 @@ export function Navbar() {
               href={href}
               aria-current={isActive(href) ? 'page' : undefined}
               className={`shrink-0 rounded-lg px-2.5 py-1.5 text-sm font-semibold transition-colors ${
-                isActive(href) ? 'text-accent' : 'text-muted hover:text-text'
+                isActive(href) ? 'text-accent-text' : 'text-muted hover:text-text'
               }`}
             >
               {t(PAGE_KEY[href])}
@@ -167,7 +168,7 @@ export function Navbar() {
                   aria-current={isActive(p.href) ? 'page' : undefined}
                   className={`rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
                     isActive(p.href)
-                      ? 'bg-accent-soft text-accent'
+                      ? 'bg-accent-soft text-accent-text'
                       : 'text-text hover:bg-line/50'
                   }`}
                 >

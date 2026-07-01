@@ -30,7 +30,7 @@ export function Footer() {
       <h3 className="text-xs font-bold uppercase tracking-wider text-muted">{title}</h3>
       <nav className="mt-3 flex flex-col gap-2 text-sm font-semibold text-muted">
         {items.map((l) => (
-          <Link key={l.href} href={l.href} className="transition-colors hover:text-accent">
+          <Link key={l.href} href={l.href} className="transition-colors hover:text-accent-text">
             {l.label}
           </Link>
         ))}
@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer className="mt-16 border-t border-line">
-      <div className="mx-auto max-w-app px-4 py-10">
+      <div className="mx-auto flex max-w-app flex-col items-center px-4 py-10 text-center">
         {/* Marque : logo (clair/sombre selon le thème) */}
         <Link href="/" className="inline-flex" aria-label={t('site.name')}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,12 +62,12 @@ export function Footer() {
           />
         </Link>
 
-        <div className="mt-6 grid grid-cols-2 gap-8 sm:max-w-sm">
+        <div className="mt-6 grid grid-cols-2 gap-10">
           <Column title={t('footer.colUseful')} items={useful} />
           <Column title={t('footer.colSociety')} items={society} />
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8">
           <SiteFootprint />
         </div>
       </div>

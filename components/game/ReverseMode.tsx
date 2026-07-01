@@ -142,7 +142,7 @@ export function ReverseMode() {
             <p className="py-8 text-sm font-semibold text-muted">{t('reverse.empty')}</p>
           ) : (
             <>
-              <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-accent">
+              <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-accent-text">
                 {t('reverse.couldHave')}
               </span>
 

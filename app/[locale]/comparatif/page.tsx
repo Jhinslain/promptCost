@@ -54,7 +54,7 @@ export default async function ComparatifPage({
                   right={{ ...c.right, label: t(`cases.${c.slug}.rightLabel`) }}
                 />
               </div>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-accent">
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-accent-text">
                 {t('learnMore')}
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
               </span>

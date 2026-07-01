@@ -49,6 +49,8 @@ export function ActionGrid({ metric }: ActionGridProps) {
           const label = t(`actions.${a.id}`);
           const bought = qty > 0;
           const source = SOURCE_BY_ID[a.sourceId];
+          // Variante annuelle : au survol du libellé, on rappelle « usage moyen ».
+          const isYear = label.includes('1 an') || label.includes('1 year');
           return (
             <motion.li
               key={`${metric}-${a.id}`}
@@ -100,11 +102,16 @@ export function ActionGrid({ metric }: ActionGridProps) {
 
               {/* Infos (titre + coût centrés) */}
               <div className="flex flex-1 flex-col items-center gap-0.5 px-3 pt-2.5 text-center">
-                <div className="w-full truncate text-sm font-bold leading-tight text-text">
+                <div
+                  className={`w-full truncate text-sm font-bold leading-tight text-text ${
+                    isYear ? 'cursor-help' : ''
+                  }`}
+                  title={isYear ? t('actions.yearNote') : undefined}
+                >
                   {label}
                 </div>
                 <div
-                  className="num mt-1 inline-flex cursor-help items-baseline gap-1 text-[15px] font-extrabold leading-none text-accent"
+                  className="num mt-1 inline-flex cursor-help items-baseline gap-1 text-[15px] font-extrabold leading-none text-accent-text"
                   title={source ? `${t('common.source')} : ${source.label}` : undefined}
                 >
                   {formatCompact(a.cost, locale)}
@@ -120,7 +127,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
                   <button
                     onClick={() => add(a.id)}
                     aria-label={t('controls.add', { action: label })}
-                    className="flex h-9 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-accent text-sm font-extrabold text-accent transition-colors hover:bg-accent hover:text-on-accent active:scale-95"
+                    className="flex h-9 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-accent text-sm font-extrabold text-accent-text transition-colors hover:bg-accent hover:text-on-accent active:scale-95"
                   >
                     <Plus size={15} strokeWidth={2.5} />
                     {t('actions.buy')}
@@ -169,6 +176,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
           {t('actions.virtualNote')}
         </p>
       ) : null}
+      <p className="px-1 text-xs leading-relaxed text-muted">{t('actions.yearNote')}</p>
     </div>
   );
 }

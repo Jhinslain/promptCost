@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { MotionConfig } from 'framer-motion';
 
 type Theme = 'light' | 'dark';
 
@@ -32,7 +33,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  return <Ctx.Provider value={{ theme, toggle }}>{children}</Ctx.Provider>;
+  // `reducedMotion="user"` : toutes les animations Framer respectent
+  // prefers-reduced-motion (transforme/anime a minima).
+  return (
+    <Ctx.Provider value={{ theme, toggle }}>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </Ctx.Provider>
+  );
 }
 
 export const useTheme = () => useContext(Ctx);

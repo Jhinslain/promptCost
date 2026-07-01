@@ -95,7 +95,7 @@ export default async function GlossairePage({
           <a
             key={g.cat}
             href={`#${g.cat}`}
-            className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-colors hover:border-accent hover:text-accent"
+            className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-colors hover:border-accent hover:text-accent-text"
           >
             {tg(`cat.${g.cat}`)}
           </a>
@@ -150,7 +150,7 @@ export default async function GlossairePage({
                 className="flex items-center justify-between gap-3 rounded-2xl border border-line bg-surface p-4 text-sm font-semibold text-text transition-colors hover:border-accent"
               >
                 <span>{tg(`links.${l.key}`)}</span>
-                <ArrowRight size={16} className="shrink-0 text-accent" />
+                <ArrowRight size={16} className="shrink-0 text-accent-text" />
               </Link>
             </li>
           ))}

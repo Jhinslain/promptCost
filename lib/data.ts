@@ -36,17 +36,38 @@ export interface MetricConfig {
   id: MetricId;
   emoji: string;
   unit: string; // unité de base
-  /** Accent en mode clair / sombre, format "R G B" pour rgb(var(--accent)). */
+  /** Accent VIF (aplats, barres, halos) en clair / sombre, format "R G B". */
   accent: { light: string; dark: string };
+  /** Accent TEXTE : assez foncé pour passer AA (≥4.5:1) sur fond clair ; en
+      sombre = l'accent clair (déjà lisible sur surface foncée). */
+  accentText: { light: string; dark: string };
 }
 
 // 🎨 SOURCE UNIQUE DES COULEURS D'ACCENT (par métrique, clair/sombre).
-// Pour changer une couleur de marque : ici, en une ligne. Le texte posé SUR
-// ces aplats utilise --on-accent (foncé), donc les accents restent vifs.
+// `accent` = couleur de marque vive (aplats/boutons via --on-accent).
+// `accentText` = variante foncée pour le TEXTE coloré (contraste AA).
 export const METRICS: MetricConfig[] = [
-  { id: 'elec', emoji: '⚡', unit: 'Wh', accent: { light: '245 166 35', dark: '255 209 102' } },
-  { id: 'water', emoji: '💧', unit: 'mL', accent: { light: '47 155 255', dark: '92 200 255' } },
-  { id: 'co2', emoji: '🌍', unit: 'g', accent: { light: '22 163 74', dark: '52 211 153' } },
+  {
+    id: 'elec',
+    emoji: '⚡',
+    unit: 'Wh',
+    accent: { light: '245 166 35', dark: '255 209 102' },
+    accentText: { light: '138 83 0', dark: '255 209 102' },
+  },
+  {
+    id: 'water',
+    emoji: '💧',
+    unit: 'mL',
+    accent: { light: '47 155 255', dark: '92 200 255' },
+    accentText: { light: '12 110 210', dark: '92 200 255' },
+  },
+  {
+    id: 'co2',
+    emoji: '🌍',
+    unit: 'g',
+    accent: { light: '22 163 74', dark: '52 211 153' },
+    accentText: { light: '15 122 55', dark: '52 211 153' },
+  },
 ];
 
 export const METRIC_BY_ID: Record<MetricId, MetricConfig> = Object.fromEntries(

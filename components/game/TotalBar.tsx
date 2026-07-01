@@ -42,7 +42,7 @@ export function TotalBar({ metric, scaleId, spent, goal, scaleLabel }: TotalBarP
             <span className="text-lg" aria-hidden>
               {cfg.emoji}
             </span>
-            <span className="shrink-0 rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold text-accent">
+            <span className="shrink-0 rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold text-accent-text">
               {scaleLabel}
             </span>
           </div>
@@ -73,7 +73,7 @@ export function TotalBar({ metric, scaleId, spent, goal, scaleLabel }: TotalBarP
             <div className="shrink-0 text-right leading-none">
               <div
                 className={`num text-xl font-extrabold sm:text-2xl ${
-                  over ? 'text-accent' : 'text-muted'
+                  over ? 'text-accent-text' : 'text-muted'
                 }`}
               >
                 {over ? `×${formatYears(ratio, locale)}` : `${formatPercent(ratio, locale)} %`}

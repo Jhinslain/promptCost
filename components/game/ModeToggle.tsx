@@ -49,8 +49,8 @@ export function ModeToggle() {
                   transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                 />
               )}
-              <it.Icon size={16} className={`relative z-10 ${active ? 'text-accent' : 'text-muted'}`} />
-              <span className={`relative z-10 ${active ? 'text-accent' : 'text-muted'}`}>
+              <it.Icon size={16} className={`relative z-10 ${active ? 'text-accent-text' : 'text-muted'}`} />
+              <span className={`relative z-10 ${active ? 'text-accent-text' : 'text-muted'}`}>
                 {it.label}
               </span>
             </Link>

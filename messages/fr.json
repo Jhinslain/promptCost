@@ -20,7 +20,7 @@
   },
   "meta": {
     "home": {
-      "title": "HowManyPrompts : combien de prompts IA « vaut » un geste du quotidien ?",
+      "title": "Combien de prompts IA « vaut » un geste du quotidien ? | HowManyPrompts",
       "description": "Visualise le coût réel d'un prompt IA (électricité, eau, CO₂) en le comparant aux gestes du quotidien. Chiffres sourcés, sans parti pris."
     },
     "convertir": {
@@ -49,7 +49,7 @@
     },
     "legal": {
       "title": "Mentions légales | HowManyPrompts",
-      "description": "Mentions légales de HowManyPrompts : aucun cookie de suivi, aucune donnée personnelle collectée."
+      "description": "Mentions légales de HowManyPrompts : mesure d'audience anonyme et sans cookie de suivi."
     }
   },
   "header": {
@@ -162,6 +162,7 @@
     "costLabel": "= {cost} prompts",
     "buy": "Acheter",
     "virtualNote": "Aliments & objets = empreinte « virtuelle » (production comprise), pas l'eau du robinet.",
+    "yearNote": "Les variantes « 1 an » = consommation annuelle moyenne d'un usage réel (pas en continu).",
     "led": "Ampoule LED 1 h",
     "phone_charge": "Charger un smartphone",
     "kettle": "Bouilloire (1 tasse)",
@@ -172,7 +173,7 @@
     "hairdryer": "Sèche-cheveux 10 min",
     "gaming": "1 h de gaming PC",
     "laundry": "1 lessive",
-    "dishwasher": "1 lave-vaisselle",
+    "dishwasher": "Lave-vaisselle (1 cycle)",
     "oven": "Four 1 h",
     "glass": "1 verre d'eau",
     "toothbrush": "Brossage de dents",
@@ -203,7 +204,7 @@
     "ac": "Climatisation 1 h",
     "dryer": "Sèche-linge (1 cycle)",
     "ev_charge": "Recharge voiture (100 km)",
-    "dishwasher_water": "Lave-vaisselle (eau)",
+    "dishwasher_water": "Lave-vaisselle (1 cycle, eau)",
     "paper": "1 feuille A4",
     "bread_water": "1 tranche de pain",
     "beer": "1 verre de bière",
@@ -292,7 +293,7 @@
     "headline": "Tu as dépensé {phrase} !",
     "inActions": "En {count} gestes du quotidien.",
     "share": "Partager mon score",
-    "shareText": "Mes gestes du quotidien coûtent autant qu'{phrase} 👀 HowManyPrompts",
+    "shareText": "En {count} gestes du quotidien, j'ai claqué {phrase} 👀 HowManyPrompts",
     "downloadImage": "Télécharger l'image",
     "copied": "Lien copié !",
     "continue": "Continuer à jouer",
@@ -303,8 +304,8 @@
   "facts": {
     "f1": "Un prompt texte ≈ 0,3 Wh : autant qu'une ampoule LED allumée ~2 minutes.",
     "f2": "L'eau de refroidissement d'un prompt ≈ 0,3 mL : 5 gouttes.",
-    "f3": "Le CO₂ d'un prompt ≈ 0,2 g : un email avec pièce jointe en pèse ~250 fois plus.",
-    "f4": "Une douche de 5 min « vaut » environ 250 000 prompts en eau.",
+    "f3": "Le CO₂ d'un prompt ≈ 0,2 g : un email avec pièce jointe en pèse ~95 fois plus.",
+    "f4": "Une douche de 5 min « vaut » environ 167 000 prompts en eau.",
     "f5": "Un vol Paris → New York « vaut » des millions de prompts en CO₂."
   },
   "comparatif": {
@@ -326,8 +327,8 @@
     },
     "cases": {
       "ia-vs-google": {
-        "title": "Recherche IA vs recherche Google",
-        "short": "Un prompt texte consomme-t-il plus qu'une recherche Google ? Réponse chiffrée et sourcée.",
+        "title": "ChatGPT vs recherche Google : conso énergie",
+        "short": "ChatGPT (ou une recherche IA) consomme-t-il plus qu'une recherche Google ? Réponse chiffrée et sourcée.",
         "leftLabel": "Recherche Google",
         "rightLabel": "Prompt IA (texte)",
         "verdict": "Aujourd'hui, un prompt texte consomme à peu près autant qu'une recherche Google (~0,3 Wh). Le fameux « 10× plus » vient d'une ancienne estimation IEA (2,9 Wh) désormais obsolète : les modèles récents ont divisé leur consommation par ~10. Nuance honnête : les requêtes de raisonnement ou multimodales restent, elles, bien plus lourdes.",
@@ -425,9 +426,9 @@
       "showerG": "🚿 Douche 5 min (~50 L)",
       "showerC": "50 000 mL ÷ 0,3 mL",
       "showerR": "≈ 167 000 prompts",
-      "ovenG": "🔥 Four 1 h (~2,1 kWh)",
-      "ovenC": "2 100 Wh ÷ 0,3 Wh",
-      "ovenR": "≈ 7 000 prompts",
+      "ovenG": "🔥 Four 1 h (~700 Wh)",
+      "ovenC": "700 Wh ÷ 0,3 Wh",
+      "ovenR": "≈ 2 300 prompts",
       "carG": "🚗 1 km en voiture (~170 g)",
       "carC": "170 g ÷ 0,2 g",
       "carR": "≈ 850 prompts"
@@ -538,7 +539,9 @@
   "legal": {
     "title": "Mentions légales",
     "p1": "Site éditorial à but pédagogique. Les chiffres sont indicatifs : ordres de grandeur sourcés, pas des mesures certifiées.",
-    "p2": "Aucune donnée personnelle collectée, aucun cookie de suivi.",
+    "p2": "Aucun cookie, aucun traceur publicitaire. La mesure d'audience est anonyme et sans cookie (Vercel Analytics).",
+    "privacyTitle": "Données personnelles",
+    "privacy": "La seule donnée personnelle collectée est celle que tu envoies volontairement via le formulaire de contact (ton email et ton message), utilisée uniquement pour te répondre. L'envoi transite par Resend (sous-traitant, USA) ; ton adresse IP est traitée de façon transitoire pour limiter le spam. La fréquentation du site est mesurée de façon anonyme et sans cookie via Vercel Analytics (aucune donnée personnelle stockée, pas de suivi entre sites). Aucune revente, aucune inscription à une liste. Hébergement : Vercel (USA).",
     "editor": "Éditeur",
     "director": "Directeur de la publication",
     "host": "Hébergeur"
@@ -709,7 +712,7 @@
       },
       "kwh": {
         "term": "Kilowattheure (kWh)",
-        "def": "1 000 Wh, l'unité de votre facture d'électricité. Un four électrique consomme ~2 kWh en une heure."
+        "def": "1 000 Wh, l'unité de votre facture d'électricité. Un chauffage d'appoint consomme ~2 kWh en une heure."
       },
       "datacenter": {
         "term": "Data center (centre de données)",

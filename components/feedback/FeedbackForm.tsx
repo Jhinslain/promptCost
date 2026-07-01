@@ -75,7 +75,7 @@ export function FeedbackForm() {
                     : 'border-line bg-surface text-muted hover:border-accent'
                 }`}
               >
-                <Icon size={16} className={active ? 'text-accent' : 'text-muted'} aria-hidden />
+                <Icon size={16} className={active ? 'text-accent-text' : 'text-muted'} aria-hidden />
                 {t(`types.${key}`)}
               </button>
             );

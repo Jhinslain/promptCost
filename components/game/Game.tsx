@@ -52,8 +52,12 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   // Accent CSS variable suit la métrique + le thème (signature visuelle).
   useEffect(() => {
     const cfg = METRIC_BY_ID[metric];
-    const value = theme === 'dark' ? cfg.accent.dark : cfg.accent.light;
-    document.documentElement.style.setProperty('--accent', value);
+    const dark = theme === 'dark';
+    document.documentElement.style.setProperty('--accent', dark ? cfg.accent.dark : cfg.accent.light);
+    document.documentElement.style.setProperty(
+      '--accent-text',
+      dark ? cfg.accentText.dark : cfg.accentText.light,
+    );
   }, [metric, theme]);
 
   // Les gestes sont comptés pour UNE personne ; changer d'échelle change juste
@@ -186,15 +190,16 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
                   onClick={surprise}
                   className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-accent text-base font-bold text-on-accent transition-transform active:scale-95"
                 >
-                  <Shuffle size={18} />
+                  <Shuffle size={18} aria-hidden />
                   {t('controls.surprise')}
                 </button>
                 <button
                   onClick={reset}
                   disabled={count === 0}
+                  aria-label={t('controls.reset')}
                   className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-4 text-base font-bold text-text transition-colors hover:border-accent disabled:opacity-40"
                 >
-                  <RotateCcw size={18} />
+                  <RotateCcw size={18} aria-hidden />
                   <span className="hidden sm:inline">{t('controls.reset')}</span>
                 </button>
               </div>

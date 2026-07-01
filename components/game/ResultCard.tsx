@@ -62,7 +62,7 @@ export function ResultCard({
   function links() {
     const origin = window.location.origin;
     const pageUrl = `${origin}/${locale}`;
-    const text = t('result.shareText', { phrase });
+    const text = t('result.shareText', { phrase, count: formatCompact(count, locale) });
     const og =
       `${origin}/api/og?years=${encodeURIComponent(yearsStr)}&count=${count}` +
       `&metric=${metric}&lang=${locale}&scale=${encodeURIComponent(scaleLabel)}`;
@@ -150,7 +150,7 @@ export function ResultCard({
             <div className="relative">
               <div
                 id="result-title"
-                className="text-xs font-bold uppercase tracking-wider text-accent"
+                className="text-xs font-bold uppercase tracking-wider text-accent-text"
               >
                 {t('result.title')}
               </div>
@@ -159,7 +159,7 @@ export function ResultCard({
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1, type: 'spring', stiffness: 300, damping: 18 }}
-                className="num mt-3 text-5xl font-extrabold leading-none text-accent sm:text-6xl"
+                className="num mt-3 text-5xl font-extrabold leading-none text-accent-text sm:text-6xl"
               >
                 {formatCompact(spent, locale)}
                 <span className="ml-2 text-lg font-bold text-muted">
@@ -194,7 +194,7 @@ export function ResultCard({
                         setScale(s.id);
                         onClose();
                       }}
-                      className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-text transition-colors hover:border-accent hover:text-accent"
+                      className="rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-text transition-colors hover:border-accent hover:text-accent-text"
                     >
                       {t(`scale.${s.id}`)}
                     </button>
@@ -211,7 +211,7 @@ export function ResultCard({
                         setMetric(m.id);
                         onClose();
                       }}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-text transition-colors hover:border-accent hover:text-accent"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-bold text-text transition-colors hover:border-accent hover:text-accent-text"
                     >
                       <span aria-hidden>{m.emoji}</span>
                       {t(`metric.${m.id}`)}

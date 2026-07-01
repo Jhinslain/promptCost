@@ -81,7 +81,7 @@ export default async function MethodologiePage({
             {FLOW.map((s, i) => (
               <Fragment key={s}>
                 {i > 0 && (
-                  <div className="flex items-center justify-center text-accent" aria-hidden>
+                  <div className="flex items-center justify-center text-accent-text" aria-hidden>
                     <ArrowRight size={18} className="rotate-90 sm:rotate-0" />
                   </div>
                 )}
@@ -106,7 +106,7 @@ export default async function MethodologiePage({
                   </span>
                   <span className="text-sm font-bold text-text">{tm(m.id)}</span>
                 </div>
-                <div className="num mt-2 text-2xl font-extrabold text-accent">
+                <div className="num mt-2 text-2xl font-extrabold text-accent-text">
                   {fmt(PER[m.id])} {m.unit}
                 </div>
                 <div className="mt-2 text-xs text-muted">
@@ -139,7 +139,7 @@ export default async function MethodologiePage({
               >
                 <span className="text-sm font-bold text-text">{t(`ex.${k}G`)}</span>
                 <span className="num text-sm text-muted">{t(`ex.${k}C`)}</span>
-                <span className="num text-sm font-extrabold text-accent">{t(`ex.${k}R`)}</span>
+                <span className="num text-sm font-extrabold text-accent-text">{t(`ex.${k}R`)}</span>
               </div>
             ))}
           </div>
@@ -161,7 +161,7 @@ export default async function MethodologiePage({
               <div key={k} className="rounded-2xl border border-line bg-surface p-4">
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-sm font-bold text-text">{t(`sc.${k}L`)}</span>
-                  <span className="num text-sm font-extrabold text-accent">{t(`sc.${k}B`)}</span>
+                  <span className="num text-sm font-extrabold text-accent-text">{t(`sc.${k}B`)}</span>
                 </div>
                 <div className="mt-1 text-xs text-muted">
                   <span className="font-bold">{t('scalesBase')} :</span> {t(`sc.${k}Base`)}
@@ -182,7 +182,7 @@ export default async function MethodologiePage({
                 key={k}
                 className="flex gap-2 rounded-2xl border border-line bg-surface p-4 text-sm leading-relaxed text-muted"
               >
-                <span className="text-accent" aria-hidden>
+                <span className="text-accent-text" aria-hidden>
                   •
                 </span>
                 {t(k)}
@@ -211,7 +211,7 @@ export default async function MethodologiePage({
               >
                 <summary className="flex items-center justify-between gap-3 text-base font-bold marker:content-['']">
                   {f.q}
-                  <span className="text-accent transition-transform group-open:rotate-45">+</span>
+                  <span className="text-accent-text transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{f.a}</p>
               </details>
@@ -233,7 +233,7 @@ export default async function MethodologiePage({
                   className="flex items-center justify-between gap-3 rounded-2xl border border-line bg-surface p-4 text-sm font-semibold text-text transition-colors hover:border-accent"
                 >
                   <span>{t(`links.${l.key}`)}</span>
-                  <ArrowRight size={16} className="shrink-0 text-accent" />
+                  <ArrowRight size={16} className="shrink-0 text-accent-text" />
                 </Link>
               </li>
             ))}

@@ -20,7 +20,7 @@
   },
   "meta": {
     "home": {
-      "title": "HowManyPrompts: how many AI prompts is an everyday action worth?",
+      "title": "How many AI prompts is an everyday action worth? | HowManyPrompts",
       "description": "See the real cost of an AI prompt (electricity, water, CO₂) by comparing it to everyday actions. Sourced numbers, no agenda."
     },
     "convertir": {
@@ -49,7 +49,7 @@
     },
     "legal": {
       "title": "Legal notice | HowManyPrompts",
-      "description": "Legal notice for HowManyPrompts: no tracking cookies, no personal data collected."
+      "description": "Legal notice for HowManyPrompts: anonymous, cookieless analytics and no tracking cookies."
     }
   },
   "header": {
@@ -161,7 +161,8 @@
     "title": "The aisle of everyday actions",
     "costLabel": "= {cost} prompts",
     "buy": "Buy",
-    "virtualNote": "Food & goods = « virtual » footprint (production included), not tap water.",
+    "virtualNote": "Food & goods = “virtual” footprint (production included), not tap water.",
+    "yearNote": "“1 year” variants = average yearly consumption of real-world use (not running non-stop).",
     "led": "LED bulb for 1 h",
     "phone_charge": "Charge a smartphone",
     "kettle": "Kettle (1 cup)",
@@ -203,7 +204,7 @@
     "ac": "Air conditioning 1 h",
     "dryer": "1 tumble dryer cycle",
     "ev_charge": "EV charge (100 km)",
-    "dishwasher_water": "Dishwasher (water)",
+    "dishwasher_water": "Dishwasher (1 cycle, water)",
     "paper": "1 sheet of A4 paper",
     "bread_water": "1 slice of bread",
     "beer": "1 glass of beer",
@@ -292,7 +293,7 @@
     "headline": "You spent {phrase}!",
     "inActions": "In {count} everyday actions.",
     "share": "Share my score",
-    "shareText": "My everyday actions cost as much as {phrase} 👀 HowManyPrompts",
+    "shareText": "In just {count} everyday actions I burned through {phrase} 👀 HowManyPrompts",
     "downloadImage": "Download image",
     "copied": "Link copied!",
     "continue": "Keep playing",
@@ -303,9 +304,9 @@
   "facts": {
     "f1": "A text prompt ≈ 0.3 Wh: about an LED bulb on for ~2 minutes.",
     "f2": "The cooling water for one prompt ≈ 0.3 mL: 5 drops.",
-    "f3": "A prompt's CO₂ ≈ 0.2 g: an email with an attachment weighs ~250× more.",
-    "f4": "A 5-minute shower is « worth » about 250,000 prompts in water.",
-    "f5": "A Paris → New York flight is « worth » millions of prompts in CO₂."
+    "f3": "A prompt's CO₂ ≈ 0.2 g: an email with an attachment weighs ~95× more.",
+    "f4": "A 5-minute shower is “worth” about 167,000 prompts in water.",
+    "f5": "A Paris → New York flight is “worth” millions of prompts in CO₂."
   },
   "comparatif": {
     "title": "Comparison: the classic way versus AI",
@@ -326,15 +327,15 @@
     },
     "cases": {
       "ia-vs-google": {
-        "title": "AI search vs Google search",
-        "short": "Does a text prompt use more than a Google search? A sourced, numbered answer.",
+        "title": "ChatGPT vs Google search: energy use",
+        "short": "Does ChatGPT (or an AI search) use more than a Google search? A sourced, numbered answer.",
         "leftLabel": "Google search",
         "rightLabel": "AI prompt (text)",
-        "verdict": "Today, a text prompt uses about as much as a Google search (~0.3 Wh). The famous « 10× more » comes from an old IEA estimate (2.9 Wh), now outdated: recent models have cut their consumption by ~10. Honest caveat: reasoning or multimodal queries remain far heavier.",
+        "verdict": "Today, a text prompt uses about as much as a Google search (~0.3 Wh). The famous “10× more” comes from an old IEA estimate (2.9 Wh), now outdated: recent models have cut their consumption by ~10. Honest caveat: reasoning or multimodal queries remain far heavier.",
         "faq": {
           "q1": "Does ChatGPT use more than a Google search?",
           "a1": "For an average text prompt, no: both sit around 0.3 Wh. The gap shows up mainly with reasoning, image or video queries.",
-          "q2": "Where does the « 10× more » figure come from?",
+          "q2": "Where does the “10× more” figure come from?",
           "a2": "From an IEA estimate of ~2.9 Wh per query, now outdated: recent models have cut consumption by about 10 (Google reports 0.24 Wh).",
           "q3": "Can one AI answer replace several searches?",
           "a3": "Often yes: a single answer synthesizes what would take several searches and page visits. In practice, the balance can even tip in AI's favor."
@@ -345,14 +346,14 @@
         "short": "How much does an AI-generated image cost versus reusing an existing photo?",
         "leftLabel": "Reuse an existing image",
         "rightLabel": "Generate an image with AI",
-        "verdict": "Generating an image costs 20 to 40× a text prompt (~6 to 12 Wh), far more than reusing an image already online. It stays modest against a physical action (≈ a few minutes of oven), but it's the first real « jump » in consumption once you leave text.",
+        "verdict": "Generating an image costs 20 to 40× a text prompt (~6 to 12 Wh), far more than reusing an image already online. It stays modest against a physical action (≈ a few minutes of oven), but it's the first real “jump” in consumption once you leave text.",
         "faq": {
           "q1": "How much does an AI-generated image use?",
           "a1": "On the order of 6 to 12 Wh, i.e. 20 to 40 times a text prompt.",
           "q2": "Is it worse than downloading a photo?",
           "a2": "Yes: reusing an existing image only costs a data transfer (~0.1 Wh). Generation, by contrast, spins up GPUs.",
           "q3": "Why does an image cost more than text?",
-          "a3": "Producing an image takes far more compute (thousands of « denoising » steps) than a text answer."
+          "a3": "Producing an image takes far more compute (thousands of “denoising” steps) than a text answer."
         }
       },
       "video-ia-vs-streaming": {
@@ -401,7 +402,7 @@
   },
   "methodologie": {
     "title": "Methodology",
-    "intro": "How we turn an everyday action into a « number of prompts ». Everything is honest and bounded by ranges: orders of magnitude, never false precision.",
+    "intro": "How we turn an everyday action into a “number of prompts”. Everything is honest and bounded by ranges: orders of magnitude, never false precision.",
     "briefTitle": "In short",
     "brief": "We start from an action's measured, sourced consumption, divide it by one prompt's consumption, and get its equivalent in AI prompts. Nothing more.",
     "flow": {
@@ -420,22 +421,22 @@
     "formulaTitle": "The formula",
     "formula": "prompts = action's consumption ÷ one prompt's consumption",
     "formulaLead": "Three examples, one per metric:",
-    "formulaNote": "That's the whole mechanic of the game: each added action is converted into its prompt equivalent, then compared to an AI « budget ».",
+    "formulaNote": "That's the whole mechanic of the game: each added action is converted into its prompt equivalent, then compared to an AI “budget”.",
     "ex": {
       "showerG": "🚿 5 min shower (~50 L)",
       "showerC": "50,000 mL ÷ 0.3 mL",
       "showerR": "≈ 167,000 prompts",
-      "ovenG": "🔥 Oven for 1 h (~2.1 kWh)",
-      "ovenC": "2,100 Wh ÷ 0.3 Wh",
-      "ovenR": "≈ 7,000 prompts",
+      "ovenG": "🔥 Oven for 1 h (~700 Wh)",
+      "ovenC": "700 Wh ÷ 0.3 Wh",
+      "ovenR": "≈ 2,300 prompts",
       "carG": "🚗 1 km by car (~170 g)",
       "carC": "170 g ÷ 0.2 g",
       "carR": "≈ 850 prompts"
     },
-    "virtualTitle": "« Virtual » water and CO₂",
-    "virtual": "For food and goods we count the production footprint (« virtual » water and CO₂), not just the tap water at the meal. A burger « costs » mostly through farming (~2,500 L of virtual water), not the glass of water beside it: a toilet flush (direct water) and a steak (virtual water) don't measure the same thing.",
-    "scalesTitle": "The scales: which AI « budget »?",
-    "scalesLead": "The budget we try to « spend » matches a real AI consumption:",
+    "virtualTitle": "“Virtual” water and CO₂",
+    "virtual": "For food and goods we count the production footprint (“virtual” water and CO₂), not just the tap water at the meal. A burger “costs” mostly through farming (~2,500 L of virtual water), not the glass of water beside it: a toilet flush (direct water) and a steak (virtual water) don't measure the same thing.",
+    "scalesTitle": "The scales: which AI “budget”?",
+    "scalesLead": "The budget we try to “spend” matches a real AI consumption:",
     "scalesBase": "Basis",
     "sc": {
       "youL": "🧍 You (1 year)",
@@ -451,7 +452,7 @@
       "allB": "~1,100,000,000,000",
       "allBase": "ChatGPT ~900 B/yr ÷ ~80% of the market"
     },
-    "scalesNote": "We don't assume everyone uses AI: these budgets rest on actually observed usage (ChatGPT ≈ 2.5 billion prompts a day), not on world population. In the game you aim at one of the annual budgets (You, 100 people, all generative AI); « ChatGPT in 1 day » is shown here as a reference point.",
+    "scalesNote": "We don't assume everyone uses AI: these budgets rest on actually observed usage (ChatGPT ≈ 2.5 billion prompts a day), not on world population. In the game you aim at one of the annual budgets (You, 100 people, all generative AI); “ChatGPT in 1 day” is shown here as a reference point.",
     "rangeTitle": "Why ranges instead of one exact figure?",
     "rangeLead": "Sources vary (power mix, measurement method, scope). We keep a credible median and show the range. Two telling examples:",
     "rangeFlight": "Flight: depending on whether radiative forcing is included (×~1.9 for DEFRA/ADEME; CO₂ only for ICAO) and one-way vs round-trip, the figure varies twofold.",
@@ -463,12 +464,12 @@
     "faqTitle": "FAQ",
     "q1": "How much does an AI prompt use?",
     "a1": "For an average text prompt: ~0.3 Wh of electricity, ~0.3 mL of direct cooling water, ~0.2 g of CO₂. We count only inference, not training.",
-    "q2": "How do you compute an action's « cost in prompts »?",
+    "q2": "How do you compute an action's “cost in prompts”?",
     "a2": "We divide the action's consumption by a prompt's: prompts = action value ÷ prompt cost. A 50 L shower ≈ 50,000 mL ÷ 0.3 mL ≈ 167,000 prompts.",
     "q3": "Why 12,000 prompts per person per year?",
     "a3": "It's a heavy-use assumption (≈ 33 prompts/day). The larger scales don't multiply by world population: they rest on AI's real consumption (ChatGPT ≈ 2.5 billion prompts/day).",
-    "q4": "What are « virtual » water and CO₂?",
-    "a4": "For food and goods we count the production footprint (« virtual » water/CO₂), not just tap water.",
+    "q4": "What are “virtual” water and CO₂?",
+    "a4": "For food and goods we count the production footprint (“virtual” water/CO₂), not just tap water.",
     "q5": "Why ranges instead of one exact figure?",
     "a5": "Because sources vary. We keep a credible median and show the spread: honest orders of magnitude, not false precision.",
     "q6": "What about training the models?",
@@ -510,8 +511,8 @@
     },
     "debateTitle": "The debate, honestly: two readings",
     "debateIntro": "On AI's impact, two camps coexist, and each has solid arguments. We lay them side by side.",
-    "campGreen": "« AI isn't that heavy »",
-    "campOrange": "« Let's stay vigilant »",
+    "campGreen": "“AI isn't that heavy”",
+    "campOrange": "“Let's stay vigilant”",
     "green1": "The unit impact is small: ~0.3 Wh, comparable to a Google search (Google, OpenAI, Epoch AI).",
     "green2": "Efficiency is improving: newer models use less per request (Google: 0.24 Wh).",
     "green3": "Concrete benefits: productivity, medical-diagnosis support, climate research, accessibility.",
@@ -521,7 +522,7 @@
     "orange3": "Water and local water stress around data centers (UC Riverside, Water Footprint Network).",
     "orange4": "Jobs, bias, privacy, concentration of power: up to ~40% of worked hours could be affected (WEF, ILO, Stanford HAI).",
     "jobsTitle": "AI and jobs: a transformation, not a novelty",
-    "jobs1": "As with every major revolution, industry then the web, some jobs change or disappear while others emerge. Generative AI follows the same path. Studies (WEF « Future of Jobs », OECD, PwC) point mostly to a transformation of tasks rather than outright replacement: the tool augments the expert more than it replaces them, wherever judgment, responsibility and human context stay decisive.",
+    "jobs1": "As with every major revolution, industry then the web, some jobs change or disappear while others emerge. Generative AI follows the same path. Studies (WEF “Future of Jobs”, OECD, PwC) point mostly to a transformation of tasks rather than outright replacement: the tool augments the expert more than it replaces them, wherever judgment, responsibility and human context stay decisive.",
     "positionTitle": "Our stance",
     "position1": "Neither starry-eyed technophiles nor technophobes. We believe that staying aware of how AI evolves, how it's used and what it costs is the best way to benefit from it, without naivety or fear. This site gives the numbers; everyone draws their own conclusions.",
     "transparencyTitle": "Transparency",
@@ -538,7 +539,9 @@
   "legal": {
     "title": "Legal notice",
     "p1": "Editorial site for educational purposes. Numbers are indicative: sourced orders of magnitude, not certified measurements.",
-    "p2": "No personal data collected, no tracking cookies.",
+    "p2": "No cookies, no advertising trackers. Audience measurement is anonymous and cookieless (Vercel Analytics).",
+    "privacyTitle": "Personal data",
+    "privacy": "The only personal data we collect is what you voluntarily send via the contact form (your email and message), used solely to reply to you. Delivery goes through Resend (a processor, USA); your IP address is processed transiently to limit spam. Site traffic is measured anonymously and without cookies via Vercel Analytics (no personal data stored, no cross-site tracking). No resale, no mailing-list signup. Hosting: Vercel (USA).",
     "editor": "Editor",
     "director": "Publication director",
     "host": "Host"
@@ -665,7 +668,7 @@
       },
       "token": {
         "term": "Token",
-        "def": "The smallest unit of text a model handles (≈ ¾ of a word in English, often less in French). Models read, generate and « bill » by the token: the more tokens, the more inference consumes."
+        "def": "The smallest unit of text a model handles (≈ ¾ of a word in English, often less in French). Models read, generate and “bill” by the token: the more tokens, the more inference consumes."
       },
       "inference": {
         "term": "Inference",
@@ -681,11 +684,11 @@
       },
       "contextWindow": {
         "term": "Context window",
-        "def": "How much text a model can take into account at once (a conversation's « memory »). The fuller it is, the costlier the inference."
+        "def": "How much text a model can take into account at once (a conversation's “memory”). The fuller it is, the costlier the inference."
       },
       "parameters": {
         "term": "Parameters",
-        "def": "The internal « settings » learned during training, counted in billions. As a rule, the more parameters, the more capable a model is… and the more power-hungry."
+        "def": "The internal “settings” learned during training, counted in billions. As a rule, the more parameters, the more capable a model is… and the more power-hungry."
       },
       "multimodal": {
         "term": "Multimodal",
@@ -697,7 +700,7 @@
       },
       "reasoning": {
         "term": "Reasoning model",
-        "def": "A model that « thinks » (generates intermediate steps) before answering. Far costlier than a text prompt: ~15 to 40 Wh per request, i.e. 50 to 100× a standard prompt."
+        "def": "A model that “thinks” (generates intermediate steps) before answering. Far costlier than a text prompt: ~15 to 40 Wh per request, i.e. 50 to 100× a standard prompt."
       },
       "imageVideo": {
         "term": "Image / video generation",
@@ -709,7 +712,7 @@
       },
       "kwh": {
         "term": "Kilowatt-hour (kWh)",
-        "def": "1,000 Wh, the unit on your electricity bill. An electric oven uses ~2 kWh in an hour."
+        "def": "1,000 Wh, the unit on your electricity bill. A space heater uses ~2 kWh in an hour."
       },
       "datacenter": {
         "term": "Data center",
@@ -725,19 +728,19 @@
       },
       "twh": {
         "term": "TWh (terawatt-hour)",
-        "def": "1 billion kWh. It's the scale of national or global consumption, where AI « weighs » at a global level."
+        "def": "1 billion kWh. It's the scale of national or global consumption, where AI “weighs” at a global level."
       },
       "virtualWater": {
         "term": "Virtual water",
-        "def": "The water used to produce a good (farming, livestock, manufacturing), not just tap water. A burger thus « contains » thousands of liters of virtual water."
+        "def": "The water used to produce a good (farming, livestock, manufacturing), not just tap water. A burger thus “contains” thousands of liters of virtual water."
       },
       "directWater": {
         "term": "Direct water (cooling)",
-        "def": "The water evaporated on site to cool a data center's servers. It's the « official » figure reported by Google (~0.26 mL/prompt) or OpenAI (~0.32 mL)."
+        "def": "The water evaporated on site to cool a data center's servers. It's the “official” figure reported by Google (~0.26 mL/prompt) or OpenAI (~0.32 mL)."
       },
       "wue": {
         "term": "WUE (Water Usage Effectiveness)",
-        "def": "Liters of water used per kWh consumed by a data center. Used to estimate a prompt's « direct » water."
+        "def": "Liters of water used per kWh consumed by a data center. Used to estimate a prompt's “direct” water."
       },
       "waterStress": {
         "term": "Water stress",
@@ -757,7 +760,7 @@
       },
       "lca": {
         "term": "Life-cycle assessment (LCA)",
-        "def": "A method that counts « cradle-to-grave » impact: manufacturing, use and end of life. It explains why an object's footprint exceeds its use-phase consumption alone."
+        "def": "A method that counts “cradle-to-grave” impact: manufacturing, use and end of life. It explains why an object's footprint exceeds its use-phase consumption alone."
       },
       "scopes": {
         "term": "Scopes 1 / 2 / 3",
@@ -765,7 +768,7 @@
       },
       "orderMagnitude": {
         "term": "Order of magnitude",
-        "def": "A number's approximate « size » (×10, ×100, ×1,000). On uncertain data, it's more honest and more useful than false precision."
+        "def": "A number's approximate “size” (×10, ×100, ×1,000). On uncertain data, it's more honest and more useful than false precision."
       },
       "medianRange": {
         "term": "Median & range",

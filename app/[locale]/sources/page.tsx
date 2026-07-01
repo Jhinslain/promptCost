@@ -68,7 +68,7 @@ export default async function SourcesPage({
                     rel="noopener noreferrer"
                     className="flex items-start gap-2 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent"
                   >
-                    <ExternalLink size={16} className="mt-0.5 shrink-0 text-accent" />
+                    <ExternalLink size={16} className="mt-0.5 shrink-0 text-accent-text" />
                     <span className="text-sm font-semibold leading-snug">{s.label}</span>
                   </a>
                 ) : (

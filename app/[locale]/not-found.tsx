@@ -11,7 +11,7 @@ export default function NotFound() {
     <>
       <Navbar />
       <main className="mx-auto flex max-w-app flex-col items-center px-4 py-20 text-center">
-        <div className="num text-7xl font-extrabold text-accent">404</div>
+        <div className="num text-7xl font-extrabold text-accent-text">404</div>
         <h1 className="mt-4 text-2xl font-extrabold tracking-tight">{t('title')}</h1>
         <p className="mt-2 text-base text-muted">{t('text')}</p>
         <Link

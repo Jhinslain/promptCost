@@ -13,6 +13,8 @@
      par métrique : lib/data.ts → METRICS (ce défaut reflète elec.light).
      Surchargé en JS par métrique sur les pages jeu. */
   --accent: 245 166 35;
+  /* Accent TEXTE (foncé, AA sur fond clair). Surchargé par métrique en JS. */
+  --accent-text: 138 83 0;
   /* Texte posé SUR un aplat d'accent (boutons) : foncé, car l'accent est clair.
      Lisible AA sur le jaune/l'accent dans les deux thèmes. */
   --on-accent: 20 20 20;
@@ -25,6 +27,7 @@
   --muted: 148 163 184;
   --line: 39 45 58;
   --accent: 255 209 102;
+  --accent-text: 255 209 102;
   --on-accent: 20 20 20;
 }
 
@@ -82,7 +85,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--accent));
+  outline: 2px solid rgb(var(--accent-text));
   outline-offset: 2px;
   border-radius: 6px;
 }

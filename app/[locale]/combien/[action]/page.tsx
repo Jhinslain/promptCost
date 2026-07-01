@@ -65,7 +65,7 @@ export default async function ComparePage({
           {a.emoji}
         </span>
         <div>
-          <div className="num text-4xl font-extrabold text-accent">{costStr}</div>
+          <div className="num text-4xl font-extrabold text-accent-text">{costStr}</div>
           <div className="text-sm font-bold text-muted">{tc('unit')}</div>
         </div>
       </div>
@@ -78,7 +78,7 @@ export default async function ComparePage({
               href={source.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-accent hover:underline"
+              className="font-semibold text-accent-text hover:underline"
             >
               {source.label}
             </a>

@@ -91,7 +91,7 @@ export function LangSwitcher() {
                     aria-selected={active}
                     onClick={() => choose(code)}
                     className={`flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-semibold transition-colors ${
-                      active ? 'bg-accent-soft text-accent' : 'text-text hover:bg-line/50'
+                      active ? 'bg-accent-soft text-accent-text' : 'text-text hover:bg-line/50'
                     }`}
                   >
                     <Flag region={m.region} className="h-3.5 w-auto rounded-[2px]" />

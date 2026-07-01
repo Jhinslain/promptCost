@@ -39,7 +39,7 @@ export function MetricTabs() {
                 />
               )}
               <span className="relative z-10 text-lg">{m.emoji}</span>
-              <span className={`relative z-10 ${active ? 'text-accent' : 'text-muted'}`}>
+              <span className={`relative z-10 ${active ? 'text-accent-text' : 'text-muted'}`}>
                 {t(m.id)}
               </span>
             </button>

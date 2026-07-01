@@ -71,7 +71,7 @@ export default async function AProposPage({
             {FLOW.map((s, i) => (
               <Fragment key={s}>
                 {i > 0 && (
-                  <div className="flex items-center justify-center text-accent" aria-hidden>
+                  <div className="flex items-center justify-center text-accent-text" aria-hidden>
                     <ArrowRight size={18} className="rotate-90 sm:rotate-0" />
                   </div>
                 )}
@@ -195,7 +195,7 @@ export default async function AProposPage({
                   className="flex items-center justify-between gap-3 rounded-2xl border border-line bg-surface p-4 text-sm font-semibold text-text transition-colors hover:border-accent"
                 >
                   <span>{t(`links.${l.key}`)}</span>
-                  <ArrowRight size={16} className="shrink-0 text-accent" />
+                  <ArrowRight size={16} className="shrink-0 text-accent-text" />
                 </Link>
               </li>
             ))}

@@ -32,12 +32,14 @@ export default async function LegalPage({
       <div className="flex flex-col gap-4 text-base leading-relaxed text-text">
         <p>{t('p1')}</p>
         <p>{t('p2')}</p>
+        <h2 className="mt-2 text-lg font-extrabold tracking-tight">{t('privacyTitle')}</h2>
+        <p>{t('privacy')}</p>
         <dl className="mt-2 grid gap-3 text-sm">
           <div className="rounded-2xl border border-line bg-surface p-4">
             <dt className="font-bold text-muted">{t('editor')}</dt>
             <dd className="mt-1">
               GHIS (SASU) · RCS Manosque 105 680 078 ·{' '}
-              <a href="mailto:contact@ghis.fr" className="font-semibold text-accent hover:underline">
+              <a href="mailto:contact@ghis.fr" className="font-semibold text-accent-text hover:underline">
                 contact@ghis.fr
               </a>
             </dd>
@@ -54,7 +56,7 @@ export default async function LegalPage({
                 href="https://vercel.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-accent hover:underline"
+                className="font-semibold text-accent-text hover:underline"
               >
                 vercel.com
               </a>

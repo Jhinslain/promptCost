@@ -59,7 +59,7 @@ export default async function CombienIndex({
                     <span className="flex-1 truncate text-sm font-semibold text-text">
                       {t(`actions.${a.id}`)}
                     </span>
-                    <span className="num shrink-0 text-sm font-extrabold text-accent">
+                    <span className="num shrink-0 text-sm font-extrabold text-accent-text">
                       {formatCompact(promptsForAction(a.value, m), locale)}
                     </span>
                   </Link>
