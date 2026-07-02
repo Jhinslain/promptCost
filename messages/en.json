@@ -61,7 +61,7 @@
     "sub": "{label}: that's already {cost} AI prompts. One prompt is tiny, but it's their number that adds up: stack everyday actions and see how few it takes to burn through a whole year of AI."
   },
   "total": {
-    "emptyHint": "Add an action: see how many AI prompts would use as much.",
+    "emptyHint": "Add an action to see its cost in AI prompts.",
     "promptsSuffix": "AI prompts",
     "ofWord": "of",
     "equiv": {
@@ -133,7 +133,7 @@
     }
   },
   "scale": {
-    "label": "At what scale? (1 year of AI use)",
+    "label": "At what scale?",
     "you": "You",
     "hundred": "100 people",
     "all_ai": "All generative AI",
@@ -553,18 +553,18 @@
     "perVisit": "And each visit? A few tenths of a Wh on lightweight static hosting: negligible, even with lots of traffic.",
     "elec": {
       "0": "≈ 2 h of TV",
-      "1": "≈ 25 min of vacuuming",
+      "1": "≈ 20 min vacuuming",
       "2": "≈ 13 phone charges"
     },
     "water": {
       "0": "≈ 1 glass of water",
-      "1": "≈ far less than a toilet flush",
+      "1": "≈ 2 sips of water",
       "2": "≈ 1/20th of a shower"
     },
     "co2": {
       "0": "≈ 1 km by car",
-      "1": "≈ 5 h of video streaming",
-      "2": "≈ 3 coffees"
+      "1": "≈ 5 h of streaming",
+      "2": "≈ 3 cups of coffee"
     }
   },
   "footer": {

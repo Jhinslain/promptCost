@@ -103,7 +103,7 @@ export function ActionGrid({ metric }: ActionGridProps) {
               {/* Infos (titre + coût centrés) */}
               <div className="flex flex-1 flex-col items-center gap-0.5 px-3 pt-2.5 text-center">
                 <div
-                  className={`w-full truncate text-sm font-bold leading-tight text-text ${
+                  className={`w-full text-balance break-words text-sm font-bold leading-tight text-text ${
                     isYear ? 'cursor-help' : ''
                   }`}
                   title={isYear ? t('actions.yearNote') : undefined}
@@ -171,11 +171,6 @@ export function ActionGrid({ metric }: ActionGridProps) {
         })}
       </ul>
 
-      {metric === 'water' || metric === 'co2' ? (
-        <p className="px-1 pt-1 text-xs leading-relaxed text-muted">
-          {t('actions.virtualNote')}
-        </p>
-      ) : null}
       <p className="px-1 text-xs leading-relaxed text-muted">{t('actions.yearNote')}</p>
     </div>
   );

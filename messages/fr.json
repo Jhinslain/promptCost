@@ -61,7 +61,7 @@
     "sub": "{label} : c'est déjà {cost} prompts IA. Un prompt est minuscule, mais c'est leur nombre qui pèse : ajoute des gestes du quotidien et regarde en combien tu épuises une année entière d'IA."
   },
   "total": {
-    "emptyHint": "Ajoute un geste : tu verras combien de prompts IA consommeraient autant.",
+    "emptyHint": "Ajoute un geste pour voir son coût en prompts IA.",
     "promptsSuffix": "prompts IA",
     "ofWord": "de",
     "equiv": {
@@ -133,7 +133,7 @@
     }
   },
   "scale": {
-    "label": "À quelle échelle ? (usage d'IA sur 1 an)",
+    "label": "À quelle échelle ?",
     "you": "Toi",
     "hundred": "100 personnes",
     "all_ai": "Toute l'IA générative",
@@ -553,18 +553,18 @@
     "perVisit": "Et chaque visite ? Quelques dixièmes de Wh sur un hébergement statique léger : négligeable, même avec beaucoup de trafic.",
     "elec": {
       "0": "≈ 2 h de télé",
-      "1": "≈ 25 min d'aspirateur",
-      "2": "≈ 13 recharges de smartphone"
+      "1": "≈ 20 min d'aspirateur",
+      "2": "≈ 13 charges mobile"
     },
     "water": {
       "0": "≈ 1 verre d'eau",
-      "1": "≈ bien moins qu'une chasse d'eau",
+      "1": "≈ 2 gorgées d'eau",
       "2": "≈ 1/20ᵉ d'une douche"
     },
     "co2": {
       "0": "≈ 1 km en voiture",
-      "1": "≈ 5 h de streaming vidéo",
-      "2": "≈ 3 cafés"
+      "1": "≈ 5 h de streaming",
+      "2": "≈ 3 tasses de café"
     }
   },
   "footer": {

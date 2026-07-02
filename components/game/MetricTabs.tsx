@@ -29,7 +29,7 @@ export function MetricTabs() {
               role="tab"
               aria-selected={active}
               onClick={() => setMetric(m.id)}
-              className="relative flex items-center justify-center gap-2 rounded-xl px-2 py-2.5 text-sm font-bold transition-colors"
+              className="relative flex min-w-0 items-center justify-center gap-1 rounded-xl px-1 py-2.5 text-xs font-bold transition-colors sm:gap-2 sm:px-2 sm:text-sm"
             >
               {active && (
                 <motion.span
@@ -38,8 +38,10 @@ export function MetricTabs() {
                   transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                 />
               )}
-              <span className="relative z-10 text-lg">{m.emoji}</span>
-              <span className={`relative z-10 ${active ? 'text-accent-text' : 'text-muted'}`}>
+              <span className="relative z-10 text-base sm:text-lg">{m.emoji}</span>
+              <span
+                className={`relative z-10 truncate ${active ? 'text-accent-text' : 'text-muted'}`}
+              >
                 {t(m.id)}
               </span>
             </button>

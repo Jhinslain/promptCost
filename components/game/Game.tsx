@@ -148,8 +148,9 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
         <div className="accent-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-64" />
 
         <div className="mx-auto max-w-app px-4">
-          {/* Intro (s'adapte au mode) */}
-          <section className="pt-8 text-center sm:pt-12">
+          {/* Intro (s'adapte au mode). pt-16 sur mobile pour laisser passer les
+             boutons flottants du header (info/langue/thème) au-dessus du titre. */}
+          <section className="pt-16 text-center sm:pt-12">
             <h1 className="text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl">
               {mode === 'reverse' ? t('reverse.title') : t('intro.lead')}
             </h1>

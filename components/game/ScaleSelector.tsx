@@ -21,7 +21,7 @@ export function ScaleSelector() {
         {t('label')}
       </span>
 
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex justify-center gap-2">
         {SCALES.map((s) => {
           const active = s.id === scaleId;
           return (
@@ -29,16 +29,18 @@ export function ScaleSelector() {
               key={s.id}
               onClick={() => setScale(s.id)}
               aria-pressed={active}
-              className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm font-bold transition-all ${
+              className={`flex min-w-0 flex-1 basis-0 flex-col items-center justify-center gap-0.5 rounded-2xl border px-2 py-2 text-center transition-all ${
                 active
                   ? 'border-accent bg-accent-soft text-accent-text'
                   : 'border-line bg-surface text-muted hover:border-accent/50'
               }`}
             >
-              <span className="text-base" aria-hidden>
-                {s.emoji}
+              <span className="flex items-center gap-1 text-xs font-bold leading-tight sm:text-sm">
+                <span className="text-sm sm:text-base" aria-hidden>
+                  {s.emoji}
+                </span>
+                {t(s.id)}
               </span>
-              {t(s.id)}
               <span className="num text-xs font-semibold opacity-60">
                 {formatCompact(s.budget, locale)}
               </span>

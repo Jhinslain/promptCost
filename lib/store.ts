@@ -31,7 +31,7 @@ export const useGame = create<GameState>((set) => ({
   metric: 'elec',
   scaleId: 'you',
   cart: {},
-  usage: { text: 30, image: 2 },
+  usage: { text: 5 },
   reducedMotion: false,
 
   setMetric: (metric) => set({ metric }),

@@ -36,10 +36,10 @@ export default async function ComparatifPage({
     <PageShell title={t('title')} intro={t('subtitle')}>
       <ul className="grid gap-4 sm:grid-cols-2">
         {COMPARISONS.map((c) => (
-          <li key={c.slug}>
+          <li key={c.slug} className="min-w-0">
             <Link
               href={`/comparatif/${c.slug}`}
-              className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
+              className="group flex h-full min-w-0 flex-col rounded-3xl border border-line bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
             >
               <h2 className="text-base font-extrabold leading-tight text-text">
                 {t(`cases.${c.slug}.title`)}

@@ -36,12 +36,12 @@ export function VersusBlock({
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center justify-between gap-2 text-sm font-bold">
         <span className="flex min-w-0 items-center gap-1.5">
-          <span className="text-lg" aria-hidden>
+          <span className="shrink-0 text-lg" aria-hidden>
             {side.emoji}
           </span>
-          <span className="truncate">{side.label}</span>
+          <span className="min-w-0 truncate">{side.label}</span>
         </span>
-        <span className="num shrink-0 text-muted">
+        <span className="num shrink-0 whitespace-nowrap text-muted">
           {fmt(side.value)} {side.unit}
         </span>
       </div>
