@@ -135,16 +135,16 @@
   "scale": {
     "label": "At what scale?",
     "you": "You",
-    "hundred": "100 people",
+    "usa": "United States",
     "all_ai": "All generative AI",
     "unit": {
       "you": "your AI year",
-      "hundred": "100 people / year",
+      "usa": "the U.S. / year",
       "all_ai": "all generative AI / year"
     },
     "spent": {
       "you": "a year of your AI use",
-      "hundred": "a year of AI for 100 people",
+      "usa": "a year of U.S. AI use",
       "all_ai": "a year of all generative AI worldwide"
     }
   },
@@ -160,7 +160,7 @@
   "actions": {
     "title": "The aisle of everyday actions",
     "costLabel": "= {cost} prompts",
-    "buy": "Buy",
+    "buy": "Use",
     "virtualNote": "Food & goods = “virtual” footprint (production included), not tap water.",
     "yearNote": "“1 year” variants = average yearly consumption of real-world use (not running non-stop).",
     "led": "LED bulb for 1 h",
@@ -299,7 +299,9 @@
     "continue": "Keep playing",
     "didYouKnow": "Did you know?",
     "tryScale": "Try another scale",
-    "tryMetric": "Or another resource"
+    "tryMetric": "Or another resource",
+    "tryReverse": "The other way around?",
+    "tryReverseCta": "Convert your prompts into actions"
   },
   "facts": {
     "f1": "A text prompt ≈ 0.3 Wh: about an LED bulb on for ~2 minutes.",
@@ -442,9 +444,9 @@
       "youL": "🧍 You (1 year)",
       "youB": "12,000",
       "youBase": "heavy use ≈ 33 prompts/day",
-      "hundredL": "👥 100 people (1 year)",
-      "hundredB": "1,200,000",
-      "hundredBase": "12,000 × 100",
+      "usaL": "🇺🇸 United States (1 year)",
+      "usaB": "≈ 165,000,000,000",
+      "usaBase": "≈ 15% of global AI usage",
       "dayL": "📅 ChatGPT in 1 day",
       "dayB": "2,500,000,000",
       "dayBase": "~2.5 B prompts/day (OpenAI, 2026)",
@@ -452,7 +454,7 @@
       "allB": "~1,100,000,000,000",
       "allBase": "ChatGPT ~900 B/yr ÷ ~80% of the market"
     },
-    "scalesNote": "We don't assume everyone uses AI: these budgets rest on actually observed usage (ChatGPT ≈ 2.5 billion prompts a day), not on world population. In the game you aim at one of the annual budgets (You, 100 people, all generative AI); “ChatGPT in 1 day” is shown here as a reference point.",
+    "scalesNote": "We don't assume everyone uses AI: these budgets rest on actually observed usage (ChatGPT ≈ 2.5 billion prompts a day), not on world population. In the game you aim at one of the annual budgets (You, the United States, all generative AI); “ChatGPT in 1 day” is shown here as a reference point.",
     "rangeTitle": "Why ranges instead of one exact figure?",
     "rangeLead": "Sources vary (power mix, measurement method, scope). We keep a credible median and show the range. Two telling examples:",
     "rangeFlight": "Flight: depending on whether radiative forcing is included (×~1.9 for DEFRA/ADEME; CO₂ only for ICAO) and one-way vs round-trip, the figure varies twofold.",

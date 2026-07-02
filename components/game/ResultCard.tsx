@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Share2, X, Check, Download } from 'lucide-react';
+import { Share2, X, Check, Download, Repeat } from 'lucide-react';
+import { Link } from '@/i18n/routing';
 import { formatCompact, formatYears } from '@/lib/format';
 import { METRICS, type MetricId } from '@/lib/data';
 import { SCALES } from '@/lib/scales';
@@ -218,6 +219,24 @@ export function ResultCard({
                     </button>
                   ))}
                 </div>
+
+                {/* Pont vers l'autre mode : « Convertir » (la navigation remet
+                   la page Dépenser à zéro, cf. Game). */}
+                <div className="mt-4 text-[11px] font-bold uppercase tracking-wider text-muted">
+                  {t('result.tryReverse')}
+                </div>
+                <Link
+                  href="/convertir"
+                  onClick={onClose}
+                  className="group mt-2 flex items-center justify-center gap-2 rounded-2xl border border-sky-500/40 bg-sky-500/10 px-4 py-3 text-sm font-extrabold text-sky-600 transition-colors hover:border-sky-500 hover:bg-sky-500/15 dark:text-sky-400"
+                >
+                  <Repeat
+                    size={16}
+                    strokeWidth={2.5}
+                    className="shrink-0 transition-transform duration-300 group-hover:rotate-180"
+                  />
+                  {t('result.tryReverseCta')}
+                </Link>
               </div>
 
               <div className="mt-5 flex flex-col gap-2">

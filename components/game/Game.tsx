@@ -38,6 +38,17 @@ export function Game({ mode }: { mode: 'spend' | 'reverse' }) {
   const cart = useGame((s) => s.cart);
   const setCart = useGame((s) => s.setCart);
   const reset = useGame((s) => s.reset);
+  const resetUsage = useGame((s) => s.resetUsage);
+
+  // Changer de page (Dépenser ↔ Convertir) repart d'un état vierge : le store
+  // n'est pas persisté, mais il survit à la navigation client. On réinitialise
+  // donc le mode courant en arrivant sur sa page (panier vide côté « Dépenser »,
+  // usage par défaut côté « Convertir »).
+  useEffect(() => {
+    if (mode === 'spend') reset();
+    else resetUsage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
 
   const scale = SCALE_BY_ID[scaleId] ?? SCALES[0];
   const goal = scale.budget; // budget de prompts = valeur de l'échelle, sans multiplicateur

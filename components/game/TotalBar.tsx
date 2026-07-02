@@ -17,7 +17,7 @@ interface TotalBarProps {
 /**
  * Facture collée en haut, réduite à l'essentiel :
  *   « 43,5 M prompts IA » · « consommeraient autant d'électricité que tes gestes »
- *   → ×N + libellé de l'échelle (ton année d'IA, 100 personnes / an…).
+ *   → ×N + libellé de l'échelle (ton année d'IA, les États-Unis / an…).
  * Le multiplicateur ET la barre se comptent vs le budget de l'échelle choisie.
  */
 export function TotalBar({ metric, scaleId, spent, goal, scaleLabel }: TotalBarProps) {

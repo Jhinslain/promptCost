@@ -10,7 +10,7 @@ import { buildMetadata, jsonLdScript } from '@/lib/seo';
 
 const FLOW = ['s1', 's2', 's3'] as const;
 const EXAMPLES = ['shower', 'oven', 'car'] as const;
-const SCALES_ROWS = ['you', 'hundred', 'day', 'all'] as const;
+const SCALES_ROWS = ['you', 'usa', 'day', 'all'] as const;
 const FAQ = ['1', '2', '3', '4', '5', '6'] as const;
 const LINKS = [
   { href: '/sources', key: 'sources' },

@@ -135,16 +135,16 @@
   "scale": {
     "label": "À quelle échelle ?",
     "you": "Toi",
-    "hundred": "100 personnes",
+    "usa": "États-Unis",
     "all_ai": "Toute l'IA générative",
     "unit": {
       "you": "ton année d'IA",
-      "hundred": "100 personnes / an",
+      "usa": "les États-Unis / an",
       "all_ai": "l'IA générative / an"
     },
     "spent": {
       "you": "un an de ton usage d'IA",
-      "hundred": "un an d'IA pour 100 personnes",
+      "usa": "un an d'IA aux États-Unis",
       "all_ai": "un an de toute l'IA générative mondiale"
     }
   },
@@ -160,7 +160,7 @@
   "actions": {
     "title": "Le rayon des gestes",
     "costLabel": "= {cost} prompts",
-    "buy": "Acheter",
+    "buy": "Utiliser",
     "virtualNote": "Aliments & objets = empreinte « virtuelle » (production comprise), pas l'eau du robinet.",
     "yearNote": "Les variantes « 1 an » = consommation annuelle moyenne d'un usage réel (pas en continu).",
     "led": "Ampoule LED 1 h",
@@ -299,7 +299,9 @@
     "continue": "Continuer à jouer",
     "didYouKnow": "Le saviez-vous ?",
     "tryScale": "Teste une autre échelle",
-    "tryMetric": "Ou une autre ressource"
+    "tryMetric": "Ou une autre ressource",
+    "tryReverse": "Et dans l'autre sens ?",
+    "tryReverseCta": "Convertis tes prompts en gestes"
   },
   "facts": {
     "f1": "Un prompt texte ≈ 0,3 Wh : autant qu'une ampoule LED allumée ~2 minutes.",
@@ -442,9 +444,9 @@
       "youL": "🧍 Toi (1 an)",
       "youB": "12 000",
       "youBase": "usage intensif ≈ 33 prompts/jour",
-      "hundredL": "👥 100 personnes (1 an)",
-      "hundredB": "1 200 000",
-      "hundredBase": "12 000 × 100",
+      "usaL": "🇺🇸 États-Unis (1 an)",
+      "usaB": "≈ 165 000 000 000",
+      "usaBase": "≈ 15 % de l'usage IA mondial",
       "dayL": "📅 ChatGPT en 1 jour",
       "dayB": "2 500 000 000",
       "dayBase": "~2,5 Md prompts/jour (OpenAI, 2026)",
@@ -452,7 +454,7 @@
       "allB": "~1 100 000 000 000",
       "allBase": "ChatGPT ~900 Md/an ÷ ~80 % du marché"
     },
-    "scalesNote": "On ne suppose pas que tout le monde utilise l'IA : ces budgets reposent sur l'usage réellement observé (ChatGPT ≈ 2,5 milliards de prompts par jour), pas sur la population mondiale. Dans le jeu, tu vises l'un des budgets annuels (Toi, 100 personnes, toute l'IA générative) ; « ChatGPT en 1 jour » est donné ici comme repère.",
+    "scalesNote": "On ne suppose pas que tout le monde utilise l'IA : ces budgets reposent sur l'usage réellement observé (ChatGPT ≈ 2,5 milliards de prompts par jour), pas sur la population mondiale. Dans le jeu, tu vises l'un des budgets annuels (Toi, les États-Unis, toute l'IA générative) ; « ChatGPT en 1 jour » est donné ici comme repère.",
     "rangeTitle": "Pourquoi des fourchettes plutôt qu'un chiffre exact ?",
     "rangeLead": "Les sources varient (mix électrique, méthode de mesure, périmètre). On retient une médiane crédible et on affiche la fourchette. Deux exemples parlants :",
     "rangeFlight": "Vol : selon qu'on intègre ou non le forçage radiatif (×~1,9 chez DEFRA/ADEME ; CO₂ seul chez l'ICAO) et qu'on compte l'aller ou l'aller-retour, le chiffre varie du simple au double.",

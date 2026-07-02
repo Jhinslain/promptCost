@@ -15,15 +15,16 @@ export interface ScaleConfig {
 }
 
 /**
- * 3 repères d'usage réel de l'IA sur 1 an (2026) :
+ * 3 repères d'usage réel de l'IA sur 1 an (2026), en prompts texte :
  *  🧍 Toi                   = 12 000 prompts (hypothèse usage intensif)
- *  👥 100 personnes         = 1,2 M
+ *  🇺🇸 États-Unis           = ~165 Md/an
+ *     (≈ 15 % de l'usage IA mondial, part des États-Unis)
  *  🌍 Toute l'IA générative = ~1 100 milliards/an
  *     (ChatGPT ~900 Md/an ÷ 0,8 de part de marché ≈ 1 100 Md)
  */
 export const SCALES: ScaleConfig[] = [
   { id: 'you', emoji: '🧍', budget: PERSON_YEAR },
-  { id: 'hundred', emoji: '👥', budget: 1_200_000 },
+  { id: 'usa', emoji: '🇺🇸', budget: 165_000_000_000 },
   { id: 'all_ai', emoji: '🌍', budget: 1_100_000_000_000 },
 ];
 

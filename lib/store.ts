@@ -4,6 +4,9 @@ import type { MetricId } from './data';
 /** Modes de jeu : chacun a sa propre page (/, /convertir, …). */
 export type GameMode = 'spend' | 'reverse';
 
+/** Usage par défaut du mode « Convertir » (sert aussi de valeur de reset). */
+const DEFAULT_USAGE: Record<string, number> = { text: 5 };
+
 export interface GameState {
   metric: MetricId;
   scaleId: string;
@@ -22,6 +25,8 @@ export interface GameState {
   /** Remplace tout le panier (utilisé par « Surprends-moi » pour remplir la jauge). */
   setCart: (cart: Record<string, number>) => void;
   reset: () => void;
+  /** Réinitialise le mode « Convertir » à l'usage par défaut. */
+  resetUsage: () => void;
   setUsage: (typeId: string, n: number) => void;
   bumpUsage: (typeId: string, delta: number) => void;
   setReducedMotion: (v: boolean) => void;
@@ -31,7 +36,7 @@ export const useGame = create<GameState>((set) => ({
   metric: 'elec',
   scaleId: 'you',
   cart: {},
-  usage: { text: 5 },
+  usage: { ...DEFAULT_USAGE },
   reducedMotion: false,
 
   setMetric: (metric) => set({ metric }),
@@ -54,6 +59,7 @@ export const useGame = create<GameState>((set) => ({
     }),
   setCart: (cart) => set({ cart }),
   reset: () => set({ cart: {} }),
+  resetUsage: () => set({ usage: { ...DEFAULT_USAGE } }),
   setUsage: (typeId, n) =>
     set((s) => ({ usage: { ...s.usage, [typeId]: Math.max(0, Math.round(n)) } })),
   bumpUsage: (typeId, delta) =>
